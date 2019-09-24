@@ -6,10 +6,12 @@ import numpy as np
 
 r_0 = 0.5
 
-class AnimatedScatter(object):
+class Flock(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
     def __init__(self, numpoints=50):
         self.numpoints = numpoints
+        self.birds = (np.random.random((self.numpoints, 2))-0.5)*50
+        self.I = 2 * np.pi * np.random.random(self.numpoints) # instinct angle
         self.stream = self.data_stream()
 
         # Setup the figure and axes...
@@ -30,18 +32,16 @@ class AnimatedScatter(object):
     def data_stream(self):
         """Generate a random walk (brownian motion). Data is scaled to produce
         a soft "flickering" effect."""
-        xy = (np.random.random((self.numpoints, 2))-0.5)*50
-        I = 2 * np.pi * np.random.random(self.numpoints) # instinct angle
         while True:
-            xy += [[r_0 * np.cos(i), r_0 * np.sin(i)] for i in I]
+            self.birds += [[r_0 * np.cos(i), r_0 * np.sin(i)] for i in self.I]
             # Periodic boundaries
-            for i in range(xy.shape[0]):
-                for j in range(xy.shape[1]):
-                    if xy[i,j] > 100:
-                        xy[i,j] -= 200
-                    elif xy[i,j] < -100:
-                        xy[i,j] += 200
-            yield np.c_[xy[:,0], xy[:,1]]
+            for i in range(self.birds.shape[0]):
+                for j in range(self.birds.shape[1]):
+                    if self.birds[i,j] > 100:
+                        self.birds[i,j] -= 200
+                    elif self.birds[i,j] < -100:
+                        self.birds[i,j] += 200
+            yield np.c_[self.birds[:,0], self.birds[:,1]]
 
     def update(self, i):
         """Update the scatter plot."""
@@ -56,5 +56,5 @@ class AnimatedScatter(object):
 
 
 if __name__ == '__main__':
-    a = AnimatedScatter(20)
+    a = Flock(20)
     plt.show()
