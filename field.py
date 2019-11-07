@@ -7,16 +7,20 @@ from os import path
 
 from birds import Birds
 
-FIELD_DIMS = [-150,500,-150,150]
-# FIELD_DIMS = [-100,100,-100,100]
-SCALE = 50
+# FIELD_DIMS = [-150,500,-150,150]
+# SCALE = 50
+FIELD_DIMS = [-100,100,-100,100]
+SCALE = 40
 
 class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
-    def __init__(self, numbirds=50, fname=None, field_dims = FIELD_DIMS, scale = SCALE):
+    def __init__(self, numbirds=50, fname=None, field_dims=FIELD_DIMS,
+                 periodic=True, scale=SCALE):
+
         self.birds = Birds(numbirds)
         self.field_dims = field_dims
         self.stream = self.data_stream()
+        self.periodic = periodic
 
         # Setup the figure and axes...
         self.fig, self.ax = plt.subplots(
@@ -55,15 +59,27 @@ class Field(object):
             self.birds.vicsek_instinct()
 
             # Periodic boundaries
-            for i in range(self.birds.positions.shape[0]):
-                if self.birds.positions[i,0] < self.field_dims[0]:
-                    self.birds.positions[i,0] += self.field_dims[1] - self.field_dims[0]
-                elif self.birds.positions[i,0] > self.field_dims[1]:
-                    self.birds.positions[i,0] -= self.field_dims[1] - self.field_dims[0]
-                if self.birds.positions[i,1] < self.field_dims[2]:
-                    self.birds.positions[i,1] += self.field_dims[3] - self.field_dims[2]
-                elif self.birds.positions[i,1] > self.field_dims[3]:
-                    self.birds.positions[i,1] -= self.field_dims[3] - self.field_dims[2]
+            if self.periodic:
+                for i in range(self.birds.numbirds):
+                    if self.birds.positions[i,0] < self.field_dims[0]:
+                        self.birds.positions[i,0] += self.field_dims[1] - self.field_dims[0]
+                    elif self.birds.positions[i,0] > self.field_dims[1]:
+                        self.birds.positions[i,0] -= self.field_dims[1] - self.field_dims[0]
+                    if self.birds.positions[i,1] < self.field_dims[2]:
+                        self.birds.positions[i,1] += self.field_dims[3] - self.field_dims[2]
+                    elif self.birds.positions[i,1] > self.field_dims[3]:
+                        self.birds.positions[i,1] -= self.field_dims[3] - self.field_dims[2]
+            else:
+                for i in range(self.birds.numbirds):
+                    if self.birds.positions[i,0] < self.field_dims[0]:
+                        self.birds.positions[i,0] += self.field_dims[1] - self.field_dims[0]
+                    elif self.birds.positions[i,0] > self.field_dims[1]:
+                        self.birds.positions[i,0] -= self.field_dims[1] - self.field_dims[0]
+                    if self.birds.positions[i,1] < self.field_dims[2]:
+                        self.birds.lives[i] = False
+                    elif self.birds.positions[i,1] > self.field_dims[3]:
+                        self.birds.lives[i] = False
+
             yield self.birds.positions
 
     def update(self, i):
