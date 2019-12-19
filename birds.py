@@ -3,7 +3,7 @@ from numpy.random import random
 from scipy.spatial import KDTree
 
 NUM_BIRDS = 50
-FIELDSIZE = 200
+INITIAL_FLOCKSIZE = 200
 STEPSIZE = 0.3
 
 def circular_mean(dirs):
@@ -14,15 +14,15 @@ def sigmoid(z):
     return 1.0/(1.0+np.exp(-z))
 
 class Birds(object):
-    def __init__(self,numbirds=NUM_BIRDS,fieldsize=FIELDSIZE):
+    def __init__(self, numbirds = NUM_BIRDS, initial_flocksize = INITIAL_FLOCKSIZE):
         self.numbirds = numbirds
 
         # Initialization
-        self.positions = fieldsize * (random((self.numbirds, 2))-0.5)
+        self.positions = initial_flocksize * (random((self.numbirds, 2))-0.5)
         self.instincts = 2 * np.pi * random(self.numbirds) # Initial instinct
         self.dirs = self.instincts # Initial flight angle
 
-    def update(self, r_0=STEPSIZE):
+    def update(self, r_0 = STEPSIZE):
         new_dirs = self.instincts # Constant flight direction
 
         # Update flight directions and instincts

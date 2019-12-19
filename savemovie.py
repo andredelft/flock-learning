@@ -4,10 +4,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.animation import FFMpegWriter
 
-# Fixing random state for reproducibility
-np.random.seed(19680801)
-
-
 metadata = dict(title='Movie Test', artist='Matplotlib',
                 comment='Movie support!')
 writer = FFMpegWriter(fps=15, metadata=metadata)

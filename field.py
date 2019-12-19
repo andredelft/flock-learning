@@ -7,8 +7,6 @@ from os import path
 
 from birds import Birds
 
-# FIELD_DIMS = [-150,500,-150,150]
-# SCALE = 50
 FIELD_DIMS = [-100,100,-100,100]
 SCALE = 40
 
