@@ -47,7 +47,7 @@ class Field(object):
     def setup_plot(self):
         """Initial drawing of the scatter plot."""
         x, y, = next(self.stream).T
-        self.scat = self.ax.scatter(x, y, vmin=0, vmax=1, c=self.birds.trusts,
+        self.scat = self.ax.scatter(x, y, vmin=0, vmax=1, c=np.ones(self.birds.numbirds),
                                     cmap="coolwarm", edgecolor="k")
         self.ax.axis(self.field_dims)
         # For FuncAnimation's sake, we need to return the artist we'll be using
@@ -56,7 +56,7 @@ class Field(object):
 
     def data_stream(self):
         while True:
-            self.birds.vicsek_instinct()
+            self.birds.update()
 
             # Periodic boundaries
             if self.periodic:
@@ -69,16 +69,6 @@ class Field(object):
                         self.birds.positions[i,1] += self.field_dims[3] - self.field_dims[2]
                     elif self.birds.positions[i,1] > self.field_dims[3]:
                         self.birds.positions[i,1] -= self.field_dims[3] - self.field_dims[2]
-            else:
-                for i in range(self.birds.numbirds):
-                    if self.birds.positions[i,0] < self.field_dims[0]:
-                        self.birds.positions[i,0] += self.field_dims[1] - self.field_dims[0]
-                    elif self.birds.positions[i,0] > self.field_dims[1]:
-                        self.birds.positions[i,0] -= self.field_dims[1] - self.field_dims[0]
-                    if self.birds.positions[i,1] < self.field_dims[2]:
-                        self.birds.lives[i] = False
-                    elif self.birds.positions[i,1] > self.field_dims[3]:
-                        self.birds.lives[i] = False
 
             yield self.birds.positions
 
