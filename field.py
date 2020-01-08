@@ -45,7 +45,8 @@ class Field(object):
     def setup_plot(self):
         """Initial drawing of the scatter plot."""
         x, y, = next(self.stream).T
-        self.scat = self.ax.scatter(x, y, vmin=0, vmax=1, c=np.ones(self.birds.numbirds),
+        self.scat = self.ax.scatter(x, y, vmin=0, vmax=1,
+                                    c=[1 if i == 0 else 0 for i in range(self.birds.numbirds)],
                                     cmap="coolwarm", edgecolor="k")
         self.ax.axis(self.field_dims)
         # For FuncAnimation's sake, we need to return the artist we'll be using
@@ -54,10 +55,10 @@ class Field(object):
 
     def data_stream(self):
         step = {
-            'N': np.array([0,1]),
-            'E': np.array([1,0]),
-            'S': np.array([0,-1]),
-            'W': np.array([-1,0])
+            'N': np.array([ 0, 1]),
+            'E': np.array([ 1, 0]),
+            'S': np.array([ 0,-1]),
+            'W': np.array([-1, 0])
         }
 
         while True:
@@ -65,7 +66,6 @@ class Field(object):
 
             for i in range(self.birds.numbirds):
                 self.birds.positions[i] += step[self.birds.dirs[i]]
-            print(self.birds.positions[0,1])
 
             # Periodic boundaries
             if self.periodic:
