@@ -9,23 +9,24 @@ from birds import Birds
 
 FIELD_DIMS = np.array([-100,100,-100,100])
 RESOLUTION = 4 # steps/unit
-SCALE = 40
+PLOTSCALE = 40
 
 class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
     def __init__(self, numbirds, fname=None, field_dims=FIELD_DIMS,
-                 res=RESOLUTION, periodic=True, scale=SCALE):
+                 res=RESOLUTION, periodic=True, plotscale=PLOTSCALE):
 
         self.birds = Birds(numbirds, field_dims, res)
         self.field_dims = field_dims
+        self.res = res
         self.stream = self.data_stream()
         self.periodic = periodic
 
         # Setup the figure and axes...
         self.fig, self.ax = plt.subplots(
             figsize = (
-                abs(self.field_dims[1] - self.field_dims[0])/scale,
-                abs(self.field_dims[3] - self.field_dims[2])/scale
+                abs(self.field_dims[1] - self.field_dims[0])/plotscale,
+                abs(self.field_dims[3] - self.field_dims[2])/plotscale
             )
         )
 
@@ -54,8 +55,19 @@ class Field(object):
         return self.scat,
 
     def data_stream(self):
+        step = {
+            'N': np.array([0,1])/self.res,
+            'E': np.array([1,0])/self.res,
+            'S': np.array([0,-1])/self.res,
+            'W': np.array([-1,0])/self.res
+        }
+
         while True:
             self.birds.update()
+
+            for i in range(self.birds.numbirds):
+                self.birds.positions[i] += step[self.birds.dirs[i]]
+            print(self.birds.positions[0,1])
 
             # Periodic boundaries
             if self.periodic:
