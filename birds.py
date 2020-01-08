@@ -13,15 +13,14 @@ def sigmoid(z):
     return 1.0/(1.0+np.exp(-z))
 
 class Birds(object):
-    def __init__(self, numbirds, field_dims, res):
+    def __init__(self, numbirds, field_dims):
         self.numbirds = numbirds
 
         # Initialization
         self.positions = np.array([
             np.array([
-                randint(*(res * field_dims[0:2])),
-                randint(*(res * field_dims[2:4]))
-            ]) / res for _ in range(self.numbirds)
+                randint(*field_dims[0:2]), randint(*field_dims[2:4])
+            ]) for _ in range(self.numbirds)
         ])
 
     def update(self):

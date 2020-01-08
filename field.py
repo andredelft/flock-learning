@@ -7,18 +7,16 @@ from os import path
 
 from birds import Birds
 
-FIELD_DIMS = np.array([-100,100,-100,100])
-RESOLUTION = 4 # steps/unit
-PLOTSCALE = 40
+FIELD_DIMS = 400 * np.array([-1,1,-1,1])
+PLOTSCALE = 160
 
 class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
     def __init__(self, numbirds, fname=None, field_dims=FIELD_DIMS,
-                 res=RESOLUTION, periodic=True, plotscale=PLOTSCALE):
+                 periodic=True, plotscale=PLOTSCALE):
 
-        self.birds = Birds(numbirds, field_dims, res)
+        self.birds = Birds(numbirds, field_dims)
         self.field_dims = field_dims
-        self.res = res
         self.stream = self.data_stream()
         self.periodic = periodic
 
@@ -56,10 +54,10 @@ class Field(object):
 
     def data_stream(self):
         step = {
-            'N': np.array([0,1])/self.res,
-            'E': np.array([1,0])/self.res,
-            'S': np.array([0,-1])/self.res,
-            'W': np.array([-1,0])/self.res
+            'N': np.array([0,1]),
+            'E': np.array([1,0]),
+            'S': np.array([0,-1]),
+            'W': np.array([-1,0])
         }
 
         while True:
