@@ -30,7 +30,7 @@ class Field(object):
 
         # Then setup FuncAnimation.
         if fname:
-            writer = animation.FFMpegWriter(fps=15)
+            writer = animation.FFMpegWriter(fps=24)
             with writer.saving(self.fig, path.join('movies', fname), 100):
                 self.setup_plot()
                 for i in range(400):
