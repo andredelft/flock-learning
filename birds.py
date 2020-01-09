@@ -48,9 +48,11 @@ class Birds(object):
             elif (angle < -1 * np.pi/4) and (angle >= -3 * np.pi / 4):
                 neighbours['S'] += 1
             else:
-                raise ValueError(f'No value found for {angle}')
+                # Check if all cases are catched
+                raise ValueError(f'No value found for angle {angle}')
         return neighbours
 
     def update(self):
-        print(self.observe(0))
+        self.observations = [self.observe(i) for i in range(self.numbirds)]
+        print(self.observations[0])
         self.dirs = ['N' if i == 0 else random.choice(A) for i in range(self.numbirds)]
