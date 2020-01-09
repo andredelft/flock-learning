@@ -46,7 +46,7 @@ class Field(object):
         """Initial drawing of the scatter plot."""
         x, y, = next(self.stream).T
         self.scat = self.ax.scatter(x, y, vmin=0, vmax=1,
-                                    c=[1 if i == 0 else 0 for i in range(self.birds.numbirds)],
+                                    c=[0 for _ in range(self.birds.numbirds)],
                                     cmap="coolwarm", edgecolor="k")
         self.ax.axis(self.field_dims)
         # For FuncAnimation's sake, we need to return the artist we'll be using
@@ -85,7 +85,6 @@ class Field(object):
                         # additional argument for some reason (hence the i)
         """Update the scatter plot."""
         data = next(self.stream)
-        print(i)
 
         # Set x and y data...
         self.scat.set_offsets(data[:, :2])

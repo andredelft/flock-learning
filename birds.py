@@ -54,5 +54,4 @@ class Birds(object):
 
     def update(self):
         self.observations = [self.observe(i) for i in range(self.numbirds)]
-        print(self.observations[0])
-        self.dirs = ['N' if i == 0 else random.choice(A) for i in range(self.numbirds)]
+        self.dirs = [random.choice(A) for _ in range(self.numbirds)]
