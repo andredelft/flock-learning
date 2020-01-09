@@ -36,7 +36,7 @@ class Field(object):
                 for i in range(400):
                     writer.grab_frame()
                     for _ in range(5):
-                        self.update()
+                        self.update(i)
         else:
             self.ani = animation.FuncAnimation(
                 self.fig,self.update,interval=5,init_func=self.setup_plot,blit=True
@@ -81,9 +81,11 @@ class Field(object):
 
             yield self.birds.positions
 
-    def update(self, i):
+    def update(self,i): # When used in FuncAnimation, this function needs an
+                        # additional argument for some reason (hence the i)
         """Update the scatter plot."""
         data = next(self.stream)
+        print(i)
 
         # Set x and y data...
         self.scat.set_offsets(data[:, :2])
