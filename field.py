@@ -46,7 +46,10 @@ class Field(object):
         """Initial drawing of the scatter plot."""
         x, y, = next(self.stream).T
         self.scat = self.ax.scatter(x, y, vmin=0, vmax=1,
-                                    c=[0 for _ in range(self.birds.numbirds)],
+                                    c=[
+                                        1 if self.birds.instincts[i] == 'E' else 0
+                                        for i in range(self.birds.numbirds)
+                                    ],
                                     cmap="coolwarm", edgecolor="k")
         self.ax.axis(self.field_dims)
         # For FuncAnimation's sake, we need to return the artist we'll be using
@@ -65,7 +68,11 @@ class Field(object):
             self.birds.update()
 
             for i in range(self.birds.numbirds):
-                self.birds.positions[i] += step[self.birds.dirs[i]]
+                if self.birds.dirs[i] == 'I':
+                    direction = self.birds.instincts[i]
+                else:
+                    direction = self.birds.dirs[i]
+                self.birds.positions[i] += step[direction]
 
             # Periodic boundaries
             if self.periodic:

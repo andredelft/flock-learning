@@ -1,11 +1,10 @@
 import numpy as np
-from numpy.random import random, randint
-import random
+from random import randint, choice, choices
 from scipy.spatial import KDTree
 
 R = 100
 
-A = ['N','E','S','W'] # Action space
+A = ['N','E','S','W','I'] # Action space
 
 def circular_mean(dirs):
     return np.arctan2(sum(np.sin(dirs))/len(dirs),sum(np.cos(dirs))/len(dirs))
@@ -13,6 +12,10 @@ def circular_mean(dirs):
 def sigmoid(z):
     """The sigmoid function."""
     return 1.0/(1.0+np.exp(-z))
+
+def ternary(numbers):
+    numbers = list(numbers)
+    return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
 
 class Birds(object):
     def __init__(self, numbirds, field_dims):
@@ -24,6 +27,8 @@ class Birds(object):
                 randint(*field_dims[0:2]), randint(*field_dims[2:4])
             ]) for _ in range(self.numbirds)
         ])
+        self.instincts = [choice(['N','E','S','W']) for _ in range(self.numbirds)]
+        self.policies = 100/5 + np.zeros([self.numbirds,3**4,5])
 
     def observe(self, bird_index, radius=R):
         tree = KDTree(self.positions)
@@ -50,8 +55,23 @@ class Birds(object):
             else:
                 # Check if all cases are catched
                 raise ValueError(f'No value found for angle {angle}')
+        # Maximum of 2
+        for dir in neighbours.keys():
+            if neighbours[dir] > 2:
+                neighbours[dir] = 2
         return neighbours
 
+    def Ried_learning(self):
+        for i in range(self.numbirds):
+            reward = 1 if (self.dirs[i] == 'E' or (self.dirs[i] == 'I' and self.instincts[i] == 'E')) else 0
+            j = ternary(self.observations[i].values())
+            self.policies[i,j,{'N':0,'E':1,'S':2,'W':3,'I':4}[self.dirs[i]]] += reward
+            self.policies[i,j] = 100 * self.policies[i,j]/sum(self.policies[i,j])
+
     def update(self):
+        print(self.policies[0])
         self.observations = [self.observe(i) for i in range(self.numbirds)]
-        self.dirs = [random.choice(A) for _ in range(self.numbirds)]
+        self.dirs = [choices(
+            A, weights = self.policies[i,ternary(self.observations[i].values())]
+        )[0] for i in range(self.numbirds)]
+        self.Ried_learning()
