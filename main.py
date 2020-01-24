@@ -2,7 +2,7 @@ from field import Field
 from matplotlib import pyplot as plt
 
 if __name__ == '__main__':
-    Field(100, periodic = True, fname = 'ried.mp4')
+    Field(50, periodic = True)#, fname = 'ried.mp4')
     plt.show()
 
 # Final policy matrix of first bird:
