@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
 from os import path
+from datetime import datetime
 
 from birds import Birds
 
@@ -13,12 +14,16 @@ PLOTSCALE = 160
 class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
     def __init__(self, numbirds, fname=None, field_dims=FIELD_DIMS,
-                 periodic=True, plotscale=PLOTSCALE):
+                 periodic=True, plotscale=PLOTSCALE, record=False):
 
         self.birds = Birds(numbirds, field_dims)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
+        self.record = record
+        if self.record:
+            self.record_file = f'data/{datetime.now().strftime("%Y%m%d-%H%M%S")}.npy'
+            self.history = []
 
         # Setup the figure and axes...
         self.fig, self.ax = plt.subplots(
@@ -45,12 +50,12 @@ class Field(object):
     def setup_plot(self):
         """Initial drawing of the scatter plot."""
         x, y, = next(self.stream).T
-        self.scat = self.ax.scatter(x, y, vmin=0, vmax=1,
-                                    c=[
-                                        1 if self.birds.instincts[i] == 'E' else 0
-                                        for i in range(self.birds.numbirds)
-                                    ],
-                                    cmap="coolwarm", edgecolor="k")
+        self.scat = self.ax.scatter(
+            x, y, vmin=0, vmax=1, cmap="coolwarm", edgecolor="k",
+            c = [
+                1 if self.birds.instincts[i] == 'E' else 0
+                for i in range(self.birds.numbirds)
+            ])
         self.ax.axis(self.field_dims)
         # For FuncAnimation's sake, we need to return the artist we'll be using
         # Note that it expects a sequence of artists, thus the trailing comma.
@@ -64,6 +69,7 @@ class Field(object):
             'W': np.array([-1, 0])
         }
 
+        tstep = 0
         while True:
             self.birds.update()
 
@@ -86,6 +92,28 @@ class Field(object):
                     elif self.birds.positions[i,1] > self.field_dims[3]:
                         self.birds.positions[i,1] -= self.field_dims[3] - self.field_dims[2]
 
+            if self.record:
+                # Calculate average flight direction v of the birds and record it.
+                v = np.array([0,0])
+                for i in range(self.birds.numbirds):
+                    if self.birds.dirs[i] == 'I':
+                        direction = self.birds.instincts[i]
+                    else:
+                        direction = self.birds.dirs[i]
+                    v += step[direction]
+                v = v / self.birds.numbirds
+                self.history.append(v)
+                if tstep % 500 == 0:
+                    if tstep == 0:
+                        # initialize save file with empty array
+                        np.save(self.record_file, self.history)
+                        print(f'Initialized record file {self.record_file}')
+                    else:
+                        recorded = np.load(self.record_file)
+                        np.save(self.record_file, np.append(recorded, self.history, axis = 0))
+                        print(f'Recorded up to timestep {tstep}')
+                    self.history = []
+            tstep += 1
             yield self.birds.positions
 
     def update(self,i): # When used in FuncAnimation, this function needs an
