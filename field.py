@@ -13,39 +13,47 @@ PLOTSCALE = 160
 
 class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
-    def __init__(self, numbirds, fname=None, field_dims=FIELD_DIMS,
-                 periodic=True, plotscale=PLOTSCALE, record=False):
+    def __init__(self, numbirds, sim_length=10000, fname=None, field_dims=FIELD_DIMS,
+                 periodic=True, plotscale=PLOTSCALE, record=False, plot=True):
 
         self.birds = Birds(numbirds, field_dims)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
         self.record = record
+        self.plot = plot
+
+        if not self.plot: # Force recording if there is no visualization
+            self.record = True
         if self.record:
             self.record_file = f'data/{datetime.now().strftime("%Y%m%d-%H%M%S")}.npy'
             self.history = []
 
-        # Setup the figure and axes...
-        self.fig, self.ax = plt.subplots(
-            figsize = (
-                abs(self.field_dims[1] - self.field_dims[0])/plotscale,
-                abs(self.field_dims[3] - self.field_dims[2])/plotscale
+        if self.plot:
+            # Setup the figure and axes...
+            self.fig, self.ax = plt.subplots(
+                figsize = (
+                    abs(self.field_dims[1] - self.field_dims[0])/plotscale,
+                    abs(self.field_dims[3] - self.field_dims[2])/plotscale
+                )
             )
-        )
 
-        # Then setup FuncAnimation.
         if fname:
             writer = animation.FFMpegWriter(fps=24)
             with writer.saving(self.fig, path.join('movies', fname), 100):
                 self.setup_plot()
-                for i in range(400):
+                for i in range(sim_length):
                     writer.grab_frame()
                     for _ in range(5):
                         self.update(i)
-        else:
+        elif plot:
             self.ani = animation.FuncAnimation(
                 self.fig,self.update,interval=5,init_func=self.setup_plot,blit=True
             )
+            plt.show()
+        else: # No visualization, only recording of data
+            for i in range(sim_length):
+                self.update(i)
 
     def setup_plot(self):
         """Initial drawing of the scatter plot."""
@@ -121,9 +129,10 @@ class Field(object):
         """Update the scatter plot."""
         data = next(self.stream)
 
-        # Set x and y data...
-        self.scat.set_offsets(data[:, :2])
+        if self.plot:
+            # Set x and y data...
+            self.scat.set_offsets(data[:, :2])
 
-        # We need to return the updated artist for FuncAnimation to draw..
-        # Note that it expects a sequence of artists, thus the trailing comma.
-        return self.scat,
+            # We need to return the updated artist for FuncAnimation to draw..
+            # Note that it expects a sequence of artists, thus the trailing comma.
+            return self.scat,
