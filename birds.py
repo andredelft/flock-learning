@@ -38,7 +38,7 @@ class Birds(object):
         self.instincts = [choice(['N','E','S','W']) for _ in range(self.numbirds)]
         self.policies = 100/5 + np.zeros([self.numbirds,3**4,5])
 
-    def observe(self, bird_index, radius = R, direction_hist = False):
+    def observe(self, bird_index, radius = R, direction_hist = True):
         tree = KDTree(self.positions)
         neighbours_inds = tree.query_ball_point(self.positions[bird_index], radius)
         neighbours_inds.remove(bird_index)
