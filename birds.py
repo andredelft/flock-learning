@@ -28,9 +28,9 @@ class Birds(object):
     def __init__(self, numbirds, field_dims, observe_direction = False):
         self.numbirds = numbirds
         self.observe_direction = observe_direction
-        print(''.join(['Simulation started with birds that observe the ',
+        print(' '.join(['Simulation started with birds that observe the',
               'flight direction' if observe_direction else 'relative position',
-              ' of neighbours']))
+              'of neighbours']))
 
         # Initialization of birds in the field
         self.positions = np.array([
