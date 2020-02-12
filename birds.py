@@ -88,13 +88,13 @@ class Birds(object):
 
     def Ried_learning(self):
         for i in range(self.numbirds):
-            reward = 1 if (self.dirs[i] == 'E' or (self.dirs[i] == 'I' and self.instincts[i] == 'E')) else 0
-            j = ternary(self.observations[i].values())
-            self.policies[i,j,{'N':0,'E':1,'S':2,'W':3,'I':4}[self.dirs[i]]] += reward
-            self.policies[i,j] = 100 * self.policies[i,j]/sum(self.policies[i,j])
+            if (self.dirs[i] == 'E' or (self.dirs[i] == 'I' and self.instincts[i] == 'E')):
+                j = ternary(self.observations[i].values())
+                self.policies[i,j,{'E':1,'I':4}[self.dirs[i]]] += 1
+                self.policies[i,j] = 100 * self.policies[i,j]/sum(self.policies[i,j])
 
     def update(self):
-        print(self.policies[0])
+        # print(self.policies[0])
         self.observations = [self.observe(i) for i in range(self.numbirds)]
         self.dirs = [choices(
             A, weights = self.policies[i,ternary(self.observations[i].values())]
