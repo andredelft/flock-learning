@@ -25,10 +25,14 @@ def ternary(numbers):
     return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
 
 class Birds(object):
-    def __init__(self, numbirds, field_dims):
+    def __init__(self, numbirds, field_dims, observe_direction = False):
         self.numbirds = numbirds
+        self.observe_direction = observe_direction
+        print(''.join(['Simulation started with birds that observe the ',
+              'flight direction' if observe_direction else 'relative position',
+              ' of neighbours']))
 
-        # Initialization of birds
+        # Initialization of birds in the field
         self.positions = np.array([
             np.array([
                 randint(*field_dims[0:2]), randint(*field_dims[2:4])
@@ -38,7 +42,7 @@ class Birds(object):
         self.instincts = [choice(['N','E','S','W']) for _ in range(self.numbirds)]
         self.policies = 100/5 + np.zeros([self.numbirds,3**4,5])
 
-    def observe(self, bird_index, radius = R, direction_hist = True):
+    def observe(self, bird_index, radius = R):
         tree = KDTree(self.positions)
         neighbours_inds = tree.query_ball_point(self.positions[bird_index], radius)
         neighbours_inds.remove(bird_index)
@@ -56,7 +60,7 @@ class Birds(object):
         # - Flight direction of neighbours (direction_hist = True): Observes
         #   and counts the current flight direction of all birds in the
         #   observation space.
-        if not direction_hist:
+        if not self.observe_direction:
             for i in neighbours_inds:
                 delta_x = self.positions[bird_index,0] - self.positions[i,0]
                 delta_y = self.positions[bird_index,1] - self.positions[i,1]

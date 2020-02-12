@@ -13,24 +13,29 @@ PLOTSCALE = 160
 
 class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
-    def __init__(self, numbirds, sim_length=10000, fname=None, field_dims=FIELD_DIMS,
-                 periodic=True, plotscale=PLOTSCALE, record=False, plot=True):
+    def __init__(self, numbirds, sim_length=12000, record_mov=False, record_data=False,
+                 field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
+                 observe_direction = False):
 
-        self.birds = Birds(numbirds, field_dims)
+        self.birds = Birds(numbirds, field_dims, observe_direction)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
-        self.record = record
+        self.record_data = record_data
         self.plot = plot
+        sim_length += 1
+
+        if record_mov: # Force plotting of data (necessary for movie)
+            self.plot = True
 
         if not self.plot: # Force recording if there is no visualization
-            self.record = True
-        if self.record:
-            self.record_file = f'data/{datetime.now().strftime("%Y%m%d-%H%M%S")}.npy'
+            self.record_data = True
+        if self.record_data:
+            self.data_file = f'data/{datetime.now().strftime("%Y%m%d-%H%M%S")}.npy'
             self.history = []
 
         if self.plot:
-            # Setup the figure and axes...
+            # Setup the figure and axes
             self.fig, self.ax = plt.subplots(
                 figsize = (
                     abs(self.field_dims[1] - self.field_dims[0])/plotscale,
@@ -38,15 +43,16 @@ class Field(object):
                 )
             )
 
-        if fname:
+        if record_mov:
             writer = animation.FFMpegWriter(fps=24)
-            with writer.saving(self.fig, path.join('movies', fname), 100):
+            mov_name = f'movies/{datetime.now().strftime("%Y%m%d-%H%M%S")}.mp4'
+            with writer.saving(self.fig, mov_name, 100):
                 self.setup_plot()
                 for i in range(sim_length):
                     writer.grab_frame()
                     for _ in range(5):
                         self.update(i)
-        elif plot:
+        elif self.plot:
             self.ani = animation.FuncAnimation(
                 self.fig,self.update,interval=5,init_func=self.setup_plot,blit=True
             )
@@ -100,7 +106,7 @@ class Field(object):
                     elif self.birds.positions[i,1] > self.field_dims[3]:
                         self.birds.positions[i,1] -= self.field_dims[3] - self.field_dims[2]
 
-            if self.record:
+            if self.record_data:
                 # Calculate average flight direction v of the birds and record it.
                 v = np.array([0,0])
                 for i in range(self.birds.numbirds):
@@ -114,11 +120,11 @@ class Field(object):
                 if tstep % 500 == 0:
                     if tstep == 0:
                         # initialize save file with empty array
-                        np.save(self.record_file, self.history)
-                        print(f'Initialized record file {self.record_file}')
+                        np.save(self.data_file, self.history)
+                        print(f'Initialized record file {self.data_file}')
                     else:
-                        recorded = np.load(self.record_file)
-                        np.save(self.record_file, np.append(recorded, self.history, axis = 0))
+                        data = np.load(self.data_file)
+                        np.save(self.data_file, np.append(data, self.history, axis = 0))
                         print(f'Recorded up to timestep {tstep}')
                     self.history = []
             tstep += 1
