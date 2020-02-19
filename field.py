@@ -76,23 +76,10 @@ class Field(object):
         return self.scat,
 
     def data_stream(self):
-        step = {
-            'N': np.array([ 0, 1]),
-            'E': np.array([ 1, 0]),
-            'S': np.array([ 0,-1]),
-            'W': np.array([-1, 0])
-        }
 
         tstep = 0
         while True:
             self.birds.update()
-
-            for i in range(self.birds.numbirds):
-                if self.birds.dirs[i] == 'I':
-                    direction = self.birds.instincts[i]
-                else:
-                    direction = self.birds.dirs[i]
-                self.birds.positions[i] += step[direction]
 
             # Periodic boundaries
             if self.periodic:

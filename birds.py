@@ -2,7 +2,9 @@ import numpy as np
 from random import randint, choice, choices
 from scipy.spatial import KDTree
 
-R = 100 # Observation radius
+D = 100 # Observation radius
+N = 2   # Max neigbours observed
+R = 1   # Reward signal
 
 A = ['I','V'] # Action space
 
@@ -38,11 +40,11 @@ class Birds(object):
                 randint(*field_dims[0:2]), randint(*field_dims[2:4])
             ]) for _ in range(self.numbirds)
         ])
-        self.actions = [choice(A) for _ in range(self.numbirds)]
+        self.dirs = [choice(['N','E','S','W']) for _ in range(self.numbirds)]
         self.instincts = [choice(['N','E','S','W']) for _ in range(self.numbirds)]
-        self.policies = 100/5 + np.zeros([self.numbirds,3**4,5])
+        self.policies = np.zeros([self.numbirds, (N + 1)**4, len(A)]) + 100/len(A)
 
-    def observe(self, bird_index, radius = R):
+    def observe(self, bird_index, radius = D):
         tree = KDTree(self.positions)
         neighbours_inds = tree.query_ball_point(self.positions[bird_index], radius)
         neighbours_inds.remove(bird_index)
@@ -78,11 +80,7 @@ class Birds(object):
                     raise ValueError(f'No value found for angle {angle}')
         else:
             for i in neighbours_inds:
-                if self.dirs[i] == 'I':
-                    dir = self.instincts[i]
-                else:
-                    dir = self.dirs[i]
-                neighbours[dir] += 1
+                neighbours[self.dirs[i]] += 1
 
         # Maximum of 2
         for dir in neighbours.keys():
@@ -90,17 +88,29 @@ class Birds(object):
                 neighbours[dir] = 2
         return neighbours
 
-    def Ried_learning(self):
+
+    def perform_step(self):
         for i in range(self.numbirds):
-            if (self.dirs[i] == 'E' or (self.dirs[i] == 'I' and self.instincts[i] == 'E')):
+            if self.actions[i] == 'V':
+                self.dirs[i] = 'N'
+            elif self.actions[i] == 'I':
+                self.dirs[i] = self.instincts[i]
+            else:
+                raise ValueError(f'Action {self.actions[i]} does not exist')
+            self.positions[i] += step[self.dirs[i]]
+
+    def Ried_learning(self, reward_signal = R):
+        for i in range(self.numbirds):
+            if self.dirs[i] == 'E':
                 j = ternary(self.observations[i].values())
-                self.policies[i,j,{'E':1,'I':4}[self.dirs[i]]] += 1
+                self.policies[i,j,A.index(self.actions[i])] += reward_signal
                 self.policies[i,j] = 100 * self.policies[i,j]/sum(self.policies[i,j])
 
     def update(self):
         # print(self.policies[0])
         self.observations = [self.observe(i) for i in range(self.numbirds)]
-        self.dirs = [choices(
-            A, weights = self.policies[i,ternary(self.observations[i].values())]
+        self.actions = [choices(
+            A, weights = self.policies[i, ternary(self.observations[i].values())],
         )[0] for i in range(self.numbirds)]
+        self.perform_step()
         self.Ried_learning()
