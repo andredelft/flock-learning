@@ -18,5 +18,4 @@ def plot_arg(fname, label = ''):
     plt.plot(avg([np.arctan2(v[1],v[0]) for v in data], cap=100),label=label)
 
 if __name__ == '__main__':
-    for _ in range(2):
-        Field(100, periodic = True, plot = False, record_data = True, observe_direction = False)
+    Field(100, periodic = True, plot = True, record_data = False, observe_direction = False)
