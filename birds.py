@@ -6,21 +6,39 @@ D = 100 # Observation radius
 N = 2   # Max neigbours observed
 R = 1   # Reward signal
 
-A = ['I','V'] # Action space
+A = ['V','I'] # Action space
 
-step = {
+STEP = {
     'N': np.array([ 0, 1]),
     'E': np.array([ 1, 0]),
     'S': np.array([ 0,-1]),
     'W': np.array([-1, 0])
 }
 
-def circular_mean(dirs):
-    return np.arctan2(sum(np.sin(dirs))/len(dirs),sum(np.cos(dirs))/len(dirs))
+ANG = {
+    'N': np.pi/2,
+    'E': 0,
+    'S': -1 * np.pi/2,
+    'W': np.pi
+}
 
-def sigmoid(z):
-    """The sigmoid function."""
-    return 1.0/(1.0+np.exp(-z))
+def discrete_Vicsek(observation):
+    v = np.array([0,0])
+    for dir,n in observation.items():
+        for _ in range(n):
+            v += STEP[dir]
+    if list(v) != [0,0]:
+        angle = np.arctan2(v[1],v[0])
+        if (angle < -3 * np.pi / 4) or (angle >= 3 * np.pi / 4):
+            return 'E'
+        elif (angle < 3 * np.pi / 4) and (angle >= np.pi / 4):
+            return 'N'
+        elif (angle < np.pi / 4) and (angle >= -1 * np.pi / 4):
+            return 'W'
+        elif (angle < -1 * np.pi/4) and (angle >= -3 * np.pi / 4):
+            return 'S'
+    else:
+        return 0
 
 def ternary(numbers):
     numbers = list(numbers)
@@ -88,16 +106,25 @@ class Birds(object):
                 neighbours[dir] = 2
         return neighbours
 
-
     def perform_step(self):
         for i in range(self.numbirds):
             if self.actions[i] == 'V':
-                self.dirs[i] = 'N'
+                if not self.observe_direction:
+                    raise Exception('Vicsek step is not allowed when observe_direction = False')
+                else:
+                    Vic_dir = discrete_Vicsek(self.observations[i])
+                    if Vic_dir == 0:
+                        # random direction if neigbours cancel each other out
+                        self.dirs[i] = choice(['N','E','S','W'])
+                    else:
+                        self.dirs[i] = Vic_dir
             elif self.actions[i] == 'I':
                 self.dirs[i] = self.instincts[i]
+            elif self.actions[i] in ['N','E','S','W']:
+                self.dirs[i] = self.actions[i]
             else:
                 raise ValueError(f'Action {self.actions[i]} does not exist')
-            self.positions[i] += step[self.dirs[i]]
+            self.positions[i] += STEP[self.dirs[i]]
 
     def Ried_learning(self, reward_signal = R):
         for i in range(self.numbirds):

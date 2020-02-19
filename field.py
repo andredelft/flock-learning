@@ -6,7 +6,7 @@ import numpy as np
 from os import path
 from datetime import datetime
 
-from birds import Birds
+from birds import Birds,STEP
 
 FIELD_DIMS = 400 * np.array([-1,1,-1,1])
 PLOTSCALE = 160
@@ -101,7 +101,7 @@ class Field(object):
                         direction = self.birds.instincts[i]
                     else:
                         direction = self.birds.dirs[i]
-                    v += step[direction]
+                    v += STEP[direction]
                 v = v / self.birds.numbirds
                 self.history.append(v)
                 if tstep % 500 == 0:
