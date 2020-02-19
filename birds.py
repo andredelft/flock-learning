@@ -4,7 +4,7 @@ from scipy.spatial import KDTree
 
 R = 100 # Observation radius
 
-A = ['N','E','S','W','I'] # Action space
+A = ['I','V'] # Action space
 
 step = {
     'N': np.array([ 0, 1]),
@@ -38,7 +38,7 @@ class Birds(object):
                 randint(*field_dims[0:2]), randint(*field_dims[2:4])
             ]) for _ in range(self.numbirds)
         ])
-        self.dirs = [choice(A) for _ in range(self.numbirds)]
+        self.actions = [choice(A) for _ in range(self.numbirds)]
         self.instincts = [choice(['N','E','S','W']) for _ in range(self.numbirds)]
         self.policies = 100/5 + np.zeros([self.numbirds,3**4,5])
 
