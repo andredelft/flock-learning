@@ -114,8 +114,8 @@ class Birds(object):
                 else:
                     Vic_dir = discrete_Vicsek(self.observations[i])
                     if Vic_dir == 0:
-                        # random direction if neigbours cancel each other out
-                        self.dirs[i] = choice(['N','E','S','W'])
+                        # Maintain current direction
+                        self.dirs[i] = self.dirs[i]
                     else:
                         self.dirs[i] = Vic_dir
             elif self.actions[i] == 'I':
