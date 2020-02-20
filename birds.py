@@ -45,8 +45,9 @@ def ternary(numbers):
     return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
 
 class Birds(object):
-    def __init__(self, numbirds, field_dims, observe_direction = False):
+    def __init__(self, numbirds, field_dims, observe_direction = False, leader_frac = 0.25):
         self.numbirds = numbirds
+        self.leaders = int(self.numbirds * leader_frac)
         self.observe_direction = observe_direction
         print(' '.join(['Simulation started with birds that observe the',
               'flight direction' if observe_direction else 'relative position',
@@ -58,8 +59,8 @@ class Birds(object):
                 randint(*field_dims[0:2]), randint(*field_dims[2:4])
             ]) for _ in range(self.numbirds)
         ])
-        self.dirs = [choice(['N','E','S','W']) for _ in range(self.numbirds)]
-        self.instincts = [choice(['N','E','S','W']) for _ in range(self.numbirds)]
+        self.dirs = choices(['N','E','W'], k = self.numbirds)
+        self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
         self.policies = np.zeros([self.numbirds, (N + 1)**4, len(A)]) + 100/len(A)
 
     def observe(self, bird_index, radius = D):

@@ -15,9 +15,9 @@ class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
     def __init__(self, numbirds, sim_length=12000, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
-                 observe_direction = False):
+                 observe_direction=False, leader_frac=.25):
 
-        self.birds = Birds(numbirds, field_dims, observe_direction)
+        self.birds = Birds(numbirds, field_dims, observe_direction, leader_frac)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
@@ -32,6 +32,8 @@ class Field(object):
             self.record_data = True
         if self.record_data:
             self.data_file = f'data/{datetime.now().strftime("%Y%m%d-%H%M%S")}.npy'
+            with open('data/metadata.log','a') as f:
+                f.write(f'{self.data_file}\nleader_frac = {leader_frac}\n')
             self.history = []
 
         if self.plot:
