@@ -13,7 +13,7 @@ PLOTSCALE = 160
 
 class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
-    def __init__(self, numbirds, sim_length=12000, record_mov=False, record_data=False,
+    def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
                  observe_direction=False, leader_frac=.25):
 

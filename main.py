@@ -29,9 +29,7 @@ def plot_mag_arg(fname):
     a[1].plot(avg([np.arctan2(v[1],v[0]) for v in data], cap=100))
 
 if __name__ == '__main__':
-    for n in range(6):
-        leader_frac = 0.2 * n
-        Field(
-            100, periodic = True, plot = True, record_data = True, observe_direction = True,
-            leader_frac = leader_frac
-        )
+    Field(
+        100, periodic = True, plot = False, record_data = True, observe_direction = True,
+        leader_frac = 0.7
+    )
