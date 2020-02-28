@@ -4,6 +4,8 @@ from os import path
 from glob import glob
 import json
 
+from birds import ternary
+
 def avg(data, cap = 20):
     return [sum(data[i:i + cap])/cap for i in range(len(data) - cap)]
 
@@ -28,6 +30,37 @@ def plot_mag_arg(fname):
     a[1].set_xlabel('Timestep')
     a[1].set_ylabel('Arg(v)')
     a[1].plot(avg([np.arctan2(v[1],v[0]) for v in data], cap=100))
+
+maj_N = [
+    ternary([1,0,0,0]),
+    *range(ternary([2,0,0,0]), ternary([2,0,1,1]) + 1),
+    *range(ternary([2,1,0,0]), ternary([2,1,1,1]) + 1)
+]
+
+maj_E = [
+    ternary([0,1,0,0]),
+    *range(ternary([0,2,0,0]), ternary([0,2,1,1]) + 1),
+    *range(ternary([1,2,0,0]), ternary([1,2,1,1]) + 1)
+]
+
+maj_S = [
+    ternary([0,0,1,0]),
+    ternary([0,0,2,0]), ternary([0,0,2,1],
+    ternary([0,1,2,0]), ternary([0,1,2,1],
+    ternary([1,0,2,0]), ternary([1,0,2,1],
+    ternary([1,1,2,0]), ternary([1,1,2,1]
+]
+
+maj_W = [
+    ternary([0,0,0,1]),
+    ternary([0,0,0,2]), ternary([0,0,1,2],
+    ternary([0,1,0,2]), ternary([0,1,1,2],
+    ternary([1,0,0,2]), ternary([1,0,1,2],
+    ternary([1,1,0,2]), ternary([1,1,1,2]
+]
+
+def hist(fname):
+    pass
 
 def plot_all(data_dir = 'data', quantity = 'mag'):
     fnames = glob(f'{data_dir}/*.npy')
