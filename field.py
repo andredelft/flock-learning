@@ -32,8 +32,10 @@ class Field(object):
             self.record_data = True
         if self.record_data:
             self.data_file = f'data/{datetime.now().strftime("%Y%m%d-%H%M%S")}.npy'
-            with open('data/metadata.log','a') as f:
-                f.write(f'{self.data_file}\nleader_frac = {leader_frac}\n')
+            with open('data/parameters.log','a') as f:
+                f.write(f'{self.data_file}\n')
+                f.write(f'Observing {"flight direction" if observe_direction else "relative position"}\n')
+                f.write(f'leader_frac = {leader_frac}\n')
             self.history = []
 
         if self.plot:

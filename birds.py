@@ -6,7 +6,7 @@ D = 100 # Observation radius
 N = 2   # Max neigbours observed
 R = 1   # Reward signal
 
-A = ['V','I'] # Action space
+A = ['N','E','S','W','I'] # Action space
 
 STEP = {
     'N': np.array([ 0, 1]),
@@ -107,7 +107,7 @@ class Birds(object):
                 neighbours[dir] = 2
         return neighbours
 
-    def perform_step(self):
+    def perform_step(self, step = STEP):
         for i in range(self.numbirds):
             if self.actions[i] == 'V':
                 if not self.observe_direction:
@@ -125,7 +125,7 @@ class Birds(object):
                 self.dirs[i] = self.actions[i]
             else:
                 raise ValueError(f'Action {self.actions[i]} does not exist')
-            self.positions[i] += STEP[self.dirs[i]]
+            self.positions[i] += step[self.dirs[i]]
 
     def Ried_learning(self, reward_signal = R):
         for i in range(self.numbirds):
