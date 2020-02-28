@@ -5,6 +5,7 @@ import matplotlib.animation as animation
 import numpy as np
 from os import path
 from datetime import datetime
+import json
 
 from birds import Birds,STEP
 
@@ -32,10 +33,20 @@ class Field(object):
             self.record_data = True
         if self.record_data:
             self.data_file = f'data/{datetime.now().strftime("%Y%m%d-%H%M%S")}.npy'
-            with open('data/parameters.log','a') as f:
-                f.write(f'{self.data_file}\n')
-                f.write(f'Observing {"flight direction" if observe_direction else "relative position"}\n')
-                f.write(f'leader_frac = {leader_frac}\n')
+            parameter_file = 'data/parameters.json'
+            parameters = {
+                'observe_direction': observe_direction,
+                'leader_frac': leader_frac
+            }
+            if path.isfile('data/parameters.json'):
+                with open('data/parameters.json') as f:
+                    ex_pars = json.load(f)
+                ex_pars[path.split(self.data_file)[1]] = parameters
+                with open('data/parameters.json') as f:
+                    json.dump(ex_pars, indent = 2)
+            else:
+                with open(parameter_file, 'w') as f:
+                    json.dump({path.split(self.data_file)[1]: parameters}, f, indent = 2)
             self.history = []
 
         if self.plot:
