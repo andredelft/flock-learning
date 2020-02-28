@@ -1,0 +1,14 @@
+{
+  "20200228-094734": {
+    "observe_direction": false,
+    "leader_frac": 0.25
+  },
+  "20200228-094821": {
+    "observe_direction": true,
+    "leader_frac": 0.25
+  },
+  "20200228-095435": {
+    "observe_direction": true,
+    "leader_frac": 0.25
+  }
+}
