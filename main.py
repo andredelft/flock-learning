@@ -31,5 +31,5 @@ def plot_mag_arg(fname):
 if __name__ == '__main__':
     Field(
         100, periodic = True, plot = False, record_data = True, observe_direction = True,
-        leader_frac = 0.25
+        leader_frac = 0.25, record_policy = True
     )

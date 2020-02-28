@@ -6,6 +6,7 @@ import numpy as np
 from os import path
 from datetime import datetime
 import json
+import pickle
 
 from birds import Birds,STEP
 
@@ -16,13 +17,14 @@ class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
     def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
-                 observe_direction=False, leader_frac=.25):
+                 observe_direction=False, leader_frac=.25, record_policy=True):
 
         self.birds = Birds(numbirds, field_dims, observe_direction, leader_frac)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
         self.record_data = record_data
+        self.record_policy = record_policy
         self.plot = plot
         sim_length += 1
 
@@ -32,7 +34,8 @@ class Field(object):
         if not self.plot: # Force recording if there is no visualization
             self.record_data = True
         if self.record_data:
-            self.data_file = f'data/{datetime.now().strftime("%Y%m%d-%H%M%S")}.npy'
+            now = datetime.now().strftime("%Y%m%d-%H%M%S")
+            self.data_file = f'data/{now}.npy'
             parameter_file = 'data/parameters.json'
             parameters = {
                 'observe_direction': observe_direction,
@@ -41,13 +44,20 @@ class Field(object):
             if path.isfile('data/parameters.json'):
                 with open('data/parameters.json') as f:
                     ex_pars = json.load(f)
-                ex_pars[path.split(self.data_file)[1]] = parameters
-                with open('data/parameters.json') as f:
-                    json.dump(ex_pars, indent = 2)
+                ex_pars[now] = parameters
+                with open('data/parameters.json', 'w') as f:
+                    json.dump(ex_pars, f, indent = 2)
             else:
                 with open(parameter_file, 'w') as f:
-                    json.dump({path.split(self.data_file)[1]: parameters}, f, indent = 2)
-            self.history = []
+                    json.dump({now: parameters}, f, indent = 2)
+
+            self.v_history = []
+
+            if self.record_policy:
+                self.policy_file = f'data/{now}-policies.p'
+                with open(self.policy_file, 'wb') as f:
+                    pickle.dump({'instincts': self.birds.instincts, 'policies': []}, f)
+                self.policy_history = []
 
         if self.plot:
             # Setup the figure and axes
@@ -118,17 +128,27 @@ class Field(object):
                         direction = self.birds.dirs[i]
                     v += STEP[direction]
                 v = v / self.birds.numbirds
-                self.history.append(v)
+                self.v_history.append(v)
+                if self.record_policy:
+                    self.policy_history.append(self.birds.policies)
                 if tstep % 500 == 0:
                     if tstep == 0:
                         # initialize save file with empty array
-                        np.save(self.data_file, self.history)
+                        np.save(self.data_file, self.v_history)
                         print(f'Initialized record file {self.data_file}')
                     else:
                         data = np.load(self.data_file)
-                        np.save(self.data_file, np.append(data, self.history, axis = 0))
+                        np.save(self.data_file, np.append(data, self.v_history, axis = 0))
                         print(f'Recorded up to timestep {tstep}')
-                    self.history = []
+                        if self.record_policy:
+                            with open(self.policy_file, 'rb') as f:
+                                data = pickle.load(f)
+                            data['policies'] += self.policy_history
+                            with open(self.policy_file, 'wb') as f:
+                                pickle.dump(data, f)
+                    self.v_history = []
+                    if self.record_policy:
+                        self.policy_history = []
             tstep += 1
             yield self.birds.positions
 
