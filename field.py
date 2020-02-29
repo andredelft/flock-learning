@@ -1,4 +1,4 @@
-self.record_tag# Inspired by https://stackoverflow.com/questions/9401658/how-to-animate-a-scatter-plot
+# Inspired by https://stackoverflow.com/questions/9401658/how-to-animate-a-scatter-plot
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -33,11 +33,13 @@ class Field(object):
 
         if not self.plot: # Force recording if there is no visualization
             self.record_data = True
+
         if self.record_data:
             self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
             self.data_file = f'data/{self.record_tag}-v.npy'
             parameter_file = 'data/parameters.json'
             parameters = {
+                'no_birds': self.birds.numbirds,
                 'observe_direction': observe_direction,
                 'leader_frac': leader_frac,
                 'action_space': A
@@ -55,8 +57,8 @@ class Field(object):
             self.v_history = []
 
             if self.track_birds:
-                with open(f'data/{self.record_tag}-instincts.p','wb') as f:
-                    pickle.dump(self.birds.instincts, f)
+                with open(f'data/{self.record_tag}-instincts.json','w') as f:
+                    json.dump(self.birds.instincts, f)
                 self.policy_file = f'data/{self.record_tag}-policies.p'
                 self.policy_history = []
                 self.action_file = f'data/{self.record_tag}-actions.p'

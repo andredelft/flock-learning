@@ -6,7 +6,7 @@ D = 100 # Observation radius
 N = 2   # Max neigbours observed
 R = 1   # Reward signal
 
-A = ['N','E','S','W','I'] # Action space
+A = ['V','I'] # Action space
 
 STEP = {
     'N': np.array([ 0, 1]),
