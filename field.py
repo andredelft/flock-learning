@@ -1,4 +1,4 @@
-# Inspired by https://stackoverflow.com/questions/9401658/how-to-animate-a-scatter-plot
+self.record_tag# Inspired by https://stackoverflow.com/questions/9401658/how-to-animate-a-scatter-plot
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -8,7 +8,7 @@ from datetime import datetime
 import json
 import pickle
 
-from birds import Birds,STEP
+from birds import Birds,STEP,A
 
 FIELD_DIMS = 400 * np.array([-1,1,-1,1])
 PLOTSCALE = 160
@@ -17,14 +17,14 @@ class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
     def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
-                 observe_direction=False, leader_frac=.25, record_policy=True):
+                 observe_direction=False, leader_frac=.25, track_birds=True):
 
         self.birds = Birds(numbirds, field_dims, observe_direction, leader_frac)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
         self.record_data = record_data
-        self.record_policy = record_policy
+        self.track_birds = track_birds
         self.plot = plot
         sim_length += 1
 
@@ -34,30 +34,33 @@ class Field(object):
         if not self.plot: # Force recording if there is no visualization
             self.record_data = True
         if self.record_data:
-            now = datetime.now().strftime("%Y%m%d-%H%M%S")
-            self.data_file = f'data/{now}.npy'
+            self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
+            self.data_file = f'data/{self.record_tag}-v.npy'
             parameter_file = 'data/parameters.json'
             parameters = {
                 'observe_direction': observe_direction,
-                'leader_frac': leader_frac
+                'leader_frac': leader_frac,
+                'action_space': A
             }
             if path.isfile('data/parameters.json'):
                 with open('data/parameters.json') as f:
                     ex_pars = json.load(f)
-                ex_pars[now] = parameters
+                ex_pars[self.record_tag] = parameters
                 with open('data/parameters.json', 'w') as f:
                     json.dump(ex_pars, f, indent = 2)
             else:
                 with open(parameter_file, 'w') as f:
-                    json.dump({now: parameters}, f, indent = 2)
+                    json.dump({self.record_tag: parameters}, f, indent = 2)
 
             self.v_history = []
 
-            if self.record_policy:
-                self.policy_file = f'data/{now}-policies.p'
-                with open(self.policy_file, 'wb') as f:
-                    pickle.dump({'instincts': self.birds.instincts, 'policies': []}, f)
+            if self.track_birds:
+                with open(f'data/{self.record_tag}-instincts.p','wb') as f:
+                    pickle.dump(self.birds.instincts, f)
+                self.policy_file = f'data/{self.record_tag}-policies.p'
                 self.policy_history = []
+                self.action_file = f'data/{self.record_tag}-actions.p'
+                self.action_history = []
 
         if self.plot:
             # Setup the figure and axes
@@ -94,7 +97,8 @@ class Field(object):
             c = [
                 1 if self.birds.instincts[i] == 'E' else 0
                 for i in range(self.birds.numbirds)
-            ])
+            ]
+        )
         self.ax.axis(self.field_dims)
         # For FuncAnimation's sake, we need to return the artist we'll be using
         # Note that it expects a sequence of artists, thus the trailing comma.
@@ -129,26 +133,37 @@ class Field(object):
                     v += STEP[direction]
                 v = v / self.birds.numbirds
                 self.v_history.append(v)
-                if self.record_policy:
+                if self.track_birds:
                     self.policy_history.append(self.birds.policies)
+                    self.action_history.append(self.birds.actions)
                 if tstep % 500 == 0:
                     if tstep == 0:
-                        # initialize save file with empty array
+                        # initialize save files with empty array
                         np.save(self.data_file, self.v_history)
-                        print(f'Initialized record file {self.data_file}')
+                        with open(self.policy_file,'wb') as f:
+                            pickle.dump([],f)
+                        with open(self.action_file,'wb') as f:
+                            pickle.dump([],f)
+                        print(f'Initialized record files with tag {self.record_tag}')
                     else:
                         data = np.load(self.data_file)
                         np.save(self.data_file, np.append(data, self.v_history, axis = 0))
                         print(f'Recorded up to timestep {tstep}')
-                        if self.record_policy:
+                        if self.track_birds:
                             with open(self.policy_file, 'rb') as f:
                                 data = pickle.load(f)
-                            data['policies'] += self.policy_history
+                            data += self.policy_history
                             with open(self.policy_file, 'wb') as f:
                                 pickle.dump(data, f)
+                            with open(self.action_file, 'rb') as f:
+                                data = pickle.load(f)
+                            data += self.action_history
+                            with open(self.action_file, 'wb') as f:
+                                pickle.dump(data, f)
                     self.v_history = []
-                    if self.record_policy:
+                    if self.track_birds:
                         self.policy_history = []
+                        self.action_history = []
             tstep += 1
             yield self.birds.positions
 

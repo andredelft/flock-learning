@@ -3,23 +3,24 @@ import numpy as np
 from os import path
 from glob import glob
 import json
+import regex
 
 from birds import ternary
 
 def avg(data, cap = 20):
     return [sum(data[i:i + cap])/cap for i in range(len(data) - cap)]
 
-def plot_mag(fname, label = ''):
+def plot_mag(fname, label = '', cap = 50):
     data = np.load(fname)
-    plt.plot(avg([np.linalg.norm(v) for v in data], cap=50),label=label)
+    plt.plot(avg([np.linalg.norm(v) for v in data], cap=cap),label=label)
 
-def plot_vx(fname, label = ''):
+def plot_vx(fname, label = '', cap = 50):
     data = np.load(fname)
-    plt.plot(avg([v[0] for v in data], cap=50),label=label)
+    plt.plot(avg([v[0] for v in data], cap=cap),label=label)
 
-def plot_arg(fname, label = ''):
+def plot_arg(fname, label = '', cap = 100):
     data = np.load(fname)
-    plt.plot(avg([np.arctan2(v[1],v[0]) for v in data], cap=100),label=label)
+    plt.plot(avg([np.arctan2(v[1],v[0]) for v in data], cap=cap),label=label)
 
 def plot_mag_arg(fname):
     data = np.load(fname)
@@ -45,36 +46,36 @@ maj_E = [
 
 maj_S = [
     ternary([0,0,1,0]),
-    ternary([0,0,2,0]), ternary([0,0,2,1],
-    ternary([0,1,2,0]), ternary([0,1,2,1],
-    ternary([1,0,2,0]), ternary([1,0,2,1],
-    ternary([1,1,2,0]), ternary([1,1,2,1]
+    ternary([0,0,2,0]), ternary([0,0,2,1]),
+    ternary([0,1,2,0]), ternary([0,1,2,1]),
+    ternary([1,0,2,0]), ternary([1,0,2,1]),
+    ternary([1,1,2,0]), ternary([1,1,2,1])
 ]
 
 maj_W = [
     ternary([0,0,0,1]),
-    ternary([0,0,0,2]), ternary([0,0,1,2],
-    ternary([0,1,0,2]), ternary([0,1,1,2],
-    ternary([1,0,0,2]), ternary([1,0,1,2],
-    ternary([1,1,0,2]), ternary([1,1,1,2]
+    ternary([0,0,0,2]), ternary([0,0,1,2]),
+    ternary([0,1,0,2]), ternary([0,1,1,2]),
+    ternary([1,0,0,2]), ternary([1,0,1,2]),
+    ternary([1,1,0,2]), ternary([1,1,1,2])
 ]
 
-def hist(fname):
+def plot_hist(fname):
     pass
 
-def plot_all(data_dir = 'data', quantity = 'mag'):
+def plot_all(data_dir = 'data', quantity = 'mag', cap = 100):
     fnames = glob(f'{data_dir}/*.npy')
     with open(path.join(data_dir,'parameters.json')) as f:
         pars = json.load(f)
     for fname in fnames:
-        label = path.splitext(path.split(fname)[1])[0]
+        label = regex.search(r'^[0-9]+-[0-9]+',path.split(fname)[1]).group()
         if quantity == 'mag':
             plot_mag(
-                fname,
+                fname, cap = cap,
                 label = 'Direction' if pars[label]['observe_direction'] else 'Position'
             )
-    plt.title('Magnitude of average velocity vector (Capsize = 50)')
     if quantity == 'mag':
+        plt.title(f'Magnitude of average velocity vector (Capsize = {cap})')
         plt.ylabel('v')
     plt.xlabel('Timestep')
     plt.legend()
