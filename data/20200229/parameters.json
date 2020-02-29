@@ -1,0 +1,53 @@
+{
+  "20200229-132239": {
+    "no_birds": 100,
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "action_space": [
+      "V",
+      "I"
+    ]
+  },
+  "20200229-132305": {
+    "no_birds": 100,
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ]
+  },
+  "20200229-143019": {
+    "no_birds": 100,
+    "observe_direction": true,
+    "leader_frac": 0.8,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ]
+  },
+  "20200229-150258": {
+    "no_birds": 100,
+    "observe_direction": true,
+    "leader_frac": 0.8,
+    "action_space": [
+      "V",
+      "I"
+    ]
+  },
+  "20200229-154500": {
+    "no_birds": 100,
+    "observe_direction": true,
+    "leader_frac": 0.95,
+    "action_space": [
+      "V",
+      "I"
+    ]
+  }
+}
