@@ -30,11 +30,11 @@ def discrete_Vicsek(observation):
     if list(v) != [0,0]:
         angle = np.arctan2(v[1],v[0])
         if (angle < -3 * np.pi / 4) or (angle >= 3 * np.pi / 4):
-            return 'E'
+            return 'W'
         elif (angle < 3 * np.pi / 4) and (angle >= np.pi / 4):
             return 'N'
         elif (angle < np.pi / 4) and (angle >= -1 * np.pi / 4):
-            return 'W'
+            return 'E'
         elif (angle < -1 * np.pi/4) and (angle >= -3 * np.pi / 4):
             return 'S'
     else:
@@ -115,7 +115,7 @@ class Birds(object):
         for i in range(self.numbirds):
             if self.actions[i] == 'V':
                 if not self.observe_direction:
-                    raise Exception('Vicsek step is not allowed when observe_direction = False')
+                    raise Exception('Vicsek action is not allowed when observe_direction = False')
                 else:
                     Vic_dir = discrete_Vicsek(self.observations[i])
                     if Vic_dir == 0:
