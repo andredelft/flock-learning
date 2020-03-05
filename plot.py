@@ -166,9 +166,8 @@ def plt_hist(fpath):
         a[1,1].set_ylim(0,105)
         a[1,1].set_xticks(x)
         a[1,1].set_xticklabels(labels)
-        st = fig.suptitle('Average final policy of agents in VI-model', fontsize = 'x-large')
 
-    elif set(A) == set('NESWI'):
+    elif A == ['N','E','S','W','I']:
         # Majority North
         l_hist = [
             avg_leader_pol['N'][0], avg_leader_pol['N'][1] + avg_leader_pol['N'][4],
@@ -241,10 +240,14 @@ def plt_hist(fpath):
         a[1,1].set_ylim(0,105)
         a[1,1].set_xticks(x)
         a[1,1].set_xticklabels(labels)
-        st = fig.suptitle('Average final policy of agents in NESWI-model', fontsize = 'x-large')
+
+    st = fig.suptitle(
+        f'Average final policy of agents in {''.join(A)}-model', fontsize = 'x-large'
+    )
 
     fig.tight_layout()
-
+    
+    # Shift plots downward so that suptitle doesn't interfere with subplots titles
     st.set_y(0.97)
     fig.subplots_adjust(top=0.85)
 
