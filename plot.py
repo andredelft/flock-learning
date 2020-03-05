@@ -6,7 +6,7 @@ import json
 import pickle
 import regex
 
-from birds import ternary
+from birds import discrete_Vicsek
 
 re_tag = regex.compile(r'^[0-9]+-[0-9]+')
 
@@ -40,35 +40,18 @@ def plot_mag_arg(fname):
     a[1].plot(avg([np.arctan2(v[1],v[0]) for v in data], cap=100))
 
 maj_obs = {
-    'N': [
-        ternary([1,0,0,0]),
-        ternary([2,0,0,0]), ternary([2,0,0,1]),
-        ternary([2,0,1,0]), ternary([2,0,1,1]),
-        ternary([2,1,0,0]), ternary([2,1,0,1]),
-        ternary([2,1,1,0]), ternary([2,1,1,1])
-    ],
-    'E': [
-        ternary([0,1,0,0]),
-        ternary([0,2,0,0]), ternary([0,2,0,1]),
-        ternary([0,2,1,0]), ternary([0,2,1,1]),
-        ternary([1,2,0,0]), ternary([1,2,0,1]),
-        ternary([1,2,1,0]), ternary([1,2,1,1])
-    ],
-    'S': [
-        ternary([0,0,1,0]),
-        ternary([0,0,2,0]), ternary([0,0,2,1]),
-        ternary([0,1,2,0]), ternary([0,1,2,1]),
-        ternary([1,0,2,0]), ternary([1,0,2,1]),
-        ternary([1,1,2,0]), ternary([1,1,2,1])
-    ],
-    'W': [
-        ternary([0,1,0,2])
-        #ternary([0,0,0,2]), ternary([0,0,1,2]),
-        #ternary([0,1,0,2]), ternary([0,1,1,2]),
-        #ternary([1,0,0,2]), ternary([1,0,1,2]),
-        #ternary([1,1,0,2]), ternary([1,1,1,2])
-    ]
+    'N': [],
+    'E': [],
+    'S': [],
+    'W': []
 }
+
+# Calculate Vicsek results
+for i in range(3**4):
+    tern = f'{np.base_repr(i, base=3):0>4}'
+    dir = discrete_Vicsek({d: int(n) for d,n in zip('NESW',tern)})
+    if dir != 0:
+        maj_obs[dir].append(i)
 
 def avg_pol(fname, no_leaders=25, no_birds=100):
     with open(fname, 'rb') as f:
