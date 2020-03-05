@@ -17,9 +17,10 @@ class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
     def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
-                 observe_direction=False, leader_frac=.25, track_birds=True):
+                 observe_direction=False, track_birds=True, comment = '',
+                 **kwargs):
 
-        self.birds = Birds(numbirds, field_dims, observe_direction, leader_frac)
+        self.birds = Birds(numbirds, field_dims, observe_direction, **kwargs)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
@@ -41,9 +42,11 @@ class Field(object):
             parameters = {
                 'no_birds': self.birds.numbirds,
                 'observe_direction': observe_direction,
-                'leader_frac': leader_frac,
-                'action_space': A
+                'action_space': A,
+                **kwargs
             }
+            if comment:
+                parameters['comment'] = comment
             if path.isfile('data/parameters.json'):
                 with open('data/parameters.json') as f:
                     ex_pars = json.load(f)

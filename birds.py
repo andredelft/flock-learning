@@ -6,7 +6,7 @@ D = 100 # Observation radius
 N = 2   # Max neigbours observed
 R = 1   # Reward signal
 
-A = ['V', 'R','I'] # Action space
+A = ['V','I'] # Action space
 
 STEP = {
     'N': np.array([ 0, 1]),
@@ -45,10 +45,14 @@ def ternary(numbers):
     return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
 
 class Birds(object):
-    def __init__(self, numbirds, field_dims, observe_direction = False, leader_frac = 0.25):
+    def __init__(self, numbirds, field_dims, observe_direction = False, leader_frac = 0.25,
+                 reward_signal = R):
+
         self.numbirds = numbirds
         self.leaders = int(self.numbirds * leader_frac)
         self.observe_direction = observe_direction
+        self.reward_signal = reward_signal
+        print(self.reward_signal)
         print(' '.join(['Simulation started with birds that observe the',
               'flight direction' if observe_direction else 'relative position',
               'of neighbours']))
@@ -129,11 +133,11 @@ class Birds(object):
                 raise ValueError(f'Action {self.actions[i]} does not exist')
             self.positions[i] += step[self.dirs[i]]
 
-    def Ried_learning(self, reward_signal = R):
+    def Ried_learning(self):
         for i in range(self.numbirds):
             if self.dirs[i] == 'E':
                 j = ternary(self.observations[i].values())
-                self.policies[i,j,A.index(self.actions[i])] += reward_signal
+                self.policies[i,j,A.index(self.actions[i])] += self.reward_signal
                 self.policies[i,j] = 100 * self.policies[i,j]/sum(self.policies[i,j])
 
     def update(self):
