@@ -1,0 +1,15 @@
+{
+  "20200305-094006": {
+    "no_birds": 100,
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "action_space": [
+      "V",
+      "N",
+      "E",
+      "W",
+      "S",
+      "I"
+    ]
+  }
+}
