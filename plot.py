@@ -62,11 +62,11 @@ maj_obs = {
         ternary([1,1,2,0]), ternary([1,1,2,1])
     ],
     'W': [
-        ternary([0,0,0,1]),
-        ternary([0,0,0,2]), ternary([0,0,1,2]),
-        ternary([0,1,0,2]), ternary([0,1,1,2]),
-        ternary([1,0,0,2]), ternary([1,0,1,2]),
-        ternary([1,1,0,2]), ternary([1,1,1,2])
+        ternary([0,1,0,2])
+        #ternary([0,0,0,2]), ternary([0,0,1,2]),
+        #ternary([0,1,0,2]), ternary([0,1,1,2]),
+        #ternary([1,0,0,2]), ternary([1,0,1,2]),
+        #ternary([1,1,0,2]), ternary([1,1,1,2])
     ]
 }
 
@@ -128,60 +128,6 @@ def plt_hist(fpath, plot_policies = True):
             a[bin].set_ylim(0,105)
             a[bin].set_xticks(x)
             a[bin].set_xticklabels(labels)
-        """
-        # Majority North
-        l_hist = [avg_leader_pol['N'][0],avg_leader_pol['N'][1],0,0]
-        f_vicsek = avg_follower_pol['N'][1]
-        f_instinct = avg_follower_pol['N'][1]
-        f_hist = [f_vicsek + f_instinct * N, 0, f_instinct * S, f_instinct * W]
-
-        a[0,0].bar(x - width/2, l_hist, width, label='Leaders')
-        a[0,0].bar(x + width/2, f_hist, width, label='Followers')
-        a[0,0].set_title('Majority North')
-        a[0,0].set_ylim(0,105)
-        a[0,0].set_xticks(x)
-        a[0,0].set_xticklabels(labels)
-
-        # Majority East
-        l_hist = [0,sum(avg_leader_pol['E']),0,0]
-        f_vicsek = avg_follower_pol['E'][0]
-        f_instinct = avg_follower_pol['E'][1]
-        f_hist = [f_instinct * N, f_vicsek, f_instinct * S, f_instinct * W]
-
-        a[0,1].bar(x - width/2, l_hist, width, label='Leaders')
-        a[0,1].bar(x + width/2, f_hist, width, label='Followers')
-        a[0,1].set_title('Majority East')
-        a[0,1].set_ylim(0,105)
-        a[0,1].set_xticks(x)
-        a[0,1].set_xticklabels(labels)
-        a[0,1].legend()
-
-        # Majority South
-        l_hist = [0,avg_leader_pol['S'][1],avg_leader_pol['S'][0],0]
-        f_vicsek = avg_follower_pol['S'][1]
-        f_instinct = avg_follower_pol['S'][1]
-        f_hist = [f_instinct * N, 0, f_vicsek + f_instinct * S, f_instinct * W]
-
-        a[1,0].bar(x - width/2, l_hist, width, label='Leaders')
-        a[1,0].bar(x + width/2, f_hist, width, label='Followers')
-        a[1,0].set_title('Majority South')
-        a[1,0].set_ylim(0,105)
-        a[1,0].set_xticks(x)
-        a[1,0].set_xticklabels(labels)
-
-        # Majority West
-        l_hist = [0,avg_leader_pol['W'][1],0,avg_leader_pol['W'][0]]
-        f_vicsek = avg_follower_pol['W'][1]
-        f_instinct = avg_follower_pol['W'][1]
-        f_hist = [f_instinct * N, 0, f_instinct * S, f_vicsek + f_instinct * W]
-
-        a[1,1].bar(x - width/2, l_hist, width, label='Leaders')
-        a[1,1].bar(x + width/2, f_hist, width, label='Followers')
-        a[1,1].set_title('Majority West')
-        a[1,1].set_ylim(0,105)
-        a[1,1].set_xticks(x)
-        a[1,1].set_xticklabels(labels)
-        """
     else:
         labels = ['N', 'E', 'S', 'W']
         x = np.arange(len(labels))

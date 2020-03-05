@@ -68,6 +68,47 @@
       "V",
       "I"
     ],
+    "leader_frac": 0.25,
+    "comment": "vary:no_birds"
+  },
+  "20200305-112016": {
+    "no_birds": 100,
+    "observe_direction": true,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 10,
+    "comment": "vary:reward_signal"
+  },
+  "20200305-112151": {
+    "no_birds": 500,
+    "observe_direction": true,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "comment": "vary:no_birds"
+  },
+  "20200305-113954": {
+    "no_birds": 100,
+    "observe_direction": true,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 20,
+    "comment": "vary:reward_signal"
+  },
+  "20200305-114610": {
+    "no_birds": 200,
+    "observe_direction": true,
+    "action_space": [
+      "V",
+      "I"
+    ],
     "comment": "vary:no_birds"
   }
 }
