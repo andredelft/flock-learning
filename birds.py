@@ -6,7 +6,7 @@ D = 100 # Observation radius
 N = 2   # Max neigbours observed
 R = 1   # Reward signal
 
-A = ['V','I'] # Action space
+A = ['V', 'R','I'] # Action space
 
 STEP = {
     'N': np.array([ 0, 1]),
@@ -59,7 +59,7 @@ class Birds(object):
                 randint(*field_dims[0:2]), randint(*field_dims[2:4])
             ]) for _ in range(self.numbirds)
         ])
-        self.dirs = choices(['N','E','W'], k = self.numbirds)
+        self.dirs = choices(['N','E','S','W'], k = self.numbirds)
         self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
         self.policies = np.zeros([self.numbirds, (N + 1)**4, len(A)]) + 100/len(A)
 
@@ -123,6 +123,8 @@ class Birds(object):
                 self.dirs[i] = self.instincts[i]
             elif self.actions[i] in ['N','E','S','W']:
                 self.dirs[i] = self.actions[i]
+            elif self.actions[i] == 'R':
+                self.dirs[i] = choice(['N','E','S','W'])
             else:
                 raise ValueError(f'Action {self.actions[i]} does not exist')
             self.positions[i] += step[self.dirs[i]]
