@@ -6,7 +6,7 @@ from q_learning import Qfunction
 
 D = 100 # Observation radius
 N = 2   # Max neigbours observed
-R = .01 # Reward signal
+R = 1   # Reward signal
 epsilon = 0.4
 
 A = ['N', 'E', 'S', 'W', 'I'] # Action space
@@ -149,7 +149,7 @@ class Birds(object):
             s = ternary(self.prev_obs[i].values())
             reward = self.reward(i)
             if reward:
-                self.policies[i,s,A.index(self.actions[i])] += reward
+                self.policies[i,s,A.index(self.actions[i])] += reward/100
                 self.policies[i,s] = self.policies[i,s]/sum(self.policies[i,s])
 
     def Q_learning(self):

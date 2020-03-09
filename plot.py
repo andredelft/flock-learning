@@ -112,7 +112,7 @@ def plt_hist(fpath, plot_policies = True):
             a[bin].bar(x - width/2, avg_leader_pol[dir], width, label='Leaders')
             a[bin].bar(x + width/2, avg_follower_pol[dir], width, label='Followers')
             a[bin].set_title(f'Majority {dir}')
-            a[bin].set_ylim(0,105)
+            a[bin].set_ylim(0,1.05)
             a[bin].set_xticks(x)
             a[bin].set_xticklabels(labels)
     else:
@@ -128,7 +128,7 @@ def plt_hist(fpath, plot_policies = True):
             a[0,0].bar(x - width/2, l_hist, width, label='Leaders')
             a[0,0].bar(x + width/2, f_hist, width, label='Followers')
             a[0,0].set_title('Majority North')
-            a[0,0].set_ylim(0,105)
+            a[0,0].set_ylim(0,1.05)
             a[0,0].set_xticks(x)
             a[0,0].set_xticklabels(labels)
 
@@ -141,7 +141,7 @@ def plt_hist(fpath, plot_policies = True):
             a[0,1].bar(x - width/2, l_hist, width, label='Leaders')
             a[0,1].bar(x + width/2, f_hist, width, label='Followers')
             a[0,1].set_title('Majority East')
-            a[0,1].set_ylim(0,105)
+            a[0,1].set_ylim(0,1.05)
             a[0,1].set_xticks(x)
             a[0,1].set_xticklabels(labels)
             a[0,1].legend()
@@ -155,7 +155,7 @@ def plt_hist(fpath, plot_policies = True):
             a[1,0].bar(x - width/2, l_hist, width, label='Leaders')
             a[1,0].bar(x + width/2, f_hist, width, label='Followers')
             a[1,0].set_title('Majority South')
-            a[1,0].set_ylim(0,105)
+            a[1,0].set_ylim(0,1.05)
             a[1,0].set_xticks(x)
             a[1,0].set_xticklabels(labels)
 
@@ -168,7 +168,7 @@ def plt_hist(fpath, plot_policies = True):
             a[1,1].bar(x - width/2, l_hist, width, label='Leaders')
             a[1,1].bar(x + width/2, f_hist, width, label='Followers')
             a[1,1].set_title('Majority West')
-            a[1,1].set_ylim(0,105)
+            a[1,1].set_ylim(0,1.05)
             a[1,1].set_xticks(x)
             a[1,1].set_xticklabels(labels)
 
@@ -187,7 +187,7 @@ def plt_hist(fpath, plot_policies = True):
             a[0,0].bar(x - width/2, l_hist, width, label='Leaders')
             a[0,0].bar(x + width/2, f_hist, width, label='Followers')
             a[0,0].set_title('Majority North')
-            a[0,0].set_ylim(0,105)
+            a[0,0].set_ylim(0,1.05)
             a[0,0].set_xticks(x)
             a[0,0].set_xticklabels(labels)
 
@@ -205,7 +205,7 @@ def plt_hist(fpath, plot_policies = True):
             a[0,1].bar(x - width/2, l_hist, width, label='Leaders')
             a[0,1].bar(x + width/2, f_hist, width, label='Followers')
             a[0,1].set_title('Majority East')
-            a[0,1].set_ylim(0,105)
+            a[0,1].set_ylim(0,1.05)
             a[0,1].set_xticks(x)
             a[0,1].set_xticklabels(labels)
             a[0,1].legend()
@@ -224,7 +224,7 @@ def plt_hist(fpath, plot_policies = True):
             a[1,0].bar(x - width/2, l_hist, width, label='Leaders')
             a[1,0].bar(x + width/2, f_hist, width, label='Followers')
             a[1,0].set_title('Majority South')
-            a[1,0].set_ylim(0,105)
+            a[1,0].set_ylim(0,1.05)
             a[1,0].set_xticks(x)
             a[1,0].set_xticklabels(labels)
 
@@ -242,7 +242,7 @@ def plt_hist(fpath, plot_policies = True):
             a[1,1].bar(x - width/2, l_hist, width, label='Leaders')
             a[1,1].bar(x + width/2, f_hist, width, label='Followers')
             a[1,1].set_title('Majority West')
-            a[1,1].set_ylim(0,105)
+            a[1,1].set_ylim(0,1.05)
             a[1,1].set_xticks(x)
             a[1,1].set_xticklabels(labels)
 
