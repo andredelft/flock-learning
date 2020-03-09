@@ -2,12 +2,14 @@ import numpy as np
 from random import randint, choice, choices
 from scipy.spatial import KDTree
 
+from q_learning import Qfunction
+
 D = 100 # Observation radius
 N = 2   # Max neigbours observed
 R = .01 # Reward signal
 epsilon = 0.4
 
-A = ['V','I'] # Action space
+A = ['N', 'E', 'S', 'W', 'I'] # Action space
 
 STEP = {
     'N': np.array([ 0, 1]),
@@ -47,13 +49,13 @@ def ternary(numbers):
 
 class Birds(object):
     def __init__(self, numbirds, field_dims, observe_direction = False, leader_frac = 0.25,
-                 reward_signal = R):
+                 reward_signal = R, learning_alg = 'Ried', epsilon = epsilon):
 
         self.numbirds = numbirds
         self.leaders = int(self.numbirds * leader_frac)
         self.observe_direction = observe_direction
         self.reward_signal = reward_signal
-        print(self.reward_signal)
+        self.epsilon = epsilon
         print(' '.join(['Simulation started with birds that observe the',
               'flight direction' if observe_direction else 'relative position',
               'of neighbours']))
@@ -67,6 +69,11 @@ class Birds(object):
         self.dirs = choices(['N','E','S','W'], k = self.numbirds)
         self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
         self.policies = np.zeros([self.numbirds, (N + 1)**4, len(A)]) + 1/len(A)
+        self.observations = [self.observe(i) for i in range(self.numbirds)]
+        self.learning_alg = learning_alg
+        if self.learning_alg == 'Q':
+            self.Qs = [Qfunction(0.9, 0.9, A = A, S = range((N + 1)**4)) for _ in range(self.numbirds)]
+
 
     def observe(self, bird_index, radius = D):
         tree = KDTree(self.positions)
@@ -139,17 +146,29 @@ class Birds(object):
 
     def Ried_learning(self):
         for i in range(self.numbirds):
-            j = ternary(self.observations[i].values())
+            s = ternary(self.prev_obs[i].values())
             reward = self.reward(i)
             if reward:
-                self.policies[i,j,A.index(self.actions[i])] += reward
-                self.policies[i,j] = self.policies[i,j]/sum(self.policies[i,j])
+                self.policies[i,s,A.index(self.actions[i])] += reward
+                self.policies[i,s] = self.policies[i,s]/sum(self.policies[i,s])
+
+    def Q_learning(self):
+        for i in range(self.numbirds):
+            s = ternary(self.observations[i].values())
+            s_prime = ternary(self.prev_obs[i].values())
+            self.Qs[i].update(s, self.actions[i], s_prime, self.reward(i))
+            argmax_Q = np.argmax(self.Qs[i].value[s])
+            self.policies[i,s] = self.epsilon/len(A) + np.array([(1 - self.epsilon if j == argmax_Q else 0) for j in range(len(A))])
 
     def update(self):
         # print(self.policies[0])
-        self.observations = [self.observe(i) for i in range(self.numbirds)]
         self.actions = [choices(
             A, weights = self.policies[i, ternary(self.observations[i].values())],
         )[0] for i in range(self.numbirds)]
         self.perform_step()
-        self.Ried_learning()
+        self.prev_obs = self.observations
+        self.observations = [self.observe(i) for i in range(self.numbirds)]
+        if self.learning_alg == 'Ried':
+            self.Ried_learning()
+        elif self.learning_alg == 'Q':
+            self.Q_learning()

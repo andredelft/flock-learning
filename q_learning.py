@@ -17,5 +17,5 @@ class Qfunction(object):
         self.value = rand(len(self.S),len(self.A))
 
     def update(self, s, a, s_prime, r):
-        self.value[S.index(s), A.index(a)] = (1 - self.alpha) * self.value[S.index(s), A.index(a)] \
-                                             + self.alpha * (r + self.beta * max(self.value[S.index(s_prime), A.index(a_prime)] for a_prime in A))
+        self.value[self.S.index(s), self.A.index(a)] = (1 - self.alpha) * self.value[self.S.index(s), self.A.index(a)] \
+                                             + self.alpha * (r + self.beta * max(self.value[self.S.index(s_prime), self.A.index(a_prime)] for a_prime in A))
