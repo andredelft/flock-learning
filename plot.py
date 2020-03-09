@@ -53,7 +53,8 @@ for i in range(3**4):
     if dir != 0:
         maj_obs[dir].append(i)
 
-def avg_pol(fname, no_leaders=25, no_birds=100):
+def avg_pol(fname, no_leaders=25, no_birds=100, Q=False):
+    # TODO: return different values for Q-learning (Q = True)
     with open(fname, 'rb') as f:
         pols = pickle.load(f)
     avg_leader_pol = {}
@@ -72,7 +73,7 @@ def avg_pol(fname, no_leaders=25, no_birds=100):
         avg_follower_pol[dir] = follower
     return avg_leader_pol, avg_follower_pol
 
-def plt_hist(fpath, plot_policies = True):
+def plot_hist(fpath, plot_policies = False):
     if re_tag.search(fpath):
         data_dir = 'data'
         fname = f'{re_tag.search(fpath).group()}-policies.p'
@@ -87,8 +88,9 @@ def plt_hist(fpath, plot_policies = True):
     else:
         leader_frac = .25
     no_leaders = int(no_birds * leader_frac)
+    Q = True if ('learning_alg' in params.keys() and params['learning_alg'] == 'Q') else False
     avg_leader_pol, avg_follower_pol = avg_pol(
-        path.join(data_dir,fname), no_birds = no_birds, no_leaders = no_leaders
+        path.join(data_dir,fname), no_birds = no_birds, no_leaders = no_leaders, Q = Q
     )
     A = params['action_space']
     with open(path.join(data_dir, f'{record_tag}-instincts.json')) as f:
