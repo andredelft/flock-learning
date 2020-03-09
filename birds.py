@@ -4,7 +4,8 @@ from scipy.spatial import KDTree
 
 D = 100 # Observation radius
 N = 2   # Max neigbours observed
-R = 1   # Reward signal
+R = .01 # Reward signal
+epsilon = 0.4
 
 A = ['V','I'] # Action space
 
@@ -65,7 +66,7 @@ class Birds(object):
         ])
         self.dirs = choices(['N','E','S','W'], k = self.numbirds)
         self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
-        self.policies = np.zeros([self.numbirds, (N + 1)**4, len(A)]) + 100/len(A)
+        self.policies = np.zeros([self.numbirds, (N + 1)**4, len(A)]) + 1/len(A)
 
     def observe(self, bird_index, radius = D):
         tree = KDTree(self.positions)
@@ -133,12 +134,16 @@ class Birds(object):
                 raise ValueError(f'Action {self.actions[i]} does not exist')
             self.positions[i] += step[self.dirs[i]]
 
+    def reward(self,i):
+        return self.reward_signal if self.dirs[i] == 'E' else 0
+
     def Ried_learning(self):
         for i in range(self.numbirds):
-            if self.dirs[i] == 'E':
-                j = ternary(self.observations[i].values())
-                self.policies[i,j,A.index(self.actions[i])] += self.reward_signal
-                self.policies[i,j] = 100 * self.policies[i,j]/sum(self.policies[i,j])
+            j = ternary(self.observations[i].values())
+            reward = self.reward(i)
+            if reward:
+                self.policies[i,j,A.index(self.actions[i])] += reward
+                self.policies[i,j] = self.policies[i,j]/sum(self.policies[i,j])
 
     def update(self):
         # print(self.policies[0])
