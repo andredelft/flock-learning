@@ -82,7 +82,11 @@ def plt_hist(fpath, plot_policies = True):
     with open(path.join(data_dir,'parameters.json')) as f:
         params = json.load(f)[record_tag]
     no_birds = params['no_birds']
-    no_leaders = int(no_birds * params['leader_frac'])
+    if 'leader_frac' in params.keys():
+        leader_frac = params['leader_frac']
+    else:
+        leader_frac = .25
+    no_leaders = int(no_birds * leader_frac)
     avg_leader_pol, avg_follower_pol = avg_pol(
         path.join(data_dir,fname), no_birds = no_birds, no_leaders = no_leaders
     )
