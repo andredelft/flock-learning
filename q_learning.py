@@ -19,5 +19,5 @@ class Qfunction(object):
 
     def update(self, s, a, s_prime, r):
         a_ind = self.A.index(a)
-        max_Q = max(self.value[s_prime, self.A.index(a_prime)] for a_prime in A)
+        max_Q = max(self.value[s_prime, self.A.index(a_prime)] for a_prime in self.A)
         self.value[s, self.A.index(a)] = (1 - self.alpha) * self.value[s, a_ind] + self.alpha * (r + self.beta * max_Q)

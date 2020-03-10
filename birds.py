@@ -7,7 +7,10 @@ from q_learning import Qfunction
 D = 100 # Observation radius
 N = 2   # Max neigbours observed
 R = 1   # Reward signal
-epsilon = 0.4
+
+alpha   = 0.9  # Learning rate
+gamma   = 0.9  # Disount factor
+epsilon = 0.2  # Epsilon-greedy parameter
 
 A = ['N', 'E', 'S', 'W', 'I'] # Action space
 
@@ -48,8 +51,9 @@ def ternary(numbers):
     return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
 
 class Birds(object):
-    def __init__(self, numbirds, field_dims, observe_direction = False, leader_frac = 0.25,
-                 reward_signal = R, learning_alg = 'Ried', epsilon = epsilon):
+    def __init__(self, numbirds, field_dims, observe_direction = True,
+                 leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
+                 alpha = alpha, gamma = gamma, epsilon = epsilon):
 
         self.numbirds = numbirds
         self.leaders = int(self.numbirds * leader_frac)
@@ -72,7 +76,7 @@ class Birds(object):
         self.observations = [self.observe(i) for i in range(self.numbirds)]
         self.learning_alg = learning_alg
         if self.learning_alg == 'Q':
-            self.Qs = [Qfunction(0.9, 0.9, A = A, S = range((N + 1)**4)) for _ in range(self.numbirds)]
+            self.Qs = [Qfunction(alpha, gamma, A = A, S = range((N + 1)**4)) for _ in range(self.numbirds)]
 
 
     def observe(self, bird_index, radius = D):

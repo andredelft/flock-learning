@@ -17,10 +17,9 @@ class Field(object):
     """An animated scatter plot using matplotlib.animations.FuncAnimation."""
     def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
-                 observe_direction=False, track_birds=True, comment = '',
-                 **kwargs):
+                 track_birds=True, comment = '', **kwargs):
 
-        self.birds = Birds(numbirds, field_dims, observe_direction, **kwargs)
+        self.birds = Birds(numbirds, field_dims, **kwargs)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
@@ -41,7 +40,6 @@ class Field(object):
             parameter_file = 'data/parameters.json'
             parameters = {
                 'no_birds': self.birds.numbirds,
-                'observe_direction': observe_direction,
                 'action_space': A,
                 **kwargs
             }
@@ -145,10 +143,11 @@ class Field(object):
                     if tstep == 0:
                         # initialize save files with empty array
                         np.save(self.data_file, self.v_history)
-                        with open(self.policy_file,'wb') as f:
-                            pickle.dump([],f)
-                        with open(self.action_file,'wb') as f:
-                            pickle.dump([],f)
+                        if self.track_birds:
+                            with open(self.policy_file,'wb') as f:
+                                pickle.dump([],f)
+                            with open(self.action_file,'wb') as f:
+                                pickle.dump([],f)
                         print(f'Initialized record files with tag {self.record_tag}')
                     else:
                         data = np.load(self.data_file)
