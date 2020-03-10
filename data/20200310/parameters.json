@@ -1,0 +1,152 @@
+{
+  "20200310-100718": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.9,
+    "comment": "vary_alpha"
+  },
+  "20200310-101754": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.7,
+    "gamma": 0.9,
+    "comment": "vary_alpha"
+  },
+  "20200310-102851": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.5,
+    "gamma": 0.9,
+    "comment": "vary_alpha"
+  },
+  "20200310-104023": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.3,
+    "gamma": 0.9,
+    "comment": "vary_alpha"
+  },
+  "20200310-105215": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "comment": "vary_alpha"
+  },
+  "20200310-110641": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.9,
+    "comment": "vary_gamma"
+  },
+  "20200310-111948": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.7,
+    "comment": "vary_gamma"
+  },
+  "20200310-113154": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.5,
+    "comment": "vary_gamma"
+  },
+  "20200310-114508": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.3,
+    "comment": "vary_gamma"
+  },
+  "20200310-115710": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.1,
+    "comment": "vary_gamma"
+  }
+}
