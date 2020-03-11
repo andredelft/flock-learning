@@ -55,12 +55,15 @@ for i in range(3**4):
 
 def avg_pol(fname, no_leaders=25, no_birds=100, Q=False):
     # TODO: return different values for Q-learning (Q = True)
-    with open(fname, 'rb') as f:
-        pols = pickle.load(f)
+    if Q:
+        last_pol = np.load(fname)
+    else:
+        with open(fname, 'rb') as f:
+            pols = pickle.load(f)
+            last_pol = pols[-1]
     avg_leader_pol = {}
     avg_follower_pol = {}
     for dir, inds in maj_obs.items():
-        last_pol = pols[-1]
         leader = sum(
             sum(l[i] for i in inds)/len(inds)
             for l in last_pol[:no_leaders]
@@ -89,21 +92,24 @@ def plot_hist(fpath, plot_policies = False):
         leader_frac = .25
     no_leaders = int(no_birds * leader_frac)
     Q = True if ('learning_alg' in params.keys() and params['learning_alg'] == 'Q') else False
+    if Q:
+        fname = fname.replace('-policies.p','-Q.npy')
     avg_leader_pol, avg_follower_pol = avg_pol(
         path.join(data_dir,fname), no_birds = no_birds, no_leaders = no_leaders, Q = Q
     )
     A = params['action_space']
-    with open(path.join(data_dir, f'{record_tag}-instincts.json')) as f:
-        instincts = json.load(f)
+
+    if not plot_policies:
+        with open(path.join(data_dir, f'{record_tag}-instincts.json')) as f:
+            instincts = json.load(f)
+
+        N,S,W = [len([i for i in instincts if i == dir]) for dir in 'NSW']
+        tot = sum([N,S,W])
+        N /= tot
+        S /= tot
+        W /= tot
 
     width = 0.35
-
-    N,S,W = [len([i for i in instincts if i == dir]) for dir in 'NSW']
-    tot = sum([N,S,W])
-    N /= tot
-    S /= tot
-    W /= tot
-
     fig,a = plt.subplots(2,2)
 
     if plot_policies:
@@ -111,8 +117,8 @@ def plot_hist(fpath, plot_policies = False):
         x = np.arange(len(labels))
         for i, dir in enumerate(['N','E','S','W']):
             bin = tuple(int(n) for n in f"{i:02b}")
-            a[bin].bar(x - width/2, avg_leader_pol[dir], width, label='Leaders')
-            a[bin].bar(x + width/2, avg_follower_pol[dir], width, label='Followers')
+            a[bin].bar(x - width/2, np.array(avg_leader_pol[dir])/sum(avg_leader_pol[dir]), width, label='Leaders')
+            a[bin].bar(x + width/2, np.array(avg_follower_pol[dir])/sum(avg_follower_pol[dir]), width, label='Followers')
             a[bin].set_title(f'Majority {dir}')
             a[bin].set_ylim(0,1.05)
             a[bin].set_xticks(x)
@@ -249,7 +255,7 @@ def plot_hist(fpath, plot_policies = False):
             a[1,1].set_xticklabels(labels)
 
     st = fig.suptitle(
-        f'Average final policy of agents in {"".join(A)}-model', fontsize = 'x-large'
+        f'Average final Q-values of agents in {"".join(A)}-model', fontsize = 'x-large'
     )
 
     fig.tight_layout()
@@ -261,7 +267,7 @@ def plot_hist(fpath, plot_policies = False):
 def plot_all(data_dir = 'data', quantity = 'mag', cap = 50):
     with open(path.join(data_dir,'parameters.json')) as f:
         pars = json.load(f)
-    for fname in sorted(glob(f'{data_dir}/*.npy')):
+    for fname in sorted(glob(f'{data_dir}/*-v.npy')):
         record_tag = find_tag(fname)
         if quantity == 'mag':
             plot_mag(
