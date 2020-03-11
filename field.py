@@ -58,12 +58,15 @@ class Field(object):
             self.v_history = []
 
             if self.track_birds:
-                with open(f'data/{self.record_tag}-instincts.json','w') as f:
-                    json.dump(self.birds.instincts, f)
-                self.policy_file = f'data/{self.record_tag}-policies.p'
-                self.policy_history = []
-                self.action_file = f'data/{self.record_tag}-actions.p'
-                self.action_history = []
+                if self.birds.learning_alg == 'Q':
+                    self.Q_file = f'data/{self.record_tag}-Q.npy'
+                else:
+                    with open(f'data/{self.record_tag}-instincts.json','w') as f:
+                        json.dump(self.birds.instincts, f)
+                    self.policy_file = f'data/{self.record_tag}-policies.p'
+                    self.policy_history = []
+                    self.action_file = f'data/{self.record_tag}-actions.p'
+                    self.action_history = []
 
         if self.plot:
             # Setup the figure and axes
@@ -136,14 +139,14 @@ class Field(object):
                     v += STEP[direction]
                 v = v / self.birds.numbirds
                 self.v_history.append(v)
-                if self.track_birds:
+                if self.track_birds and self.birds.learning_alg != 'Q':
                     self.policy_history.append(self.birds.policies)
                     self.action_history.append(self.birds.actions)
                 if tstep % 500 == 0:
                     if tstep == 0:
                         # initialize save files with empty array
                         np.save(self.data_file, self.v_history)
-                        if self.track_birds:
+                        if self.track_birds and self.birds.learning_alg != 'Q':
                             with open(self.policy_file,'wb') as f:
                                 pickle.dump([],f)
                             with open(self.action_file,'wb') as f:
@@ -154,16 +157,19 @@ class Field(object):
                         np.save(self.data_file, np.append(data, self.v_history, axis = 0))
                         print(f'Recorded up to timestep {tstep}')
                         if self.track_birds:
-                            with open(self.policy_file, 'rb') as f:
-                                data = pickle.load(f)
-                            data += self.policy_history
-                            with open(self.policy_file, 'wb') as f:
-                                pickle.dump(data, f)
-                            with open(self.action_file, 'rb') as f:
-                                data = pickle.load(f)
-                            data += self.action_history
-                            with open(self.action_file, 'wb') as f:
-                                pickle.dump(data, f)
+                            if self.birds.learning_alg == 'Q':
+                                np.save(self.Q_file, np.array(Q.value for Q in self.birds.Qs))
+                            else:
+                                with open(self.policy_file, 'rb') as f:
+                                    data = pickle.load(f)
+                                data += self.policy_history
+                                with open(self.policy_file, 'wb') as f:
+                                    pickle.dump(data, f)
+                                with open(self.action_file, 'rb') as f:
+                                    data = pickle.load(f)
+                                data += self.action_history
+                                with open(self.action_file, 'wb') as f:
+                                    pickle.dump(data, f)
                     self.v_history = []
                     if self.track_birds:
                         self.policy_history = []

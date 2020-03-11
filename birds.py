@@ -12,7 +12,7 @@ alpha   = 0.9  # Learning rate
 gamma   = 0.9  # Disount factor
 epsilon = 0.2  # Epsilon-greedy parameter
 
-A = ['N', 'E', 'S', 'W', 'I'] # Action space
+A = ['V', 'I'] # Action space
 
 STEP = {
     'N': np.array([ 0, 1]),
