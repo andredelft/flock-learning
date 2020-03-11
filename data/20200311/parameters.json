@@ -1,0 +1,26 @@
+{
+  "20200311-150909": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.9,
+    "comment": "vary_alpha"
+  },
+  "20200311-152159": {
+    "no_birds": 500,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.9,
+    "comment": "vary_alpha"
+  }
+}
