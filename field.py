@@ -158,7 +158,7 @@ class Field(object):
                         print(f'Recorded up to timestep {tstep}')
                         if self.track_birds:
                             if self.birds.learning_alg == 'Q':
-                                np.save(self.Q_file, np.array(Q.value for Q in self.birds.Qs))
+                                np.save(self.Q_file, np.array([Q.value for Q in self.birds.Qs]))
                             else:
                                 with open(self.policy_file, 'rb') as f:
                                     data = pickle.load(f)
