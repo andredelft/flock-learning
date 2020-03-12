@@ -45,7 +45,7 @@ class Field(object):
                 with open(param_file, 'w') as f:
                     json.dump({**existing_pars, self.record_tag: params}, f, indent = 2)
             else:
-                with open(parameter_file, 'w') as f:
+                with open(param_file, 'w') as f:
                     json.dump({self.record_tag: params}, f, indent = 2)
 
             # Setup files for tracking birds if record_data == True
@@ -60,7 +60,7 @@ class Field(object):
                 if self.birds.learning_alg == 'Q':
                     self.Q_fname = f'data/{self.record_tag}-Q.npy'
                 elif self.birds.learning_alg == 'Ried':
-                    self.policiy_fname = f'data/{self.record_tag}-policies.npy'
+                    self.policy_fname = f'data/{self.record_tag}-policies.npy'
 
         if self.plot:
             # Setup the figure and axes
@@ -82,7 +82,7 @@ class Field(object):
                         self.update(i)
         elif self.plot:
             self.ani = animation.FuncAnimation(
-                self.fig,self.update,interval=5,init_func=self.setup_plot,blit=True
+                self.fig, self.update, interval=5, init_func=self.setup_plot, blit=True
             )
             plt.show()
         else: # No visualization, only recording of data
@@ -138,7 +138,7 @@ class Field(object):
 
                     if self.birds.learning_alg == 'Q':
                         np.save(self.Q_fname, np.array([Q.value for Q in self.birds.Qs]))
-                    elif self.bird.learning_alg == 'Ried':
+                    elif self.birds.learning_alg == 'Ried':
                         np.save(self.policy_fname, self.birds.policies)
 
                     print(f'Recorded up to timestep {tstep}' if tstep != 0 else 'Record files initalized')

@@ -54,13 +54,9 @@ for i in range(3**4):
         maj_obs[dir].append(i)
 
 def avg_pol(fname, no_leaders=25, no_birds=100, Q=False):
-    # TODO: return different values for Q-learning (Q = True)
-    if Q:
-        last_pol = np.load(fname)
-    else:
-        with open(fname, 'rb') as f:
-            pols = pickle.load(f)
-            last_pol = pols[-1]
+    # NB: if Q == True, Q-values are loaded instead of policies
+    # (so average leader Q-values and follower Q-values are returned in this case).
+    last_pol = np.load(fname)
     avg_leader_pol = {}
     avg_follower_pol = {}
     for dir, inds in maj_obs.items():
@@ -76,29 +72,30 @@ def avg_pol(fname, no_leaders=25, no_birds=100, Q=False):
         avg_follower_pol[dir] = follower
     return avg_leader_pol, avg_follower_pol
 
-def plot_hist(fpath, plot_policies = False):
-    # TODO: Clean this up!
-    if re_tag.search(fpath):
+def plot_hist(fpath, plot_policies = True):
+    record_tag = find_tag(fpath)
+    if fpath == record_tag:
         data_dir = 'data'
-        fname = f'{re_tag.search(fpath).group()}-policies.p'
     else:
-        data_dir, fname = path.split(fpath)
-    record_tag = find_tag(fname)
+        data_dir, _ = path.split(fpath)
+
+    # Extract necessary parameters
     with open(path.join(data_dir,'parameters.json')) as f:
         params = json.load(f)[record_tag]
     no_birds = params['no_birds']
-    if 'leader_frac' in params.keys():
-        leader_frac = params['leader_frac']
-    else:
-        leader_frac = .25
+    leader_frac = params['leader_frac']
     no_leaders = int(no_birds * leader_frac)
-    Q = True if ('learning_alg' in params.keys() and params['learning_alg'] == 'Q') else False
+    A = params['action_space']
+    Q = True if params['learning_alg'] == 'Q' else False
+
     if Q:
-        fname = fname.replace('-policies.p','-Q.npy')
+        fname = f'{record_tag}-Q.npy'
+    else: # assume learning_alg == 'Ried'
+        fname = f'{record_tag}-policies.npy'
+
     avg_leader_pol, avg_follower_pol = avg_pol(
         path.join(data_dir,fname), no_birds = no_birds, no_leaders = no_leaders, Q = Q
     )
-    A = params['action_space']
 
     if not plot_policies:
         with open(path.join(data_dir, f'{record_tag}-instincts.json')) as f:
