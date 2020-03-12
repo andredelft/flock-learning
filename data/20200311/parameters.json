@@ -9,7 +9,6 @@
     "learning_alg": "Q",
     "alpha": 0.9,
     "gamma": 0.9,
-    "comment": "vary_alpha"
   },
   "20200311-152159": {
     "no_birds": 500,
@@ -21,6 +20,5 @@
     "learning_alg": "Q",
     "alpha": 0.9,
     "gamma": 0.9,
-    "comment": "vary_alpha"
   }
 }
