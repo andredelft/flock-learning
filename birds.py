@@ -56,10 +56,17 @@ class Birds(object):
                  alpha = alpha, gamma = gamma, epsilon = epsilon):
 
         self.numbirds = numbirds
-        self.leaders = int(self.numbirds * leader_frac)
+        self.leader_frac = leader_frac
+        self.leaders = int(self.numbirds * self.leader_frac)
         self.observe_direction = observe_direction
         self.reward_signal = reward_signal
-        self.epsilon = epsilon
+        self.learning_alg = learning_alg
+
+        if self.learning_alg == 'Q':
+            self.alpha = alpha
+            self.gamma = gamma
+            self.epsilon = epsilon
+
         print(' '.join(['Simulation started with birds that observe the',
               'flight direction' if observe_direction else 'relative position',
               'of neighbours']))
@@ -74,10 +81,28 @@ class Birds(object):
         self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
         self.policies = np.zeros([self.numbirds, (N + 1)**4, len(A)]) + 1/len(A)
         self.observations = [self.observe(i) for i in range(self.numbirds)]
-        self.learning_alg = learning_alg
         if self.learning_alg == 'Q':
             self.Qs = [Qfunction(alpha, gamma, A = A, S = range((N + 1)**4)) for _ in range(self.numbirds)]
 
+    def request_params(self):
+        params = {
+            'no_birds': self.numbirds,
+            'action_space': A,
+            'observe_direction': self.observe_direction,
+            'leader_frac': self.leader_frac,
+            'reward_signal': self.reward_signal,
+            'learning_alg': self.learning_alg
+        }
+        if self.learning_alg == 'Q':
+            params['Q_params'] = {
+                'alpha': self.alpha,
+                'gamma': self.gamma,
+                'epsilon': self.epsilon
+            }
+        return params
+
+    def calc_v(self):
+        return sum(STEP[dir] for dir in self.dirs)/self.numbirds
 
     def observe(self, bird_index, radius = D):
         tree = KDTree(self.positions)

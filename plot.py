@@ -77,6 +77,7 @@ def avg_pol(fname, no_leaders=25, no_birds=100, Q=False):
     return avg_leader_pol, avg_follower_pol
 
 def plot_hist(fpath, plot_policies = False):
+    # TODO: Clean this up!
     if re_tag.search(fpath):
         data_dir = 'data'
         fname = f'{re_tag.search(fpath).group()}-policies.p'
