@@ -1,0 +1,38 @@
+{
+  "20200312-105034": {
+    "no_birds": 50,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.9,
+    "comment": "Check if results of 20200311-150909 are reproduced with varying densities"
+  },
+  "20200312-105357": {
+    "no_birds": 150,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.9,
+    "comment": "Check if results of 20200311-150909 are reproduced with varying densities"
+  },
+  "20200312-111632": {
+    "no_birds": 200,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "learning_alg": "Q",
+    "alpha": 0.9,
+    "gamma": 0.9,
+    "comment": "Check if results of 20200311-150909 are reproduced with varying densities"
+  }
+}
