@@ -8,7 +8,7 @@
     "observe_direction": true,
     "learning_alg": "Q",
     "alpha": 0.9,
-    "gamma": 0.9,
+    "gamma": 0.9
   },
   "20200311-152159": {
     "no_birds": 500,
@@ -19,6 +19,6 @@
     "observe_direction": true,
     "learning_alg": "Q",
     "alpha": 0.9,
-    "gamma": 0.9,
+    "gamma": 0.9
   }
 }
