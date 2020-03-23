@@ -8,7 +8,7 @@ import regex
 
 from birds import discrete_Vicsek
 
-re_tag = regex.compile(r'^[0-9]+-[0-9]+')
+re_tag = regex.compile(r'^[0-9]+-[0-9]+|^desired')
 
 def find_tag(fpath):
     fname = path.split(fpath)[1]
