@@ -14,7 +14,8 @@ FIELD_DIMS = 400 * np.array([-1,1,-1,1])
 PLOTSCALE = 160
 
 class Field(object):
-    """An animated scatter plot using matplotlib.animations.FuncAnimation."""
+
+
     def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
                  comment = '', **kwargs):

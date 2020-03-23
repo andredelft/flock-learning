@@ -12,7 +12,7 @@ alpha   = 0.9  # Learning rate
 gamma   = 0.9  # Disount factor
 epsilon = 0.2  # Epsilon-greedy parameter
 
-A = ['N', 'E', 'S', 'W', 'I'] # Action space
+A = ['V', 'I'] # Action space
 
 STEP = {
     'N': np.array([ 0, 1]),
@@ -51,25 +51,24 @@ def ternary(numbers):
     return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
 
 class Birds(object):
-    def __init__(self, numbirds, field_dims, observe_direction = True,
+
+    def __init__(self, numbirds, field_dims, action_space = A, observe_direction = True,
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
-                 alpha = alpha, gamma = gamma, epsilon = epsilon):
+                 alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = ''):
 
         self.numbirds = numbirds
+        self.action_space = action_space
         self.leader_frac = leader_frac
         self.leaders = int(self.numbirds * self.leader_frac)
         self.observe_direction = observe_direction
         self.reward_signal = reward_signal
         self.learning_alg = learning_alg
 
-        if self.learning_alg == 'Q':
-            self.alpha = alpha
-            self.gamma = gamma
-            self.epsilon = epsilon
-
-        print(' '.join(['Simulation started with birds that observe the',
-              'flight direction' if observe_direction else 'relative position',
-              'of neighbours']))
+        print(' '.join([
+            'Simulation started with birds that observe the',
+            'flight direction' if observe_direction else 'relative position',
+            'of neighbours'
+        ]))
 
         # Initialization of birds in the field
         self.positions = np.array([
@@ -79,15 +78,31 @@ class Birds(object):
         ])
         self.dirs = choices(['N','E','S','W'], k = self.numbirds)
         self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
-        self.policies = np.zeros([self.numbirds, (N + 1)**4, len(A)]) + 1/len(A)
+        self.policies = np.zeros([self.numbirds, (N + 1)**4, len(self.action_space)])
+        if self.learning_alg == 'pol_from_Q':
+            if not Q_file:
+                raise Exception('No file with Q-values supplied')
+            else:
+                Qvalues = np.load(Q_file)
+                for i in range(self.numbirds):
+                    for s in range(self.policies.shape[1]):
+                        self.policies[i,s,np.argmax(Qvalues[i,s])] = 1
+        else:
+            self.policies +=  1/len(self.action_space) # Fill all policy matrices
         self.observations = [self.observe(i) for i in range(self.numbirds)]
+
         if self.learning_alg == 'Q':
-            self.Qs = [Qfunction(alpha, gamma, A = A, S = range((N + 1)**4)) for _ in range(self.numbirds)]
+            self.alpha = alpha
+            self.gamma = gamma
+            self.epsilon = epsilon
+            self.Qs = [Qfunction(
+                alpha, gamma, A = self.action_space, S = range((N + 1)**4)) for _ in range(self.numbirds
+            )]
 
     def request_params(self):
         params = {
             'no_birds': self.numbirds,
-            'action_space': A,
+            'action_space': self.action_space,
             'observe_direction': self.observe_direction,
             'leader_frac': self.leader_frac,
             'reward_signal': self.reward_signal,
@@ -178,7 +193,7 @@ class Birds(object):
             s = ternary(self.prev_obs[i].values())
             reward = self.reward(i)
             if reward:
-                self.policies[i,s,A.index(self.actions[i])] += reward/100
+                self.policies[i,s,self.action_space.index(self.actions[i])] += reward/100
                 self.policies[i,s] = self.policies[i,s]/sum(self.policies[i,s])
 
     def Q_learning(self):
@@ -187,12 +202,12 @@ class Birds(object):
             s_prime = ternary(self.prev_obs[i].values())
             self.Qs[i].update(s, self.actions[i], s_prime, self.reward(i))
             argmax_Q = np.argmax(self.Qs[i].value[s])
-            self.policies[i,s] = self.epsilon/len(A) + np.array([(1 - self.epsilon if j == argmax_Q else 0) for j in range(len(A))])
+            self.policies[i,s] = self.epsilon/len(self.action_space) + np.array([(1 - self.epsilon if j == argmax_Q else 0) for j in range(len(self.action_space))])
 
     def update(self):
-        # print(self.policies[0])
+        # print(self.policies[80])
         self.actions = [choices(
-            A, weights = self.policies[i, ternary(self.observations[i].values())],
+            self.action_space, weights = self.policies[i, ternary(self.observations[i].values())]
         )[0] for i in range(self.numbirds)]
         self.perform_step()
         self.prev_obs = self.observations

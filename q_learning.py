@@ -6,6 +6,7 @@ S = [0,1,2,3,4] # Assume S is a list of its indices (e.g. S == list(range(len(S)
 """
 
 class Qfunction(object):
+    
     def __init__(self, alpha, beta, A, S):
         if alpha < 0 or alpha >= 1:
             raise ValueError("0 <= alpha < 1 is required")
