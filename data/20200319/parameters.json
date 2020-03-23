@@ -1,0 +1,62 @@
+{
+  "20200319-115116": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "Ried",
+    "comment": "vary:reward_signal"
+  },
+  "20200319-123703": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "reward_signal": 2,
+    "learning_alg": "Ried",
+    "comment": "vary:reward_signal"
+  },
+  "20200319-125408": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Ried",
+    "comment": "vary:reward_signal"
+  },
+  "20200319-131308": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "reward_signal": 10,
+    "learning_alg": "Ried",
+    "comment": "vary:reward_signal"
+  }
+}
