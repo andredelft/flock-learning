@@ -86,7 +86,7 @@ def plot_hist(fpath, plot_policies = True):
     leader_frac = params['leader_frac']
     no_leaders = int(no_birds * leader_frac)
     A = params['action_space']
-    Q = True if params['learning_alg'] == 'Q' else False
+    Q = True if ('learning_alg' in params.keys() and params['learning_alg'] == 'Q') else False
 
     if Q:
         fname = f'{record_tag}-Q.npy'
@@ -121,6 +121,8 @@ def plot_hist(fpath, plot_policies = True):
             a[bin].set_ylim(0,1.05)
             a[bin].set_xticks(x)
             a[bin].set_xticklabels(labels)
+            if bin == (0,1):
+                a[bin].legend()
     else:
         labels = ['N', 'E', 'S', 'W']
         x = np.arange(len(labels))
@@ -253,7 +255,8 @@ def plot_hist(fpath, plot_policies = True):
             a[1,1].set_xticklabels(labels)
 
     st = fig.suptitle(
-        f'Average final Q-values of agents in {"".join(A)}-model', fontsize = 'x-large'
+        f'Average final {"normalized Q-values" if Q else "policies"} of agents in {"".join(A)}-model',
+        fontsize = 'x-large'
     )
 
     fig.tight_layout()

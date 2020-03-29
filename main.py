@@ -17,8 +17,8 @@ def load_from_Q(record_tag, data_dir = 'data'):
     )
 
 if __name__ == '__main__':
-    load_from_Q('20200323-172709', data_dir = 'data/20200323/2-Larger_Epsilon')
-    # Field(
-    #     100, plot = True, record_data = True, observe_direction = True,
-    #     alpha = 0.9, gamma = 0.9, epsilon = 0.9, learning_alg = 'Q', sim_length = 12500
-    # )
+    # load_from_Q('20200323-172709', data_dir = 'data/20200323/2-Larger_Epsilon')
+    Field(
+        100, record_data = True, observe_direction = True, plot = False,
+        learning_alg = 'Ried', sim_length = 12500
+    )
