@@ -34,17 +34,18 @@ class Field(object):
         if not self.plot: # Force recording if there is no visualization
             self.record_data = True
 
+        self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
+        param_file = 'data/parameters.json'
+        params = self.birds.request_params()
+        if path.isfile(param_file):
+            with open(param_file) as f:
+                existing_pars = json.load(f)
+            with open(param_file, 'w') as f:
+                json.dump({**existing_pars, self.record_tag: params}, f, indent = 2)
+
         if self.record_data:
-            self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
-            param_file = 'data/parameters.json'
-            params = self.birds.request_params()
             if comment:
                 params['comment'] = comment
-            if path.isfile(param_file):
-                with open(param_file) as f:
-                    existing_pars = json.load(f)
-                with open(param_file, 'w') as f:
-                    json.dump({**existing_pars, self.record_tag: params}, f, indent = 2)
             else:
                 with open(param_file, 'w') as f:
                     json.dump({self.record_tag: params}, f, indent = 2)
@@ -138,7 +139,11 @@ class Field(object):
                     self.v_history = []
 
                     if self.birds.learning_alg == 'Q':
-                        np.save(self.Q_fname, np.array([Q.value for Q in self.birds.Qs]))
+                        if tstep % 2000 == 0:
+                            ext = f'-{tstep}.npy'
+                        else:
+                            ext = '.npy'
+                        np.save(self.Q_fname.replace('.npy',ext), np.array([Q.value for Q in self.birds.Qs]))
                     elif self.birds.learning_alg == 'Ried':
                         np.save(self.policy_fname, self.birds.policies)
 

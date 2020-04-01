@@ -76,8 +76,9 @@ def plot_hist(fpath, plot_policies = True):
     record_tag = find_tag(fpath)
     if fpath == record_tag:
         data_dir = 'data'
+        fname = ''
     else:
-        data_dir, _ = path.split(fpath)
+        data_dir, fname = path.split(fpath)
 
     # Extract necessary parameters
     with open(path.join(data_dir,'parameters.json')) as f:
@@ -88,10 +89,8 @@ def plot_hist(fpath, plot_policies = True):
     A = params['action_space']
     Q = True if ('learning_alg' in params.keys() and params['learning_alg'] == 'Q') else False
 
-    if Q:
-        fname = f'{record_tag}-Q.npy'
-    else: # assume learning_alg == 'Ried'
-        fname = f'{record_tag}-policies.npy'
+    if not fname:
+        fname = f'{record_tag}-Q.npy' if Q else f'{record_tag}-policies.npy'
 
     avg_leader_pol, avg_follower_pol = avg_pol(
         path.join(data_dir,fname), no_birds = no_birds, no_leaders = no_leaders, Q = Q
