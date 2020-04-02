@@ -18,13 +18,14 @@ class Field(object):
 
     def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
-                 comment = '', **kwargs):
+                 comment = '', record_step = 0, **kwargs):
 
         self.birds = Birds(numbirds, field_dims, **kwargs)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
         self.record_data = record_data
+        self.record_step = record_step
         self.plot = plot
         sim_length += 1
 
@@ -138,14 +139,15 @@ class Field(object):
                     np.save(self.v_fname, v_data)
                     self.v_history = []
 
+                    if self.record_step != 0 and tstep % self.record_step == 0:
+                        ext = f'-{tstep}.npy'
+                    else:
+                        ext = '.npy'
+
                     if self.birds.learning_alg == 'Q':
-                        if tstep % 2000 == 0:
-                            ext = f'-{tstep}.npy'
-                        else:
-                            ext = '.npy'
                         np.save(self.Q_fname.replace('.npy',ext), np.array([Q.value for Q in self.birds.Qs]))
                     elif self.birds.learning_alg == 'Ried':
-                        np.save(self.policy_fname, self.birds.policies)
+                        np.save(self.policy_fname.replace('.npy',ext), self.birds.policies)
 
                     print(f'Recorded up to timestep {tstep}' if tstep != 0 else 'Record files initalized')
 
