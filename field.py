@@ -29,15 +29,16 @@ class Field(object):
         self.plot = plot
         sim_length += 1
 
+        self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
+        param_file = 'data/parameters.json'
+        params = self.birds.request_params()
+
         if record_mov: # Force plotting of data (necessary for movie)
             self.plot = True
 
         if not self.plot: # Force recording if there is no visualization
             self.record_data = True
 
-        self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
-        param_file = 'data/parameters.json'
-        params = self.birds.request_params()
         if path.isfile(param_file):
             with open(param_file) as f:
                 existing_pars = json.load(f)
@@ -76,7 +77,8 @@ class Field(object):
 
         if record_mov:
             writer = animation.FFMpegWriter(fps=24)
-            mov_name = f'movies/{datetime.now().strftime("%Y%m%d-%H%M%S")}.mp4'
+            mov_name = f'movies/{self.record_tag}.mp4'
+            print(f'Recording movie ')
             with writer.saving(self.fig, mov_name, 100):
                 self.setup_plot()
                 for i in range(sim_length):
