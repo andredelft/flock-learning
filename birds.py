@@ -1,6 +1,7 @@
 import numpy as np
 from random import randint, choice, choices
 from scipy.spatial import KDTree
+from bisect import bisect_left
 
 from q_learning import Qfunction
 
@@ -14,37 +15,33 @@ epsilon = 0.2  # Epsilon-greedy parameter
 
 A = ['V', 'I'] # Action space
 
-STEP = {
-    'N': np.array([ 0, 1]),
-    'E': np.array([ 1, 0]),
-    'S': np.array([ 0,-1]),
-    'W': np.array([-1, 0])
-}
+NO_DIRS = 2 ** 2 # exponent should be >= 2
+DIRS = np.linspace(-np.pi, np.pi, NO_DIRS + 1)[:NO_DIRS]
+STEPS = [np.array([np.cos(theta), np.sin(theta)]) for theta in DIRS]
+TRESHOLD = 0.9 * np.linalg.norm(STEPS[0] + STEPS[(NO_DIRS//2) + 1])
 
-ANG = {
-    'N': np.pi/2,
-    'E': 0,
-    'S': -1 * np.pi/2,
-    'W': np.pi
-}
+CARD_DIRS = {card_dir: i for card_dir, i in zip('WSEN',range(0, NO_DIRS, NO_DIRS//4))}
 
 def discrete_Vicsek(observation):
+    """ Returns the index of DIRS that is closest to the average direction """
     v = np.array([0,0])
     for dir,n in observation.items():
-        for _ in range(n):
-            v += STEP[dir]
-    if list(v) != [0,0]:
-        angle = np.arctan2(v[1],v[0])
-        if (angle < -3 * np.pi / 4) or (angle >= 3 * np.pi / 4):
-            return 'W'
-        elif (angle < 3 * np.pi / 4) and (angle >= np.pi / 4):
-            return 'N'
-        elif (angle < np.pi / 4) and (angle >= -1 * np.pi / 4):
-            return 'E'
-        elif (angle < -1 * np.pi/4) and (angle >= -3 * np.pi / 4):
-            return 'S'
+        v += n * STEPS[dir]
+    if np.linalg.norm(v) > TRESHOLD:
+        theta = np.arctan2(v[1],v[0])
+        i = bisect_left(DIRS, theta)
+        if i == NO_DIRS - 1:
+            if theta - DIRS[i] < 2 * np.pi - theta:
+                return i
+            else:
+                return 0
+        elif theta - DIRS[i] < theta - DIRS[i + 1]:
+            return i
+        else:
+            return i + 1
     else:
-        return 0
+        # Sum of dirs is zero
+        return NO_DIRS
 
 def ternary(numbers):
     numbers = list(numbers)
@@ -123,12 +120,7 @@ class Birds(object):
         tree = KDTree(self.positions)
         neighbours_inds = tree.query_ball_point(self.positions[bird_index], radius)
         neighbours_inds.remove(bird_index)
-        neighbours = {
-            'N': 0,
-            'E': 0,
-            'S': 0,
-            'W': 0
-        }
+        neighbours = {i: 0 for i in range(NO_DIRS)}
 
         # Two possible observations:
         # – Relative position of neighbours (direction_hist = False): Divides
@@ -163,27 +155,27 @@ class Birds(object):
                 neighbours[dir] = 2
         return neighbours
 
-    def perform_step(self, step = STEP):
+    def perform_step(self):
         for i in range(self.numbirds):
             if self.actions[i] == 'V':
                 if not self.observe_direction:
                     raise Exception('Vicsek action is not allowed when observe_direction = False')
                 else:
-                    Vic_dir = discrete_Vicsek(self.observations[i])
-                    if Vic_dir == 0:
+                    i_dir = discrete_Vicsek(self.observations[i])
+                    if i_dir == NO_DIRS:
                         # Maintain current direction
-                        self.dirs[i] = self.dirs[i]
+                        pass
                     else:
-                        self.dirs[i] = Vic_dir
+                        self.dirs[i] = i_dir
             elif self.actions[i] == 'I':
-                self.dirs[i] = self.instincts[i]
+                self.dirs[i] = CARD_DIRS[self.instincts[i]]
             elif self.actions[i] in ['N','E','S','W']:
-                self.dirs[i] = self.actions[i]
+                self.dirs[i] = CARD_DIRS[self.actions[i]]
             elif self.actions[i] == 'R':
-                self.dirs[i] = choice(['N','E','S','W'])
+                self.dirs[i] = choice(DIRS)
             else:
                 raise ValueError(f'Action {self.actions[i]} does not exist')
-            self.positions[i] += step[self.dirs[i]]
+            self.positions[i] += STEP[self.dirs[i]]
 
     def reward(self,i):
         return self.reward_signal if self.dirs[i] == 'E' else 0
@@ -202,7 +194,9 @@ class Birds(object):
             s_prime = ternary(self.prev_obs[i].values())
             self.Qs[i].update(s, self.actions[i], s_prime, self.reward(i))
             argmax_Q = np.argmax(self.Qs[i].value[s])
-            self.policies[i,s] = self.epsilon/len(self.action_space) + np.array([(1 - self.epsilon if j == argmax_Q else 0) for j in range(len(self.action_space))])
+            self.policies[i,s] = self.epsilon/len(self.action_space) + np.array([
+                (1 - self.epsilon if j == argmax_Q else 0) for j in range(len(self.action_space))
+            ])
 
     def update(self):
         # print(self.policies[80])
