@@ -6,7 +6,7 @@ import json
 import pickle
 import regex
 
-from birds import discrete_Vicsek
+from birds import discrete_Vicsek, CARD_DIRS
 
 re_tag = regex.compile(r'^[0-9]+-[0-9]+|^desired')
 
@@ -47,11 +47,11 @@ maj_obs = {
 }
 
 # Calculate Vicsek results
-for i in range(3**4):
-    tern = f'{np.base_repr(i, base=3):0>4}'
-    dir = discrete_Vicsek({d: int(n) for d,n in zip('NESW',tern)})
-    if dir != 0:
-        maj_obs[dir].append(i)
+# for i in range(3**4):
+#     tern = f'{np.base_repr(i, base=3):0>4}'
+#     dir = discrete_Vicsek({CARD_DIRS[d]: int(n) for d,n in zip('NESW',tern)})
+#     if dir != 0:
+#         maj_obs[dir].append(i)
 
 def avg_pol(fname, no_leaders=25, no_birds=100, Q=False):
     # NB: if Q == True, Q-values are loaded instead of policies

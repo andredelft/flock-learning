@@ -11,7 +11,7 @@ R = 1   # Reward signal
 
 alpha   = 0.9  # Learning rate
 gamma   = 0.9  # Disount factor
-epsilon = 0.2  # Epsilon-greedy parameter
+epsilon = 0.5  # Epsilon-greedy parameter
 
 A = ['V', 'I'] # Action space
 
@@ -34,16 +34,29 @@ def discrete_Vicsek(observation):
         theta = np.arctan2(v[1],v[0])
         i = bisect_left(DIRS, theta)
         if i == NO_DIRS:
-            if theta - DIRS[i - 1] < 2 * np.pi - theta:
+            delta_1 = theta - DIRS[i - 1]
+            delta_2 = 2 * np.pi - theta
+            if delta_1 < delta_2:
                 return i - 1
+            elif delta_1 == delta_2:
+                return choice([i - 1, i])
             else:
                 return 0
-        elif theta - DIRS[i - 1] < theta - DIRS[i]:
-            return i
+        elif i == 0:
+            # Since -pi < theta < pi, this only happens when theta = -pi
+            return 0
         else:
-            return i + 1
+            delta_1 = theta - DIRS[i - 1]
+            delta_2 = DIRS[i] - theta
+            if delta_1 < delta_2:
+                return i - 1
+            elif delta_1 == delta_2:
+                # Important to avoid a biased direction
+                return choice([i - 1, i])
+            else:
+                return i
     else:
-        # Sum of dirs is zero
+        # Sum of dirs is below treshold (i.e., zero)
         return NO_DIRS
 
 def ternary(numbers):
@@ -81,7 +94,7 @@ class Birds(object):
         self.policies = np.zeros([self.numbirds, len(S), len(self.action_space)])
         if self.learning_alg == 'pol_from_Q':
             if not Q_file:
-                raise Exception('No file with Q-values supplied')
+                raise Exception('No file with Q-values provided')
             else:
                 Qvalues = np.load(Q_file)
                 for i in range(self.numbirds):

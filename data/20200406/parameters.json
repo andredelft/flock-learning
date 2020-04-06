@@ -1,0 +1,227 @@
+{
+  "desired-8": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "learning_alg": "Q"
+  },
+  "desired-8-2": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.2,
+    "learning_alg": "Q"
+  },
+  "desired-8-3": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.15,
+    "learning_alg": "Q"
+  },
+  "desired-8-4": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.1,
+    "learning_alg": "Q"
+  },
+  "desired-8-5": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.05,
+    "learning_alg": "Q"
+  },
+  "20200406-133538": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8"
+  },
+  "20200406-133611": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "Q",
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.9,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    }
+  },
+  "20200406-135043": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.2,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-2"
+  },
+  "20200406-135250": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.15,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-3"
+  },
+  "20200406-135505": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.1,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-4"
+  },
+  "20200406-135721": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.05,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-5"
+  },
+  "20200406-140008": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.2,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-2"
+  },
+  "20200406-140243": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.15,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-3"
+  },
+  "20200406-140458": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.1,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-4"
+  },
+  "20200406-140708": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.05,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-5"
+  },
+  "20200406-140923": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "20200406-133611",
+    "record_mov": true
+  },
+  "20200406-141230": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.05,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-5"
+  },
+  "20200406-142553": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.05,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "desired-8-5",
+    "record_mov": true
+  }
+}

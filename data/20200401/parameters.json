@@ -64,6 +64,7 @@
     "observe_direction": true,
     "leader_frac": 0.25,
     "reward_signal": 1,
-    "learning_alg": "pol_from_Q"
+    "learning_alg": "pol_from_Q",
+    "comment": "20200323-172709"
   }
 }
