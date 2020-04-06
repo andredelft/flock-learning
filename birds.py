@@ -15,27 +15,30 @@ epsilon = 0.2  # Epsilon-greedy parameter
 
 A = ['V', 'I'] # Action space
 
-NO_DIRS = 2 ** 2 # exponent should be >= 2
+NO_DIRS = 2 ** 3 # exponent should be 2 or 3
 DIRS = np.linspace(-np.pi, np.pi, NO_DIRS + 1)[:NO_DIRS]
+DIRS_INDS = list(range(NO_DIRS))
 STEPS = [np.array([np.cos(theta), np.sin(theta)]) for theta in DIRS]
 TRESHOLD = 0.9 * np.linalg.norm(STEPS[0] + STEPS[(NO_DIRS//2) + 1])
+
+S = range((N + 1) ** NO_DIRS) # Observation space
 
 CARD_DIRS = {card_dir: i for card_dir, i in zip('WSEN',range(0, NO_DIRS, NO_DIRS//4))}
 
 def discrete_Vicsek(observation):
     """ Returns the index of DIRS that is closest to the average direction """
-    v = np.array([0,0])
+    v = np.array([0.,0.])
     for dir,n in observation.items():
         v += n * STEPS[dir]
     if np.linalg.norm(v) > TRESHOLD:
         theta = np.arctan2(v[1],v[0])
         i = bisect_left(DIRS, theta)
-        if i == NO_DIRS - 1:
-            if theta - DIRS[i] < 2 * np.pi - theta:
-                return i
+        if i == NO_DIRS:
+            if theta - DIRS[i - 1] < 2 * np.pi - theta:
+                return i - 1
             else:
                 return 0
-        elif theta - DIRS[i] < theta - DIRS[i + 1]:
+        elif theta - DIRS[i - 1] < theta - DIRS[i]:
             return i
         else:
             return i + 1
@@ -70,12 +73,12 @@ class Birds(object):
         # Initialization of birds in the field
         self.positions = np.array([
             np.array([
-                randint(*field_dims[0:2]), randint(*field_dims[2:4])
+                float(randint(*field_dims[0:2])), float(randint(*field_dims[2:4]))
             ]) for _ in range(self.numbirds)
         ])
-        self.dirs = choices(['N','E','S','W'], k = self.numbirds)
+        self.dirs = choices(DIRS_INDS, k = self.numbirds)
         self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
-        self.policies = np.zeros([self.numbirds, (N + 1)**4, len(self.action_space)])
+        self.policies = np.zeros([self.numbirds, len(S), len(self.action_space)])
         if self.learning_alg == 'pol_from_Q':
             if not Q_file:
                 raise Exception('No file with Q-values supplied')
@@ -93,8 +96,8 @@ class Birds(object):
             self.gamma = gamma
             self.epsilon = epsilon
             self.Qs = [Qfunction(
-                alpha, gamma, A = self.action_space, S = range((N + 1)**4)) for _ in range(self.numbirds
-            )]
+                alpha, gamma, A = self.action_space, S = S
+            ) for _ in range(self.numbirds)]
 
     def request_params(self):
         params = {
@@ -103,7 +106,8 @@ class Birds(object):
             'observe_direction': self.observe_direction,
             'leader_frac': self.leader_frac,
             'reward_signal': self.reward_signal,
-            'learning_alg': self.learning_alg
+            'learning_alg': self.learning_alg,
+            'no_dirs': NO_DIRS
         }
         if self.learning_alg == 'Q':
             params['Q_params'] = {
@@ -114,13 +118,13 @@ class Birds(object):
         return params
 
     def calc_v(self):
-        return sum(STEP[dir] for dir in self.dirs)/self.numbirds
+        return sum(STEPS[dir] for dir in self.dirs)/self.numbirds
 
     def observe(self, bird_index, radius = D):
         tree = KDTree(self.positions)
         neighbours_inds = tree.query_ball_point(self.positions[bird_index], radius)
         neighbours_inds.remove(bird_index)
-        neighbours = {i: 0 for i in range(NO_DIRS)}
+        neighbours = {i: 0 for i in DIRS_INDS}
 
         # Two possible observations:
         # – Relative position of neighbours (direction_hist = False): Divides
@@ -130,21 +134,23 @@ class Birds(object):
         #   and counts the current flight direction of all birds in the
         #   observation space.
         if not self.observe_direction:
-            for i in neighbours_inds:
-                delta_x = self.positions[bird_index,0] - self.positions[i,0]
-                delta_y = self.positions[bird_index,1] - self.positions[i,1]
-                angle = np.arctan2(delta_y,delta_x)
-                if (angle < -3 * np.pi / 4) or (angle >= 3 * np.pi / 4):
-                    neighbours['E'] += 1
-                elif (angle < 3 * np.pi / 4) and (angle >= np.pi / 4):
-                    neighbours['N'] += 1
-                elif (angle < np.pi / 4) and (angle >= -1 * np.pi / 4):
-                    neighbours['W'] += 1
-                elif (angle < -1 * np.pi/4) and (angle >= -3 * np.pi / 4):
-                    neighbours['S'] += 1
-                else:
-                    # Check if all cases are catched
-                    raise ValueError(f'No value found for angle {angle}')
+            pass
+            # Needs to be rewritten when we still want to use it.
+            # for i in neighbours_inds:
+            #     delta_x = self.positions[bird_index,0] - self.positions[i,0]
+            #     delta_y = self.positions[bird_index,1] - self.positions[i,1]
+            #     angle = np.arctan2(delta_y,delta_x)
+            #     if (angle < -3 * np.pi / 4) or (angle >= 3 * np.pi / 4):
+            #         neighbours['E'] += 1
+            #     elif (angle < 3 * np.pi / 4) and (angle >= np.pi / 4):
+            #         neighbours['N'] += 1
+            #     elif (angle < np.pi / 4) and (angle >= -1 * np.pi / 4):
+            #         neighbours['W'] += 1
+            #     elif (angle < -1 * np.pi/4) and (angle >= -3 * np.pi / 4):
+            #         neighbours['S'] += 1
+            #     else:
+            #         # Check if all cases are catched
+            #         raise ValueError(f'No value found for angle {angle}')
         else:
             for i in neighbours_inds:
                 neighbours[self.dirs[i]] += 1
@@ -172,13 +178,13 @@ class Birds(object):
             elif self.actions[i] in ['N','E','S','W']:
                 self.dirs[i] = CARD_DIRS[self.actions[i]]
             elif self.actions[i] == 'R':
-                self.dirs[i] = choice(DIRS)
+                self.dirs[i] = choice(DIRS_INDS)
             else:
                 raise ValueError(f'Action {self.actions[i]} does not exist')
-            self.positions[i] += STEP[self.dirs[i]]
+            self.positions[i] += STEPS[self.dirs[i]]
 
     def reward(self,i):
-        return self.reward_signal if self.dirs[i] == 'E' else 0
+        return self.reward_signal if self.dirs[i] == CARD_DIRS['E'] else 0
 
     def Ried_learning(self):
         for i in range(self.numbirds):
@@ -199,7 +205,6 @@ class Birds(object):
             ])
 
     def update(self):
-        # print(self.policies[80])
         self.actions = [choices(
             self.action_space, weights = self.policies[i, ternary(self.observations[i].values())]
         )[0] for i in range(self.numbirds)]
