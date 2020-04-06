@@ -7,6 +7,7 @@ from os import path
 from datetime import datetime
 import json
 import pickle
+from tqdm import trange
 
 from birds import Birds
 
@@ -32,9 +33,12 @@ class Field(object):
         self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
         param_file = 'data/parameters.json'
         params = self.birds.request_params()
+        if comment:
+            params['comment'] = comment
 
         if record_mov: # Force plotting of data (necessary for movie)
             self.plot = True
+            params['record_mov'] = True
 
         if not self.plot: # Force recording if there is no visualization
             self.record_data = True
@@ -44,14 +48,11 @@ class Field(object):
                 existing_pars = json.load(f)
             with open(param_file, 'w') as f:
                 json.dump({**existing_pars, self.record_tag: params}, f, indent = 2)
+        else:
+            with open(param_file, 'w') as f:
+                json.dump({self.record_tag: params}, f, indent = 2)
 
         if self.record_data:
-            if comment:
-                params['comment'] = comment
-            else:
-                with open(param_file, 'w') as f:
-                    json.dump({self.record_tag: params}, f, indent = 2)
-
             # Setup files for tracking birds if record_data == True
             if self.record_data:
                 self.v_fname = f'data/{self.record_tag}-v.npy'
@@ -78,11 +79,12 @@ class Field(object):
         if record_mov:
             writer = animation.FFMpegWriter(fps=24)
             mov_name = f'movies/{self.record_tag}.mp4'
-            print(f'Recording movie ')
+            print(f'Initiated record file {self.record_tag}.mp4')
             with writer.saving(self.fig, mov_name, 100):
                 self.setup_plot()
-                for i in range(sim_length):
+                for i in trange(sim_length//5, desc="Recording frames"):
                     writer.grab_frame()
+                    # Record every fifth frame
                     for _ in range(5):
                         self.update(i)
         elif self.plot:
