@@ -133,6 +133,21 @@ class Birds(object):
     def calc_v(self):
         return sum(STEPS[dir] for dir in self.dirs)/self.numbirds
 
+    def calc_Delta(self, print_Delta = True):
+        if self.learning_alg != 'Q' or self.action_space != ['V','I']:
+            return None
+
+        Delta = 0
+        for i in range(self.numbirds):
+            desired_ind = 1 if self.instincts[i] == 'E' else 0
+            for s in S:
+                if np.argmax(self.Qs[i].value[s]) != desired_ind:
+                    Delta += 1
+        Delta /= self.numbirds * len(S)
+        if print_Delta:
+            print(f"Delta: {Delta}")
+        return Delta
+
     def observe(self, bird_index, radius = D):
         tree = KDTree(self.positions)
         neighbours_inds = tree.query_ball_point(self.positions[bird_index], radius)
