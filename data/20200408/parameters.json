@@ -1,0 +1,33 @@
+{
+  "20200408-154807": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "Q",
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.9,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    }
+  },
+  "20200408-165136": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "observe_direction": true,
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "no_dirs": 8,
+    "comment": "20200408-154807",
+    "record_mov": true
+  }
+}

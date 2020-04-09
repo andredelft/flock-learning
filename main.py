@@ -18,8 +18,5 @@ def load_from_Q(record_tag, data_dir = 'data', plot = True, record_data = True, 
     )
 
 if __name__ == '__main__':
-    load_from_Q('desired-8-5', record_data = True, record_mov = True, sim_length = 2000)
-    # Field(
-    #     100, record_data = True, observe_direction = True, plot = True,
-    #     learning_alg = 'Q'
-    # )
+    load_from_Q('20200408-154807', record_data = True, record_mov = True, sim_length = 5000)
+    # Field(100, record_data = True, observe_direction = True, plot = True, learning_alg = 'Q')
