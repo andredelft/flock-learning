@@ -138,10 +138,6 @@ class Field(object):
                 v = self.birds.calc_v()
                 self.v_history.append(v)
 
-                if self.birds.learning_alg == 'Q' and self.birds.action_space == ['V','I']:
-                    Delta = self.birds.calc_Delta()
-                    self.Delta_history.append(Delta)
-
                 if tstep % 500 == 0:
                     v_data = np.load(self.v_fname)
                     if v_data.size == 0:
@@ -159,8 +155,9 @@ class Field(object):
                     if self.birds.learning_alg == 'Q':
                         np.save(self.Q_fname.replace('.npy',ext), np.array([Q.value for Q in self.birds.Qs]))
                         if self.birds.action_space == ['V','I']:
+                            Delta = self.birds.calc_Delta()
                             Delta_data = np.load(self.Delta_fname)
-                            Delta_data = np.append(Delta_data, self.Delta_history, axis = 0)
+                            Delta_data = np.append(Delta_data, Delta)
                             np.save(self.Delta_fname, Delta_data)
                             self.Delta_history = []
                     elif self.birds.learning_alg == 'Ried':
