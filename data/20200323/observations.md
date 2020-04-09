@@ -1,6 +1,6 @@
-# Comparison of two simulations with different ϵ
+# Comparison of simulations with different ϵ
 
-Two simulations are done with trained birds with an ϵ-greedy policy, with different values of epsilon. 20200311-150909 with ϵ = 0.2, 20200323-154156 with ϵ = 0.5 and 20200323-172709 with ϵ = 0.9.
+Three simulations are done with trained birds with an ϵ-greedy policy, with different values of epsilon. 20200311-150909 with ϵ = 0.2, 20200323-154156 with ϵ = 0.5 and 20200323-172709 with ϵ = 0.9.
 
 ## Learning
 
