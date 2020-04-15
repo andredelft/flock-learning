@@ -19,25 +19,29 @@ def avg(data, cap = 20):
 
 def plot_mag(fname, label = '', cap = 50):
     data = np.load(fname)
-    plt.plot(avg([np.linalg.norm(v) for v in data], cap=cap),label=label)
+    plt.plot(avg([np.linalg.norm(v) for v in data], cap = cap), label = label)
 
 def plot_vx(fname, label = '', cap = 50):
     data = np.load(fname)
-    plt.plot(avg([v[0] for v in data], cap=cap),label=label)
+    plt.plot(avg([v[0] for v in data], cap = cap), label = label)
 
 def plot_arg(fname, label = '', cap = 100):
     data = np.load(fname)
-    plt.plot(avg([np.arctan2(v[1],v[0]) for v in data], cap=cap),label=label)
+    plt.plot(avg([np.arctan2(v[1],v[0]) for v in data], cap = cap), label = label)
 
 def plot_mag_arg(fname):
     data = np.load(fname)
     fig,a = plt.subplots(2,1)
     a[0].set_title(path.split(fname)[1])
-    a[0].plot(avg([np.linalg.norm(v) for v in data], cap=50))
+    a[0].plot(avg([np.linalg.norm(v) for v in data], cap = 50))
     a[0].set_ylabel('$|\mathbf{v}|$')
     a[1].set_xlabel('Timestep')
     a[1].set_ylabel('Arg(v)')
-    a[1].plot(avg([np.arctan2(v[1],v[0]) for v in data], cap=100))
+    a[1].plot(avg([np.arctan2(v[1],v[0]) for v in data], cap = 100))
+
+def plot_Delta(fname, label = ''):
+    data = np.load(fname)
+    plt.plot(range(0, 500 * len(data), 500), data, label = label)
 
 maj_obs = {
     'N': [],
@@ -264,18 +268,24 @@ def plot_hist(fpath, plot_policies = True):
     st.set_y(0.97)
     fig.subplots_adjust(top=0.85)
 
-def plot_all(data_dir = 'data', quantity = 'mag', cap = 50):
+def plot_all(data_dir = 'data', quantity = 'v', cap = 50):
     with open(path.join(data_dir,'parameters.json')) as f:
         pars = json.load(f)
-    for fname in sorted(glob(f'{data_dir}/*-v.npy')):
+    for fname in sorted(glob(f'{data_dir}/*-{quantity}.npy')):
         record_tag = find_tag(fname)
-        if quantity == 'mag':
+        if quantity == 'v':
             plot_mag(
                 fname, cap = cap,
                 label = record_tag
             )
+        elif quantity == 'Delta':
+            plot_Delta(
+                fname, label = record_tag
+            )
     if quantity == 'mag':
         plt.title(f'Magnitude of average velocity vector (Capsize = {cap})')
         plt.ylabel('v')
+    elif quantity == 'Delta':
+        plt.ylabel('$\Delta$')
     plt.xlabel('Timestep')
     plt.legend()
