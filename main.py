@@ -18,5 +18,8 @@ def load_from_Q(record_tag, data_dir = 'data', plot = True, record_data = True, 
     )
 
 if __name__ == '__main__':
-    load_from_Q('20200409-164937', data_dir = 'data/20200409', record_data = True, record_mov = True, sim_length = 10000)
-    # Field(100, record_data = True, observe_direction = True, plot = True, learning_alg = 'Q')
+    # load_from_Q('20200409-164937', data_dir = 'data/20200409', record_data = True, record_mov = True, sim_length = 10000)
+    Field(
+        100, record_data = True, plot = False, sim_length = 200_000, reward_signal = 10, Q_every = 500,
+        learning_alg = 'Q', gradient_reward = True, comment="long simulation with gradient reward"
+    )

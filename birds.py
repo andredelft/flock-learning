@@ -186,7 +186,7 @@ class Birds(object):
             for i in neighbours_inds:
                 neighbours[self.dirs[i]] += 1
 
-        # Maximum of 2
+        # Maximum of N
         for dir in neighbours.keys():
             if neighbours[dir] > N:
                 neighbours[dir] = N

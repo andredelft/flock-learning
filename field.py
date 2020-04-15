@@ -3,6 +3,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
+import os
 from os import path
 from datetime import datetime
 import json
@@ -19,14 +20,14 @@ class Field(object):
 
     def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
-                 comment = '', record_step = 0, **kwargs):
+                 comment = '', Q_every = 0, **kwargs):
 
         self.birds = Birds(numbirds, field_dims, **kwargs)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
         self.record_data = record_data
-        self.record_step = record_step
+        self.Q_every = Q_every
         self.plot = plot
         sim_length += 1
 
@@ -63,7 +64,11 @@ class Field(object):
                     json.dump(self.birds.instincts, f)
 
                 if self.birds.learning_alg == 'Q':
-                    self.Q_fname = f'data/{self.record_tag}-Q.npy'
+                    if self.Q_every:
+                        os.mkdir(f'data/{self.record_tag}-Q')
+                        self.Q_fname = f'data/{self.record_tag}-Q/000000.npy'
+                    else:
+                        self.Q_fname = f'data/{self.record_tag}-Q.npy'
                     if self.birds.action_space == ['V','I']:
                         self.Delta_fname = f'data/{self.record_tag}-Delta.npy'
                         np.save(self.Delta_fname, np.array([]))
@@ -147,13 +152,11 @@ class Field(object):
                     np.save(self.v_fname, v_data)
                     self.v_history = []
 
-                    if self.record_step != 0 and tstep % self.record_step == 0:
-                        ext = f'-{tstep}.npy'
-                    else:
-                        ext = '.npy'
+                    if self.Q_every and tstep % self.Q_every == 0:
+                        self.Q_fname = f'data/{self.record_tag}-Q/{tstep:06}.npy'
 
                     if self.birds.learning_alg == 'Q':
-                        np.save(self.Q_fname.replace('.npy',ext), np.array([Q.value for Q in self.birds.Qs]))
+                        np.save(self.Q_fname, np.array([Q.value for Q in self.birds.Qs]))
                         if self.birds.action_space == ['V','I']:
                             Delta = self.birds.calc_Delta()
                             Delta_data = np.load(self.Delta_fname)

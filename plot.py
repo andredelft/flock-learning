@@ -1,4 +1,5 @@
 from matplotlib import pyplot as plt
+# from matplotlib import style
 import numpy as np
 from os import path
 from glob import glob
@@ -10,9 +11,18 @@ from birds import discrete_Vicsek, CARD_DIRS
 
 re_tag = regex.compile(r'^[0-9]+-[0-9]+|^desired')
 
-def find_tag(fpath):
+def _find_tag(fpath):
     fname = path.split(fpath)[1]
     return re_tag.search(fname).group()
+
+def _parse_fpath(fpath, data_dir):
+    record_tag = _find_tag(fpath)
+    if fpath == record_tag:
+        data_dir = 'data'
+        fname = ''
+    else:
+        data_dir, fname = path.split(fpath)
+    return data_dir, fname, record_tag
 
 def avg(data, cap = 20):
     return [sum(data[i:i + cap])/cap for i in range(len(data) - cap)]
@@ -76,13 +86,24 @@ def avg_pol(fname, no_leaders=25, no_birds=100, Q=False):
         avg_follower_pol[dir] = follower
     return avg_leader_pol, avg_follower_pol
 
-def plot_hist(fpath, plot_policies = True):
-    record_tag = find_tag(fpath)
-    if fpath == record_tag:
-        data_dir = 'data'
-        fname = ''
+def plot_Q(fpath, bird_ind = 0):
+    data_dir, fname = path.split(fpath)
+    if regex.search(r'^\d+\.npy$', fname):
+        inst_file = data_dir.replace('-Q', '-instincts.json')
     else:
-        data_dir, fname = path.split(fpath)
+        inst_file = f'{data_dir}/{fname.replace("-Q.npy", "-instincts.json")}'
+
+    with open(inst_file) as f:
+        instincts = json.load(f)
+    Qtable = np.load(fpath)[bird_ind]
+
+    maxs = [np.argmax(q_row) for q_row in Qtable]
+    plt.scatter(range(len(maxs)), maxs, marker="|")
+    plt.yticks([0,1], ['V','I'])
+
+
+def plot_hist(fpath, data_dir = '', plot_policies = True):
+    data_dir, fname, record_tag = _parse_fpath(fpath, data_dir)
 
     # Extract necessary parameters
     with open(path.join(data_dir,'parameters.json')) as f:
@@ -272,7 +293,7 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50):
     with open(path.join(data_dir,'parameters.json')) as f:
         pars = json.load(f)
     for fname in sorted(glob(f'{data_dir}/*-{quantity}.npy')):
-        record_tag = find_tag(fname)
+        record_tag = _find_tag(fname)
         if quantity == 'v':
             plot_mag(
                 fname, cap = cap,
