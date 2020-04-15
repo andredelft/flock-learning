@@ -67,7 +67,8 @@ class Birds(object):
 
     def __init__(self, numbirds, field_dims, action_space = A, observe_direction = True,
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
-                 alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = ''):
+                 alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
+                 gradient_reward = False):
 
         self.numbirds = numbirds
         self.action_space = action_space
@@ -76,6 +77,7 @@ class Birds(object):
         self.observe_direction = observe_direction
         self.reward_signal = reward_signal
         self.learning_alg = learning_alg
+        self.gradient = gradient_reward
 
         print(' '.join([
             'Simulation started with birds that observe the',
@@ -120,6 +122,7 @@ class Birds(object):
             'leader_frac': self.leader_frac,
             'reward_signal': self.reward_signal,
             'learning_alg': self.learning_alg,
+            'gradient_reward': self.gradient,
             'no_dirs': NO_DIRS
         }
         if self.learning_alg == 'Q':
@@ -185,8 +188,8 @@ class Birds(object):
 
         # Maximum of 2
         for dir in neighbours.keys():
-            if neighbours[dir] > 2:
-                neighbours[dir] = 2
+            if neighbours[dir] > N:
+                neighbours[dir] = N
         return neighbours
 
     def perform_step(self):
@@ -211,8 +214,12 @@ class Birds(object):
                 raise ValueError(f'Action {self.actions[i]} does not exist')
             self.positions[i] += STEPS[self.dirs[i]]
 
-    def reward(self,i):
-        return self.reward_signal if self.dirs[i] == CARD_DIRS['E'] else 0
+    def reward(self, i):
+        if not self.gradient:
+            return self.reward_signal if self.dirs[i] == CARD_DIRS['E'] else 0
+        else:
+            # R * cos(theta)
+            return self.reward_signal * STEPS[self.dirs[i]][0]
 
     def Ried_learning(self):
         for i in range(self.numbirds):
