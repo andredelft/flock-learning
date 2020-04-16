@@ -9,6 +9,7 @@ from datetime import datetime
 import json
 import pickle
 from tqdm import trange
+import time
 
 from birds import Birds
 
@@ -29,6 +30,7 @@ class Field(object):
         self.record_data = record_data
         self.Q_every = Q_every
         self.plot = plot
+        self.time = time.perf_counter()
         sim_length += 1
 
         self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -164,7 +166,7 @@ class Field(object):
                             np.save(self.Delta_fname, Delta_data)
                             self.Delta_history = []
                     elif self.birds.learning_alg == 'Ried':
-                        np.save(self.policy_fname.replace('.npy',ext), self.birds.policies)
+                        np.save(self.policy_fname, self.birds.policies)
 
                     print(f'Recorded up to timestep {tstep}' if tstep != 0 else 'Record files initalized')
 
@@ -175,6 +177,10 @@ class Field(object):
                         # additional argument for some reason (hence the i)
         """Update the scatter plot."""
         data = next(self.stream)
+
+        new_time = time.perf_counter()
+        print(round(new_time - self.time, 3))
+        self.time = new_time
 
         if self.plot:
             # Set x and y data...
