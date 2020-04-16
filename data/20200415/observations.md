@@ -52,6 +52,12 @@ Of these, I have tried the first three today. The results can be seen below.
 
 It seems that of all the optimizations performed, the gradient reward system is the most effective. Surprisingly, increasing the reward signal does not seem to do a lot. (The simulations showed here have R = 5, 10 and 20 but do not diverge from each other, though they do seem to diverge from the reference simulation at some point. It is unclear to me why though.)
 
-Since the simulation with the gradient and boosted reward signal seems to be steeper than just the gradient signal, I chose to perform another long simulation with both of these adjustments. This simulation is still running as I type this.
-
 Note that it might not be required for Delta to be exactly zero. For example, if leaders choose to follow their neighbours and the majority of neighbours are flying east, the behaviour is still desired while the policy is not equal to the ideal policy. Also, there might be some observation states that very rarely occur in practice (for example the observation `{'N': 2, 'E': 2, 'W': 2, 'S': 2}`, which stands for eight neighbouring birds, with two flying in each cardinal direction). And even if these states occur very briefly, they will probably not disturb the collective behaviour too much. It should to be investigated what the treshold of Delta is (and if there exists a clear treshold at all) above which the collective movement to the east breaks down. What is clear however, is that Δ = 0.45, the value that our first long simulation ended upon, is definitely not enough, as [a movie with these trained birds](../../movies/20200410-113110.mp4) shows.
+
+Since the simulation with the gradient and boosted reward signal seems to be steeper than just the gradient signal, I chose to perform another long simulation with both of these adjustments. The result is plotted below, again with the first long simulation as a reference.
+
+![Another long simulation](delta.png)
+
+Looks better, but still might not be steep enough. And took a long time (9 hours!). The [movie](../../movies/2020041610152.mp4) might look better than the previous (less stubbornness for the followers), but it's hard to quantify this. In any case, the magnitude plots are in both cases a mess:
+
+![Magnitude plot](mag.png)

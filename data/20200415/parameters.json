@@ -54,7 +54,7 @@
       "gamma": 0.9,
       "epsilon": 0.5
     },
-    "comment": "gradient reward"
+    "comment": "higher reward"
   },
   "20200415-135701": {
     "no_birds": 100,
