@@ -10,6 +10,7 @@ import json
 import pickle
 from tqdm import trange
 import time
+from statistics import stdev
 
 from birds import Birds
 
@@ -34,7 +35,7 @@ class Field(object):
 
         self.track_time = track_time
         if self.track_time:
-            self.time = time.perf_counter()
+            self.times = []
 
         self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
         param_file = 'data/parameters.json'
@@ -172,6 +173,9 @@ class Field(object):
                         np.save(self.policy_fname, self.birds.policies)
 
                     print(f'Recorded up to timestep {tstep}' if tstep != 0 else 'Record files initalized')
+                    if self.track_time and tstep != 0:
+                        print(f'{round(sum(self.times)/len(self.times),3)} ± {round(stdev(self.times), 3)} s/timestep')
+                        self.times = []
 
             tstep += 1
             yield self.birds.positions
@@ -179,12 +183,12 @@ class Field(object):
     def update(self,i): # When used in FuncAnimation, this function needs an
                         # additional argument for some reason (hence the i)
         """Update the scatter plot."""
-        data = next(self.stream)
-
         if self.track_time:
-            new_time = time.perf_counter()
-            print(round(new_time - self.time, 3))
-            self.time = new_time
+            start = time.perf_counter()
+        data = next(self.stream)
+        if self.track_time:
+            finish = time.perf_counter()
+            self.times.append(finish - start)
 
         if self.plot:
             # Set x and y data...
