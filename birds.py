@@ -65,7 +65,7 @@ def ternary(numbers):
 
 class Birds(object):
 
-    def __init__(self, numbirds, field_dims, action_space = A, observe_direction = True,
+    def __init__(self, numbirds, field_dims, action_space = A,
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
                  alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
                  gradient_reward = False):
@@ -74,16 +74,9 @@ class Birds(object):
         self.action_space = action_space
         self.leader_frac = leader_frac
         self.leaders = int(self.numbirds * self.leader_frac)
-        self.observe_direction = observe_direction
         self.reward_signal = reward_signal
         self.learning_alg = learning_alg
         self.gradient = gradient_reward
-
-        print(' '.join([
-            'Simulation started with birds that observe the',
-            'flight direction' if observe_direction else 'relative position',
-            'of neighbours'
-        ]))
 
         # Initialization of birds in the field
         self.positions = np.array([
@@ -118,7 +111,6 @@ class Birds(object):
         params = {
             'no_birds': self.numbirds,
             'action_space': self.action_space,
-            'observe_direction': self.observe_direction,
             'leader_frac': self.leader_frac,
             'reward_signal': self.reward_signal,
             'learning_alg': self.learning_alg,
@@ -157,34 +149,8 @@ class Birds(object):
         neighbours_inds.remove(bird_index)
         neighbours = {i: 0 for i in DIRS_INDS}
 
-        # Two possible observations:
-        # – Relative position of neighbours (direction_hist = False): Divides
-        #   the observation space in four quadrants (N, E, S, W) and counts the
-        #   number of birds in each quandrant.
-        # - Flight direction of neighbours (direction_hist = True): Observes
-        #   and counts the current flight direction of all birds in the
-        #   observation space.
-        if not self.observe_direction:
-            pass
-            # Needs to be rewritten when we still want to use it.
-            # for i in neighbours_inds:
-            #     delta_x = self.positions[bird_index,0] - self.positions[i,0]
-            #     delta_y = self.positions[bird_index,1] - self.positions[i,1]
-            #     angle = np.arctan2(delta_y,delta_x)
-            #     if (angle < -3 * np.pi / 4) or (angle >= 3 * np.pi / 4):
-            #         neighbours['E'] += 1
-            #     elif (angle < 3 * np.pi / 4) and (angle >= np.pi / 4):
-            #         neighbours['N'] += 1
-            #     elif (angle < np.pi / 4) and (angle >= -1 * np.pi / 4):
-            #         neighbours['W'] += 1
-            #     elif (angle < -1 * np.pi/4) and (angle >= -3 * np.pi / 4):
-            #         neighbours['S'] += 1
-            #     else:
-            #         # Check if all cases are catched
-            #         raise ValueError(f'No value found for angle {angle}')
-        else:
-            for i in neighbours_inds:
-                neighbours[self.dirs[i]] += 1
+        for i in neighbours_inds:
+            neighbours[self.dirs[i]] += 1
 
         # Maximum of N
         for dir in neighbours.keys():
@@ -195,15 +161,12 @@ class Birds(object):
     def perform_step(self):
         for i in range(self.numbirds):
             if self.actions[i] == 'V':
-                if not self.observe_direction:
-                    raise Exception('Vicsek action is not allowed when observe_direction = False')
+                i_dir = discrete_Vicsek(self.observations[i])
+                if i_dir == NO_DIRS:
+                    # Maintain current direction
+                    pass
                 else:
-                    i_dir = discrete_Vicsek(self.observations[i])
-                    if i_dir == NO_DIRS:
-                        # Maintain current direction
-                        pass
-                    else:
-                        self.dirs[i] = i_dir
+                    self.dirs[i] = i_dir
             elif self.actions[i] == 'I':
                 self.dirs[i] = CARD_DIRS[self.instincts[i]]
             elif self.actions[i] in ['N','E','S','W']:
