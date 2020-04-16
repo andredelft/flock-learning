@@ -49,9 +49,9 @@ def plot_mag_arg(fname):
     a[1].set_ylabel('Arg(v)')
     a[1].plot(avg([np.arctan2(v[1],v[0]) for v in data], cap = 100))
 
-def plot_Delta(fname, label = ''):
+def plot_Delta(fname, **kwargs):
     data = np.load(fname)
-    plt.plot(range(0, 500 * len(data), 500), data, label = label)
+    plt.plot(range(0, 500 * len(data), 500), data, **kwargs)
 
 maj_obs = {
     'N': [],
