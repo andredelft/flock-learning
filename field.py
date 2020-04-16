@@ -21,7 +21,7 @@ class Field(object):
 
     def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
                  field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
-                 comment = '', Q_every = 0, **kwargs):
+                 comment = '', Q_every = 0, track_time = False, **kwargs):
 
         self.birds = Birds(numbirds, field_dims, **kwargs)
         self.field_dims = field_dims
@@ -30,8 +30,10 @@ class Field(object):
         self.record_data = record_data
         self.Q_every = Q_every
         self.plot = plot
-        self.time = time.perf_counter()
         sim_length += 1
+
+        if track_time:
+            self.time = time.perf_counter()
 
         self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
         param_file = 'data/parameters.json'
@@ -178,9 +180,10 @@ class Field(object):
         """Update the scatter plot."""
         data = next(self.stream)
 
-        new_time = time.perf_counter()
-        print(round(new_time - self.time, 3))
-        self.time = new_time
+        if track_time:
+            new_time = time.perf_counter()
+            print(round(new_time - self.time, 3))
+            self.time = new_time
 
         if self.plot:
             # Set x and y data...
