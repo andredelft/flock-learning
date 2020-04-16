@@ -23,6 +23,6 @@ if __name__ == '__main__':
     #     sim_length = 10_000, plot=True
     # )
     Field(
-        100, record_data = True, plot = True, sim_length = 3000,
+        100, record_data = True, plot = False, sim_length = 3000,
         learning_alg = 'Q', gradient_reward = True, track_time = True
     )

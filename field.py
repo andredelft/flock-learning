@@ -32,7 +32,8 @@ class Field(object):
         self.plot = plot
         sim_length += 1
 
-        if track_time:
+        self.track_time = track_time
+        if self.track_time:
             self.time = time.perf_counter()
 
         self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -180,7 +181,7 @@ class Field(object):
         """Update the scatter plot."""
         data = next(self.stream)
 
-        if track_time:
+        if self.track_time:
             new_time = time.perf_counter()
             print(round(new_time - self.time, 3))
             self.time = new_time
