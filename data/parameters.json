@@ -1,0 +1,19 @@
+{
+  "20200418-114214": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.9,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    }
+  }
+}
