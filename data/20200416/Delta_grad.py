@@ -19,6 +19,7 @@ if __name__ == "__main__":
     print(cov)
 
     p.plot_Delta('../20200409/20200409-164937-Delta.npy', color = 'darkgray', label = 'Original')
+    p.plot_Delta('../20200417/20200417-131821-Delta.npy', color = cmap(0.6))
     p.plot_Delta('20200416-190443-Delta.npy', label = 'R = 20', color = cmap(0.99))
     p.plot_Delta('../20200415/20200415-144158-Delta.npy', label = 'R = 10', color = cmap(0.8))
     p.plot_Delta('../20200415/20200415-154211-Delta.npy', color = cmap(0.8))
