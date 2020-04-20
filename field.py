@@ -20,8 +20,8 @@ PLOTSCALE = 160
 class Field(object):
 
 
-    def __init__(self, numbirds, sim_length=12500, record_mov=False, record_data=False,
-                 field_dims=FIELD_DIMS, periodic=True, plotscale=PLOTSCALE, plot=True,
+    def __init__(self, numbirds, sim_length = 12500, record_mov = False, record_data = False,
+                 field_dims = FIELD_DIMS, periodic = True, plotscale = PLOTSCALE, plot = True,
                  comment = '', Q_every = 0, track_time = False, **kwargs):
 
         self.birds = Birds(numbirds, field_dims, **kwargs)
@@ -29,6 +29,7 @@ class Field(object):
         self.stream = self.data_stream()
         self.periodic = periodic
         self.record_data = record_data
+        self.record_mov = record_mov
         self.Q_every = Q_every
         self.plot = plot
         sim_length += 1
@@ -42,22 +43,19 @@ class Field(object):
         params = self.birds.request_params()
         if comment:
             params['comment'] = comment
-
-        if record_mov: # Force plotting of data (necessary for movie)
-            self.plot = True
+        if self.record_mov:
             params['record_mov'] = True
 
-        if not self.plot: # Force recording if there is no visualization
-            self.record_data = True
-
-        if path.isfile(param_file):
-            with open(param_file) as f:
-                existing_pars = json.load(f)
-            with open(param_file, 'w') as f:
-                json.dump({**existing_pars, self.record_tag: params}, f, indent = 2)
-        else:
-            with open(param_file, 'w') as f:
-                json.dump({self.record_tag: params}, f, indent = 2)
+        # Do not track parameters when no data is recorded and only a plot is generated
+        if not (self.record_data == False and self.record_mov == False and self.plot == True):
+            if path.isfile(param_file):
+                with open(param_file) as f:
+                    existing_pars = json.load(f)
+                with open(param_file, 'w') as f:
+                    json.dump({**existing_pars, self.record_tag: params}, f, indent = 2)
+            else:
+                with open(param_file, 'w') as f:
+                    json.dump({self.record_tag: params}, f, indent = 2)
 
         if self.record_data:
             # Setup files for tracking birds if record_data == True
@@ -82,7 +80,7 @@ class Field(object):
                 elif self.birds.learning_alg == 'Ried':
                     self.policy_fname = f'data/{self.record_tag}-policies.npy'
 
-        if self.plot:
+        if self.plot or self.record_mov:
             # Setup the figure and axes
             self.fig, self.ax = plt.subplots(
                 figsize = (
