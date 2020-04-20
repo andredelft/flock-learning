@@ -68,7 +68,7 @@ class Birds(object):
     def __init__(self, numbirds, field_dims, action_space = A,
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
                  alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
-                 gradient_reward = False):
+                 gradient_reward = False, instincts = []):
 
         self.numbirds = numbirds
         self.action_space = action_space
@@ -85,7 +85,13 @@ class Birds(object):
             ]) for _ in range(self.numbirds)
         ])
         self.dirs = choices(DIRS_INDS, k = self.numbirds)
-        self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
+        if instincts:
+            if len(instincts) != self.numbirds:
+                raise ValueError('Given list of instincts does not equal number of birds')
+            else:
+                self.instincts = instincts
+        else:
+            self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
         self.policies = np.zeros([self.numbirds, len(S), len(self.action_space)])
         if self.learning_alg == 'pol_from_Q':
             if not Q_file:
