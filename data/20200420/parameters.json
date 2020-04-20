@@ -1,0 +1,16 @@
+{
+  "20200420-085924": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "comment": "20200418-114214",
+    "record_mov": true
+  }
+}

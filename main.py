@@ -18,11 +18,11 @@ def load_from_Q(record_tag, data_dir = 'data', plot = True, record_data = True, 
     )
 
 if __name__ == '__main__':
-    # load_from_Q(
-    #     '20200409-164937', data_dir = 'data/20200409', record_data = True, record_mov = True,
-    #     sim_length = 10_000, plot=True
-    # )
-    Field(
-        100, record_data = True, plot = False, sim_length = 2_000_000, reward_signal = 5,
-        learning_alg = 'Q', gradient_reward = True, track_time = True
+    load_from_Q(
+        '20200418-114214', data_dir = 'data/20200418', record_data = True, record_mov = True,
+        sim_length = 10_000
     )
+    # Field(
+    #     100, record_data = True, plot = False, sim_length = 2_000_000, reward_signal = 5,
+    #     learning_alg = 'Q', gradient_reward = True, track_time = True
+    # )
