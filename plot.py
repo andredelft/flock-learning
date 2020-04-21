@@ -27,9 +27,9 @@ def _parse_fpath(fpath, data_dir):
 def avg(data, cap = 20):
     return [sum(data[i:i + cap])/cap for i in range(len(data) - cap)]
 
-def plot_mag(fname, label = '', cap = 50):
+def plot_mag(fname, cap = 50, **kwargs):
     data = np.load(fname)
-    plt.plot(avg([np.linalg.norm(v) for v in data], cap = cap), label = label)
+    plt.plot(avg([np.linalg.norm(v) for v in data], cap = cap), **kwargs)
 
 def plot_vx(fname, label = '', cap = 50):
     data = np.load(fname)
@@ -303,7 +303,7 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50):
             plot_Delta(
                 fname, label = record_tag
             )
-    if quantity == 'mag':
+    if quantity == 'v':
         plt.title(f'Magnitude of average velocity vector (Capsize = {cap})')
         plt.ylabel('v')
     elif quantity == 'Delta':

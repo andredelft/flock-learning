@@ -43,7 +43,9 @@ class Field(object):
         params = self.birds.request_params()
         if comment:
             params['comment'] = comment
-        if self.record_mov:
+
+        if record_mov: # Force plotting of data (necessary for movie)
+            self.plot = True
             params['record_mov'] = True
 
         # Do not track parameters when no data is recorded and only a plot is generated
@@ -80,7 +82,7 @@ class Field(object):
                 elif self.birds.learning_alg == 'Ried':
                     self.policy_fname = f'data/{self.record_tag}-policies.npy'
 
-        if self.plot or self.record_mov:
+        if self.plot:
             # Setup the figure and axes
             self.fig, self.ax = plt.subplots(
                 figsize = (

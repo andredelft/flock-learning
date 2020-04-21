@@ -12,5 +12,71 @@
     "no_dirs": 8,
     "comment": "20200418-114214",
     "record_mov": true
+  },
+  "20200420-123251": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "comment": "20200409-164937"
+  },
+  "20200420-134027": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 20,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "comment": "20200416-190443"
+  },
+  "20200420-141506": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "comment": "20200418-114214"
+  },
+  "20200420-151845": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 10,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "comment": "20200415-154211"
+  },
+  "20200420-162734": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 10,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "comment": "20200415-154211",
+    "record_mov": true
   }
 }
