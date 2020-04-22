@@ -229,11 +229,11 @@ class Birds(object):
         # t_end = time.perf_counter()
         # print(f'Perform step: {round(t_end - t_start, 3)}')
 
-        t_start = time.perf_counter()
+        # t_start = time.perf_counter()
         self.prev_obs = self.observations
         self.perform_observations()
-        t_end = time.perf_counter()
-        print(f'Observing: {round(t_end - t_start, 3)}')
+        # t_end = time.perf_counter()
+        # print(f'Observing: {round(t_end - t_start, 3)}')
 
         # t_start = time.perf_counter()
         if self.learning_alg == 'Ried':

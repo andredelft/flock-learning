@@ -172,7 +172,7 @@ class Field(object):
                     elif self.birds.learning_alg == 'Ried':
                         np.save(self.policy_fname, self.birds.policies)
 
-                    print(f'Recorded up to timestep {tstep}' if tstep != 0 else 'Record files initalized')
+                    print(f'Recorded up to timestep {tstep}' if tstep != 0 else f'Record file {self.record_tag} initalized')
                     if self.track_time and tstep != 0:
                         print(f'{round(sum(self.times)/len(self.times),3)} ± {round(stdev(self.times), 3)} s/timestep')
                         self.times = []

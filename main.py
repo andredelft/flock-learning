@@ -1,6 +1,9 @@
 from field import Field
 from os import path
 import json
+import time
+
+from concurrent.futures import ProcessPoolExecutor
 
 def load_from_Q(record_tag, data_dir = 'data', plot = True, record_data = True, **kwargs):
     with open(path.join(data_dir, 'parameters.json')) as f:
@@ -22,14 +25,37 @@ def load_from_Q(record_tag, data_dir = 'data', plot = True, record_data = True, 
         Q_file = Q_file, comment = record_tag, instincts = instincts, **params, **kwargs
     )
 
+def tweak_learning_params(pars):
+    i, lp = pars
+    param_name = list(lp.keys())[0]
+    time.sleep(5 * i) # To make sure they don't start at exactly the same time, resulting in the same record tag
+    Field(
+        100, record_data = True, plot = False, sim_length = 200_000, reward_signal = 5,
+        learning_alg = 'Q', gradient_reward = True, comment = f'vary_{param_name}', **lp
+    )
+
 if __name__ == '__main__':
-    for record_tag in ['20200409-164937', '20200415-154211', '20200416-190443', '20200418-114214'][1:2]:
-        date = record_tag.split('-')[0]
-        load_from_Q(
-            record_tag, data_dir = f'data/{date}', record_data = True, record_mov = True,
-            sim_length = 15_000, plot = False
-        )
+    # for record_tag in ['20200409-164937', '20200415-154211', '20200416-190443', '20200418-114214'][1:2]:
+    #     date = record_tag.split('-')[0]
+    #     load_from_Q(
+    #         record_tag, data_dir = f'data/{date}', record_data = True, record_mov = True,
+    #         sim_length = 15_000, plot = False
+    #     )
+
     # Field(
     #     100, record_data = True, plot = False, sim_length = 2_000_000, reward_signal = 5,
     #     learning_alg = 'Q', gradient_reward = True, track_time = True
     # )
+
+    lps = [
+        {'alpha': 0.1},
+        {'alpha': 0.5},
+        {'gamma': 0.1},
+        {'gamma': 0.5},
+        {'epsilon': 0.1},
+        {'epsilon': 0.9}
+    ]
+
+    with ProcessPoolExecutor() as executor:
+        for _ in executor.map(tweak_learning_params, enumerate(lps)):
+            pass
