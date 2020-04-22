@@ -2,6 +2,7 @@ import numpy as np
 from random import randint, choice, choices
 from scipy.spatial import KDTree
 from bisect import bisect_left
+import time
 
 from q_learning import Qfunction
 
@@ -103,7 +104,8 @@ class Birds(object):
                         self.policies[i,s,np.argmax(Qvalues[i,s])] = 1
         else:
             self.policies +=  1/len(self.action_space) # Fill all policy matrices
-        self.observations = [self.observe(i) for i in range(self.numbirds)]
+        self.observations = [dict() for _ in range(self.numbirds)]
+        self.perform_observations()
 
         if self.learning_alg == 'Q':
             self.alpha = alpha
@@ -149,20 +151,23 @@ class Birds(object):
             print(f"Delta: {Delta}")
         return Delta
 
-    def observe(self, bird_index, radius = D):
+    def perform_observations(self, radius = D):
         tree = KDTree(self.positions)
-        neighbours_inds = tree.query_ball_point(self.positions[bird_index], radius)
-        neighbours_inds.remove(bird_index)
-        neighbours = {i: 0 for i in DIRS_INDS}
+        for i in range(self.numbirds):
+            # Can still be optimized, since each pair of neighbouring birds
+            # is handled twice
+            neighbours_inds = tree.query_ball_point(self.positions[i], radius)
+            neighbours_inds.remove(i)
+            neighbours = {n: 0 for n in DIRS_INDS}
 
-        for i in neighbours_inds:
-            neighbours[self.dirs[i]] += 1
+            for n in neighbours_inds:
+                neighbours[self.dirs[n]] += 1
 
-        # Maximum of N
-        for dir in neighbours.keys():
-            if neighbours[dir] > N:
-                neighbours[dir] = N
-        return neighbours
+            # Maximum of N
+            for dir in neighbours.keys():
+                if neighbours[dir] > N:
+                    neighbours[dir] = N
+            self.observations[i] = neighbours
 
     def perform_step(self):
         for i in range(self.numbirds):
@@ -209,13 +214,31 @@ class Birds(object):
             ])
 
     def update(self):
+        # Functions in between for tracking the time each step takes
+        # print('New update')
+
+        # t_start = time.perf_counter()
         self.actions = [choices(
             self.action_space, weights = self.policies[i, ternary(self.observations[i].values())]
         )[0] for i in range(self.numbirds)]
+        # t_end = time.perf_counter()
+        # print(f'Choosing actions: {round(t_end - t_start, 3)}')
+
+        # t_start = time.perf_counter()
         self.perform_step()
+        # t_end = time.perf_counter()
+        # print(f'Perform step: {round(t_end - t_start, 3)}')
+
+        t_start = time.perf_counter()
         self.prev_obs = self.observations
-        self.observations = [self.observe(i) for i in range(self.numbirds)]
+        self.perform_observations()
+        t_end = time.perf_counter()
+        print(f'Observing: {round(t_end - t_start, 3)}')
+
+        # t_start = time.perf_counter()
         if self.learning_alg == 'Ried':
             self.Ried_learning()
         elif self.learning_alg == 'Q':
             self.Q_learning()
+        # t_end = time.perf_counter()
+        # print(f'Learning: {round(t_end - t_start, 3)}')
