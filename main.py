@@ -25,13 +25,16 @@ def load_from_Q(record_tag, data_dir = 'data', plot = True, record_data = True, 
         Q_file = Q_file, comment = record_tag, instincts = instincts, **params, **kwargs
     )
 
-def tweak_learning_params(pars):
-    i, lp = pars
-    param_name = list(lp.keys())[0]
+def load_from_Delta(Delta):
+    # TODO
+    pass
+
+def tweak_learning_params(indexed_pars):
+    i, pars = indexed_pars
     time.sleep(5 * i) # To make sure they don't start at exactly the same time, resulting in the same record tag
     Field(
-        100, record_data = True, plot = False, sim_length = 200_000, reward_signal = 5,
-        learning_alg = 'Q', gradient_reward = True, comment = f'vary_{param_name}', **lp
+        100, record_data = True, plot = False, sim_length = 80_000, reward_signal = 5,
+        learning_alg = 'Q', gradient_reward = True, **pars
     )
 
 if __name__ == '__main__':
@@ -47,15 +50,14 @@ if __name__ == '__main__':
     #     learning_alg = 'Q', gradient_reward = True, track_time = True
     # )
 
-    lps = [
-        {'alpha': 0.1},
-        {'alpha': 0.5},
-        {'gamma': 0.1},
-        {'gamma': 0.5},
-        {'epsilon': 0.1},
-        {'epsilon': 0.9}
+    lp_tweaks = [
+        ('alpha', 0.4),
+        ('alpha', 0.6),
+        ('gamma', 0.4),
+        ('gamma', 0.6),
     ]
+    pars = [{par: value, 'comment': f'vary_{par}'} for par, value in lp_tweaks]
 
     with ProcessPoolExecutor() as executor:
-        for _ in executor.map(tweak_learning_params, enumerate(lps)):
+        for _ in executor.map(tweak_learning_params, enumerate(pars)):
             pass

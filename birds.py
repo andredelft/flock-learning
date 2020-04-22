@@ -154,8 +154,8 @@ class Birds(object):
     def perform_observations(self, radius = D):
         tree = KDTree(self.positions)
         for i in range(self.numbirds):
-            # Can still be optimized, since each pair of neighbouring birds
-            # is handled twice
+            # Might still be optimized, since each pair of neighbouring birds
+            # is handled twice. But depends on KDTree's performance
             neighbours_inds = tree.query_ball_point(self.positions[i], radius)
             neighbours_inds.remove(i)
             neighbours = {n: 0 for n in DIRS_INDS}

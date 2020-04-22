@@ -174,7 +174,11 @@ class Field(object):
 
                     print(f'Recorded up to timestep {tstep}' if tstep != 0 else f'Record file {self.record_tag} initalized')
                     if self.track_time and tstep != 0:
+                        del self.times[0] # First is always longer, because the saving time is included
+                                          # NB: Saving takes around 2.6 seconds. Might be worthwile to optimize
+                                          # (for 1E6 tsteps, saving each 500 steps takes 13 hrs in total!)
                         print(f'{round(sum(self.times)/len(self.times),3)} ± {round(stdev(self.times), 3)} s/timestep')
+                        print(f'max: {max(self.times)}, at tstep {np.argmax(self.times)}')
                         self.times = []
 
             tstep += 1
