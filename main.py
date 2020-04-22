@@ -51,10 +51,10 @@ if __name__ == '__main__':
     # )
 
     lp_tweaks = [
-        ('alpha', 0.4),
-        ('alpha', 0.6),
-        ('gamma', 0.4),
-        ('gamma', 0.6),
+        ('epsilon', 0.1),
+        ('epsilon', 0.2)
+        #('gamma', 0.5),
+        #('alpha', 0.5),
     ]
     pars = [{par: value, 'comment': f'vary_{par}'} for par, value in lp_tweaks]
 
