@@ -40,16 +40,14 @@ def get_lp(record_tag, paramas = params):
     else: # Run has the same parameters as usual (thus should be comparable to earlier gradient runs)
         return '', 0
 
-def plot_lp(fname, par_name, value):
+def plot_lp(fname, par_name = '', value = 0):
     record_tag = get_rt(fname)
     if par_name != '':
         p.plot_Delta(fname, color = cmap[par_name](0.75 * value + 0.25), label = f'$\\{par_name} = {value}$')
     else:
-        p.plot_Delta(fname, color = 'Black')
+        p.plot_Delta(fname, color = 'Black', label = record_tag)
 
-def gen_fig(fnames, save_name, filter = '', grad_reference = True):
-
-    plt.figure()
+def gen_fig(fnames, filter = '', grad_reference = True):
 
     # Plot the earlier gradient runs as a reference (cf. ../20200416/Delta_grad.py)
     if grad_reference:
@@ -74,13 +72,6 @@ def gen_fig(fnames, save_name, filter = '', grad_reference = True):
     for i in allowed_inds:
         plot_lp(fnames[i], *learning_pars[i])
 
-    if filter:
-        plt.title(f'Tweaking $\\{filter}$')
-        plt.legend()
-    plt.xlabel('Timestep')
-    plt.ylabel('$\Delta$')
-    plt.savefig(f'{save_name}.png', dpi = 300)
-
 
 if __name__ == "__main__":
 
@@ -88,6 +79,22 @@ if __name__ == "__main__":
     record_tags = [get_rt(fname) for fname in fnames]
     learning_pars = [get_lp(record_tag) for record_tag in record_tags]
 
-    gen_fig(fnames, 'Delta_all')
-    for par in ['alpha', 'gamma', 'epsilon']:
-        gen_fig(fnames, f'Delta_{par}', filter = par)
+    for par in ['', 'alpha', 'gamma', 'epsilon']:
+        plt.figure()
+        gen_fig(fnames, filter = par)
+        plt.title(f'Tweaking $\\{filter}$')
+        plt.legend()
+        plt.xlabel('Timestep')
+        plt.ylabel('$\\Delta$')
+        # plt.savefig(f'Delta_{par if par else "all"}.png', dpi = 300)
+
+    plt.figure()
+    gen_fig(fnames, filter = 'gamma', grad_reference = True)
+    p.plot_all(data_dir = '../20200423/new_refs', quantity = 'Delta', color = 'dimgray')
+    plot_lp('20200422-152117-Delta.npy')
+    plot_lp('20200422-160846-Delta.npy')
+    plt.legend()
+    plt.title(f'Tweaking $\\gamma$ (new references)')
+    plt.xlabel('Timestep')
+    plt.ylabel('$\\Delta$')
+    plt.savefig('Delta_gamma_new_refs.png', dpi = 300)

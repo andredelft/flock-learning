@@ -289,7 +289,7 @@ def plot_hist(fpath, data_dir = '', plot_policies = True):
     st.set_y(0.97)
     fig.subplots_adjust(top=0.85)
 
-def plot_all(data_dir = 'data', quantity = 'v', cap = 50):
+def plot_all(data_dir = 'data', quantity = 'v', cap = 50, **kwargs):
     with open(path.join(data_dir,'parameters.json')) as f:
         pars = json.load(f)
     for fname in sorted(glob(f'{data_dir}/*-{quantity}.npy')):
@@ -297,11 +297,13 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50):
         if quantity == 'v':
             plot_mag(
                 fname, cap = cap,
-                label = record_tag
+                label = record_tag,
+                **kwargs
             )
         elif quantity == 'Delta':
             plot_Delta(
-                fname, label = record_tag
+                fname, label = record_tag,
+                **kwargs
             )
     if quantity == 'v':
         plt.title(f'Magnitude of average velocity vector (Capsize = {cap})')

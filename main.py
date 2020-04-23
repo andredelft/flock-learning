@@ -50,14 +50,14 @@ if __name__ == '__main__':
     #     learning_alg = 'Q', gradient_reward = True, track_time = True
     # )
 
-    lp_tweaks = [
-        ('epsilon', 0.1),
-        ('epsilon', 0.2)
-        #('gamma', 0.5),
-        #('alpha', 0.5),
-    ]
-    pars = [{par: value, 'comment': f'vary_{par}'} for par, value in lp_tweaks]
+    # lp_tweaks = [
+    #     ('epsilon', 0.1),
+    #     ('epsilon', 0.2)
+    #     ('gamma', 0.5),
+    #     ('alpha', 0.5),
+    # ]
+    # pars = [{par: value, 'comment': f'vary_{par}'} for par, value in lp_tweaks]
 
     with ProcessPoolExecutor() as executor:
-        for _ in executor.map(tweak_learning_params, enumerate(pars)):
+        for _ in executor.map(tweak_learning_params, enumerate(dict() for _ in range(4))):
             pass

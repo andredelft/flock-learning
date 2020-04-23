@@ -22,7 +22,7 @@ class Field(object):
 
     def __init__(self, numbirds, sim_length = 12500, record_mov = False, record_data = False,
                  field_dims = FIELD_DIMS, periodic = True, plotscale = PLOTSCALE, plot = True,
-                 comment = '', Q_every = 0, track_time = False, **kwargs):
+                 comment = '', Q_every = 0, repos_every = 0, track_time = False, **kwargs):
 
         self.birds = Birds(numbirds, field_dims, **kwargs)
         self.field_dims = field_dims
@@ -31,6 +31,7 @@ class Field(object):
         self.record_data = record_data
         self.record_mov = record_mov
         self.Q_every = Q_every
+        self.repos_every = repos_every
         self.plot = plot
         sim_length += 1
 
