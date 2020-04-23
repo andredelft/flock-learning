@@ -1,0 +1,37 @@
+{
+  "20200423-133319": {
+      "gamma": 0.9,
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.9,
+      "gamma": 0.9,
+      "epsilon": 0.15
+    },
+    "comment": "vary_epsilon"
+  },
+  "20200423-133324": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.9,
+      "gamma": 0.9,
+      "epsilon": 0.3
+    },
+    "comment": "vary_epsilon"
+  }
+}
