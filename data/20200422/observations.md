@@ -1,6 +1,6 @@
 # Tweaking the learning parameters
 
-The Q-learning algorithm has three important parameters α, γ and ε (they will be defined and explained below) that all should have a value between 0 and 1. For a while I have kept these fixed at α = 0.9, γ = 0.9 and ε = 0.5, and I would like to investigate here wether it is possible to optimize these values, now that there exists a good quantitative method of judging the quality of the learning process (by tracking the evolution of Δ). Below is a graph of the evolution of Δ for all the performed runs, against the background of the previous the [gradient runs](../20200420/observations.md) (in grey) as a reference:
+The Q-learning algorithm has three important parameters α, γ and ε (they will be defined and explained below) that all should have a value between 0 and 1. For a while I have kept these fixed at α = 0.9, γ = 0.9 and ε = 0.5, and I would like to investigate here wether it is possible to optimize these values, now that there exists a good quantitative method of judging the quality of the learning process (by tracking the evolution of Δ). Below is a graph of the evolution of Δ for all the performed runs, against the background of the previous [gradient runs](../20200420/observations.md) (in grey) as a reference:
 
 ![](Delta_all.png)
 
@@ -16,7 +16,7 @@ For reference, here is the Q-learning formula from [Wikipedia](https://en.wikipe
 
 From this formula we can see that α, the learning rate, basically is a measure for how much the birds will update their Q-tables: when α = 0 they will stay constant, while when α = 1 the previous values will not play any role. (Thus it can be seen as some sort of 'memory', giving a weight to past values as opposed to the direct reward and future estimates).
 
-As can be seen, γ is a measure for the relative weight of the estimate of the future value. Inserting this term will thus not only update the Q-values based on the direct reward r, but also the future reward. Since this again involves the Q-values, it recursively includes a term of the expected reward at further timesteps ahead, each with an additional factor γ. This is reflects the theoretical goal of reinforcement learning, which is maximizing the future reward signal <img src="https://render.githubusercontent.com/render/math?math=G_t = \sum_{n = 0}^\infty \gamma^{n} r_{t%2Bn}">. Thus γ can be interpreted as a term that weighs in long-term behaviour, and the higher gamma is, the more terms in this sum become significant.
+As can be seen, γ is a measure for the relative weight of the estimate of the future value. Inserting this term will thus not only update the Q-values based on the direct reward r, but also the future reward. Since this again involves the Q-values, it recursively includes a term of the expected reward at further timesteps ahead, each with an additional factor γ. This is reflects the theoretical goal of reinforcement learning, which is maximizing the future discounted reward signal <img src="https://render.githubusercontent.com/render/math?math=G_t = \sum_{n = 0}^\infty \gamma^{n} r_{t%2Bn}">. Thus γ can be interpreted as a term that weighs in long-term behaviour, and the higher gamma is, the more terms in this sum become significant.
 
 In short we thus might say: α weighs in the past, and γ weighs in the future.
 
