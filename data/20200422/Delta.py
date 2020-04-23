@@ -2,6 +2,7 @@ import os
 import sys
 sys.path.append(os.path.join(sys.path[0], '..', '..'))
 
+from glob import glob
 import plot as p
 from matplotlib import pyplot as plt
 import numpy as np
@@ -43,7 +44,7 @@ def get_lp(record_tag, paramas = params):
 def plot_lp(fname, par_name = '', value = 0):
     record_tag = get_rt(fname)
     if par_name != '':
-        p.plot_Delta(fname, color = cmap[par_name](0.75 * value + 0.25), label = f'$\\{par_name} = {value}$')
+        p.plot_Delta(fname, color = cmap[par_name](value), label = f'$\\{par_name} = {value}$')
     else:
         p.plot_Delta(fname, color = 'Black', label = record_tag)
 
@@ -82,15 +83,16 @@ if __name__ == "__main__":
     for par in ['', 'alpha', 'gamma', 'epsilon']:
         plt.figure()
         gen_fig(fnames, filter = par)
-        plt.title(f'Tweaking $\\{filter}$')
-        plt.legend()
+        if par:
+            plt.title(f'Tweaking $\\{par}$')
+            plt.legend()
         plt.xlabel('Timestep')
         plt.ylabel('$\\Delta$')
-        # plt.savefig(f'Delta_{par if par else "all"}.png', dpi = 300)
+        plt.savefig(f'Delta_{par if par else "all"}.png', dpi = 300)
 
     plt.figure()
     gen_fig(fnames, filter = 'gamma', grad_reference = True)
-    p.plot_all(data_dir = '../20200423/new_refs', quantity = 'Delta', color = 'dimgray')
+    p.plot_all(data_dir = '../20200423', quantity = 'Delta', color = 'dimgray')
     plot_lp('20200422-152117-Delta.npy')
     plot_lp('20200422-160846-Delta.npy')
     plt.legend()
