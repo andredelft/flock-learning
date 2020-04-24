@@ -24,7 +24,9 @@ TRESHOLD = 0.9 * np.linalg.norm(STEPS[0] + STEPS[(NO_DIRS//2) + 1])
 
 S = range((N + 1) ** NO_DIRS) # Observation space
 
-CARD_DIRS = {card_dir: i for card_dir, i in zip('WSEN',range(0, NO_DIRS, NO_DIRS//4))}
+CARD_DIRS = {
+    card_dir: i for card_dir, i in zip('WSEN',range(0, NO_DIRS, NO_DIRS//4))
+}
 
 def discrete_Vicsek(observation):
     """ Returns the index of DIRS that is closest to the average direction """
@@ -66,34 +68,44 @@ def ternary(numbers):
 
 class Birds(object):
 
-    def __init__(self, numbirds, field_dims, action_space = A,
+    def __init__(self, numbirds, field_dims, action_space = A, state_space = S,
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
                  alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
                  gradient_reward = False, instincts = []):
 
+        # Initialize the birds and put them in the field
         self.numbirds = numbirds
-        self.action_space = action_space
         self.leader_frac = leader_frac
         self.leaders = int(self.numbirds * self.leader_frac)
-        self.reward_signal = reward_signal
-        self.learning_alg = learning_alg
-        self.gradient = gradient_reward
-
-        # Initialization of birds in the field
         self.positions = np.array([
             np.array([
-                float(randint(*field_dims[0:2])), float(randint(*field_dims[2:4]))
+                float(randint(*field_dims[0:2])),
+                float(randint(*field_dims[2:4]))
             ]) for _ in range(self.numbirds)
         ])
         self.dirs = choices(DIRS_INDS, k = self.numbirds)
         if instincts:
             if len(instincts) != self.numbirds:
-                raise ValueError('Given list of instincts does not equal number of birds')
+                raise ValueError(
+                    'Given list of instincts does not equal number of birds'
+                )
             else:
                 self.instincts = instincts
         else:
-            self.instincts = self.leaders * ['E'] + choices(['N','S','W'], k = self.numbirds - self.leaders)
-        self.policies = np.zeros([self.numbirds, len(S), len(self.action_space)])
+            self.instincts = (
+                self.leaders * ['E']
+                + choices(['N','S','W'], k = self.numbirds - self.leaders)
+            )
+
+        # Initialize all the reinforcement learning objects objects
+        self.action_space = action_space
+        self.state_space = state_space
+        self.reward_signal = reward_signal
+        self.gradient = gradient_reward
+        self.learning_alg = learning_alg
+        self.policies = np.zeros(
+            [self.numbirds, len(S), len(self.action_space)]
+        )
         if self.learning_alg == 'pol_from_Q':
             if not Q_file:
                 raise Exception('No file with Q-values provided')
@@ -105,14 +117,14 @@ class Birds(object):
         else:
             self.policies +=  1/len(self.action_space) # Fill all policy matrices
         self.observations = [dict() for _ in range(self.numbirds)]
-        self.perform_observations()
+        self._perform_observations()
 
         if self.learning_alg == 'Q':
             self.alpha = alpha
             self.gamma = gamma
             self.epsilon = epsilon
             self.Qs = [Qfunction(
-                alpha, gamma, A = self.action_space, S = S
+                alpha, gamma, self.state_space, self.action_space
             ) for _ in range(self.numbirds)]
 
     def request_params(self):
@@ -133,25 +145,7 @@ class Birds(object):
             }
         return params
 
-    def calc_v(self):
-        return sum(STEPS[dir] for dir in self.dirs)/self.numbirds
-
-    def calc_Delta(self, print_Delta = True):
-        if self.learning_alg != 'Q' or self.action_space != ['V','I']:
-            return None
-
-        Delta = 0
-        for i in range(self.numbirds):
-            desired_ind = 1 if self.instincts[i] == 'E' else 0
-            for s in S:
-                if np.argmax(self.Qs[i].value[s]) != desired_ind:
-                    Delta += 1
-        Delta /= self.numbirds * len(S)
-        if print_Delta:
-            print(f"Delta: {Delta}")
-        return Delta
-
-    def perform_observations(self, radius = D):
+    def _perform_observations(self, radius = D):
         tree = KDTree(self.positions)
         for i in range(self.numbirds):
             # Might still be optimized, since each pair of neighbouring birds
@@ -169,7 +163,7 @@ class Birds(object):
                     neighbours[dir] = N
             self.observations[i] = neighbours
 
-    def perform_step(self):
+    def _perform_step(self):
         for i in range(self.numbirds):
             if self.actions[i] == 'V':
                 i_dir = discrete_Vicsek(self.observations[i])
@@ -189,49 +183,83 @@ class Birds(object):
             self.positions[i] += STEPS[self.dirs[i]]
 
     def reward(self, i):
-        if not self.gradient:
-            return self.reward_signal if self.dirs[i] == CARD_DIRS['E'] else 0
-        else:
+        if self.gradient:
             # R * cos(theta)
             return self.reward_signal * STEPS[self.dirs[i]][0]
+        else:
+            return self.reward_signal if self.dirs[i] == CARD_DIRS['E'] else 0
 
     def Ried_learning(self):
         for i in range(self.numbirds):
             s = ternary(self.prev_obs[i].values())
             reward = self.reward(i)
             if reward:
-                self.policies[i,s,self.action_space.index(self.actions[i])] += reward/100
+                a_ind = self.action_space.index(self.actions[i])
+                self.policies[i,s,a_ind] += reward/100
                 self.policies[i,s] = self.policies[i,s]/sum(self.policies[i,s])
 
     def Q_learning(self):
         for i in range(self.numbirds):
             s = ternary(self.observations[i].values())
             s_prime = ternary(self.prev_obs[i].values())
+
+            # Update the Q-table
             self.Qs[i].update(s, self.actions[i], s_prime, self.reward(i))
-            argmax_Q = np.argmax(self.Qs[i].value[s])
-            self.policies[i,s] = self.epsilon/len(self.action_space) + np.array([
-                (1 - self.epsilon if j == argmax_Q else 0) for j in range(len(self.action_space))
-            ])
+
+            # Update the epsilon-greedy policy
+            argmax_Q = np.argmax(self.Qs[i].table[s])
+            self.policies[i,s] = (
+                np.array([
+                    (1 - self.epsilon if j == argmax_Q else 0)
+                    for j in range(len(self.action_space))
+                ]) # Chance of (1 - epsilon) to choose the action with the
+                   # highest Q-value
+                + self.epsilon/len(self.action_space) # Chance of epsilon to
+            )                                         # choose a random action
+
+    def calc_v(self):
+        return sum(STEPS[dir] for dir in self.dirs)/self.numbirds
+
+    def calc_Delta(self, print_Delta = True):
+        if self.learning_alg != 'Q' or self.action_space != ['V','I']:
+            return None
+
+        Delta = 0
+        for i in range(self.numbirds):
+            desired_ind = 1 if self.instincts[i] == 'E' else 0
+            for s in S:
+                if np.argmax(self.Qs[i].table[s]) != desired_ind:
+                    Delta += 1
+        Delta /= self.numbirds * len(S)
+        if print_Delta:
+            print(f"Delta: {Delta}")
+        return Delta
 
     def update(self):
-        # Functions in between for tracking the time each step takes
-        # print('New update')
+        """
+        The main function that governs each update, to be called from outside.
 
+        NB: Functions in between are provided in comments that track the time
+        each step takes.
+        """
+
+        # print('New update')
         # t_start = time.perf_counter()
         self.actions = [choices(
-            self.action_space, weights = self.policies[i, ternary(self.observations[i].values())]
+            self.action_space,
+            weights = self.policies[i, ternary(self.observations[i].values())]
         )[0] for i in range(self.numbirds)]
         # t_end = time.perf_counter()
         # print(f'Choosing actions: {round(t_end - t_start, 3)}')
 
         # t_start = time.perf_counter()
-        self.perform_step()
+        self._perform_step()
         # t_end = time.perf_counter()
         # print(f'Perform step: {round(t_end - t_start, 3)}')
 
         # t_start = time.perf_counter()
         self.prev_obs = self.observations
-        self.perform_observations()
+        self._perform_observations()
         # t_end = time.perf_counter()
         # print(f'Observing: {round(t_end - t_start, 3)}')
 

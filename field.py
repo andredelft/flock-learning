@@ -20,9 +20,10 @@ PLOTSCALE = 160
 class Field(object):
 
 
-    def __init__(self, numbirds, sim_length = 12500, record_mov = False, record_data = False,
-                 field_dims = FIELD_DIMS, periodic = True, plotscale = PLOTSCALE, plot = True,
-                 comment = '', Q_every = 0, repos_every = 0, track_time = False, **kwargs):
+    def __init__(self, numbirds, sim_length = 12500, record_mov = False,
+                 record_data = False, field_dims = FIELD_DIMS, periodic = True,
+                 plotscale = PLOTSCALE, plot = True, comment = '', Q_every = 0,
+                 repos_every = 0, track_time = False, **kwargs):
 
         self.birds = Birds(numbirds, field_dims, **kwargs)
         self.field_dims = field_dims
@@ -49,13 +50,17 @@ class Field(object):
             self.plot = True
             params['record_mov'] = True
 
-        # Do not track parameters when no data is recorded and only a plot is generated
-        if not (self.record_data == False and self.record_mov == False and self.plot == True):
+        # Do not track parameters when no data is recorded and only a plot is
+        # generated
+        if not ((not self.record_data) and (not self.record_mov) and self.plot):
             if path.isfile(param_file):
                 with open(param_file) as f:
                     existing_pars = json.load(f)
                 with open(param_file, 'w') as f:
-                    json.dump({**existing_pars, self.record_tag: params}, f, indent = 2)
+                    json.dump(
+                        {**existing_pars, self.record_tag: params},
+                        f, indent = 2
+                    )
             else:
                 with open(param_file, 'w') as f:
                     json.dump({self.record_tag: params}, f, indent = 2)
@@ -64,7 +69,8 @@ class Field(object):
             # Setup files for tracking birds if record_data == True
             if self.record_data:
                 self.v_fname = f'data/{self.record_tag}-v.npy'
-                np.save(self.v_fname, np.array([])) # Initialize v-file so it always exists
+                # Initialize v-file so it always exists
+                np.save(self.v_fname, np.array([]))
                 self.v_history = []
 
                 with open(f'data/{self.record_tag}-instincts.json','w') as f:
@@ -105,7 +111,8 @@ class Field(object):
                         self.update(i)
         elif self.plot:
             self.ani = animation.FuncAnimation(
-                self.fig, self.update, interval=5, init_func=self.setup_plot, blit=True
+                self.fig, self.update, interval = 5,
+                init_func = self.setup_plot, blit = True
             )
             plt.show()
         else: # No visualization, only recording of data
@@ -137,13 +144,21 @@ class Field(object):
             if self.periodic:
                 for i in range(self.birds.numbirds):
                     if self.birds.positions[i,0] < self.field_dims[0]:
-                        self.birds.positions[i,0] += self.field_dims[1] - self.field_dims[0]
+                        self.birds.positions[i,0] += (
+                            self.field_dims[1] - self.field_dims[0]
+                        )
                     elif self.birds.positions[i,0] > self.field_dims[1]:
-                        self.birds.positions[i,0] -= self.field_dims[1] - self.field_dims[0]
+                        self.birds.positions[i,0] -= (
+                            self.field_dims[1] - self.field_dims[0]
+                        )
                     if self.birds.positions[i,1] < self.field_dims[2]:
-                        self.birds.positions[i,1] += self.field_dims[3] - self.field_dims[2]
+                        self.birds.positions[i,1] += (
+                            self.field_dims[3] - self.field_dims[2]
+                        )
                     elif self.birds.positions[i,1] > self.field_dims[3]:
-                        self.birds.positions[i,1] -= self.field_dims[3] - self.field_dims[2]
+                        self.birds.positions[i,1] -= (
+                            self.field_dims[3] - self.field_dims[2]
+                        )
 
             if self.record_data:
                 # Calculate average flight direction v of the birds and record it.
@@ -163,7 +178,10 @@ class Field(object):
                         self.Q_fname = f'data/{self.record_tag}-Q/{tstep:06}.npy'
 
                     if self.birds.learning_alg == 'Q':
-                        np.save(self.Q_fname, np.array([Q.value for Q in self.birds.Qs]))
+                        np.save(
+                            self.Q_fname,
+                            np.array([Q.table for Q in self.birds.Qs])
+                        )
                         if self.birds.action_space == ['V','I']:
                             Delta = self.birds.calc_Delta()
                             Delta_data = np.load(self.Delta_fname)
@@ -173,13 +191,21 @@ class Field(object):
                     elif self.birds.learning_alg == 'Ried':
                         np.save(self.policy_fname, self.birds.policies)
 
-                    print(f'Recorded up to timestep {tstep}' if tstep != 0 else f'Record file {self.record_tag} initalized')
+                    print(
+                        f'Recorded up to timestep {tstep}' if tstep != 0
+                        else f'Record file {self.record_tag} initalized'
+                    )
                     if self.track_time and tstep != 0:
-                        del self.times[0] # First is always longer, because the saving time is included
-                                          # NB: Saving takes around 2.6 seconds. Might be worthwile to optimize
-                                          # (for 1E6 tsteps, saving each 500 steps takes 13 hrs in total!)
-                        print(f'{round(sum(self.times)/len(self.times),3)} ± {round(stdev(self.times), 3)} s/timestep')
-                        print(f'max: {max(self.times)}, at tstep {np.argmax(self.times)}')
+                        del self.times[0]
+                        # First is always longer, because the saving time is
+                        # included, hence it is excluded from the statistics
+                        # NB: Saving takes around 2.6 seconds. Might be
+                        # worthwile to optimize (for 1E6 tsteps, saving each 500
+                        # steps takes 13 hrs in total!)
+                        print(
+                            f'{round(sum(self.times)/len(self.times),3)}',
+                            f'± {round(stdev(self.times), 3)} s/timestep'
+                        )
                         self.times = []
 
             tstep += 1
