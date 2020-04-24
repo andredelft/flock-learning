@@ -17,6 +17,9 @@ from birds import Birds
 FIELD_DIMS = 400 * np.array([-1,1,-1,1])
 PLOTSCALE = 160
 
+def gen_record_tag():
+    return datetime.now().strftime("%Y%m%d-%H%M%S")
+
 class Field(object):
 
 
@@ -40,7 +43,7 @@ class Field(object):
         if self.track_time:
             self.times = []
 
-        self.record_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
+        self.record_tag = gen_record_tag()
         param_file = 'data/parameters.json'
         params = self.birds.request_params()
         if comment:
@@ -85,7 +88,6 @@ class Field(object):
                     if self.birds.action_space == ['V','I']:
                         self.Delta_fname = f'data/{self.record_tag}-Delta.npy'
                         np.save(self.Delta_fname, np.array([]))
-                        self.Delta_history = []
                 elif self.birds.learning_alg == 'Ried':
                     self.policy_fname = f'data/{self.record_tag}-policies.npy'
 
@@ -184,12 +186,15 @@ class Field(object):
                         )
                         if self.birds.action_space == ['V','I']:
                             Delta = self.birds.calc_Delta()
+                            print(f'Delta = {Delta}')
                             Delta_data = np.load(self.Delta_fname)
                             Delta_data = np.append(Delta_data, Delta)
                             np.save(self.Delta_fname, Delta_data)
-                            self.Delta_history = []
                     elif self.birds.learning_alg == 'Ried':
                         np.save(self.policy_fname, self.birds.policies)
+                    elif self.birds.learning_alg == 'pol_from_Q' and tstep == 0:
+                        Delta = self.birds.calc_Delta()
+                        print(f'Delta = {Delta}')
 
                     print(
                         f'Recorded up to timestep {tstep}' if tstep != 0

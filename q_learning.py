@@ -11,14 +11,19 @@ class Qfunction(object):
         alpha   : The learning rate, providing a weight for the old Q-values
                   relative to the new value.
         gamma   : The discount factor, providing a weight for expected future
-                  reward signals. Specifically, the expected reward signal of n
-                  timesteps ahead will have a weight of gamma^n.
+                  reward signals. Initially, this only has the effect of
+                  including the expected Q-value of 1 timestep ahead, but once
+                  the Q-tables have been explored sufficiently, this reflects
+                  the goal of reinforcment learning of maximizing the future
+                  reward signal by including the reward signal of n timesteps
+                  ahead with a weight of gamma^n.
         S       : The state space (or observation space) of the agent. It is
                   assumed that this is a range of indices, listing all possible
                   states.
         A       : The action space of the agent, which can be a list of any
                   desired type of objects. For example, in our models a list of
-                  characters is used (e.g. A = ['N', 'E', 'S', 'W']).
+                  characters is used (e.g. A = ['N', 'E', 'S', 'W']) representing
+                  different actions.
                   NB: while this is not true in all possible applications, we
                   here assume that each action can be chosen in every available
                   state. This is sufficient for the purposes of our model.

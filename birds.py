@@ -71,7 +71,7 @@ class Birds(object):
     def __init__(self, numbirds, field_dims, action_space = A, state_space = S,
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
                  alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
-                 gradient_reward = False, instincts = []):
+                 Q_tables = None, gradient_reward = False, instincts = []):
 
         # Initialize the birds and put them in the field
         self.numbirds = numbirds
@@ -107,13 +107,15 @@ class Birds(object):
             [self.numbirds, len(S), len(self.action_space)]
         )
         if self.learning_alg == 'pol_from_Q':
-            if not Q_file:
-                raise Exception('No file with Q-values provided')
+            if (not Q_file) and (type(Q_tables) != np.ndarray):
+                raise Exception('No Q-values provided')
+            elif Q_file:
+                Q_tables = np.load(Q_file)
             else:
-                Qvalues = np.load(Q_file)
                 for i in range(self.numbirds):
                     for s in range(self.policies.shape[1]):
-                        self.policies[i,s,np.argmax(Qvalues[i,s])] = 1
+                        self.policies[i,s,np.argmax(Q_tables[i,s])] = 1
+            self.Q_tables = Q_tables
         else:
             self.policies +=  1/len(self.action_space) # Fill all policy matrices
         self.observations = [dict() for _ in range(self.numbirds)]
@@ -220,19 +222,21 @@ class Birds(object):
     def calc_v(self):
         return sum(STEPS[dir] for dir in self.dirs)/self.numbirds
 
-    def calc_Delta(self, print_Delta = True):
-        if self.learning_alg != 'Q' or self.action_space != ['V','I']:
+    def calc_Delta(self):
+        if self.learning_alg not in ['Q', 'pol_from_Q'] or self.action_space != ['V','I']:
             return None
 
         Delta = 0
         for i in range(self.numbirds):
             desired_ind = 1 if self.instincts[i] == 'E' else 0
             for s in S:
-                if np.argmax(self.Qs[i].table[s]) != desired_ind:
-                    Delta += 1
+                if self.learning_alg == 'Q':
+                    if np.argmax(self.Qs[i].table[s]) != desired_ind:
+                        Delta += 1
+                elif self.learning_alg == 'pol_from_Q':
+                    if np.argmax(self.Q_tables[i,s]) != desired_ind:
+                        Delta += 1
         Delta /= self.numbirds * len(S)
-        if print_Delta:
-            print(f"Delta: {Delta}")
         return Delta
 
     def update(self):
