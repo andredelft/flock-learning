@@ -1,8 +1,8 @@
 # Tweaking the learning parameters
 
-The Q-learning algorithm has three important parameters α, γ and ε (they will be defined and explained below) that all should have a value between 0 and 1. For a while I have kept these fixed at α = 0.9, γ = 0.9 and ε = 0.5, and I would like to investigate here wether it is possible to optimize these values, now that there exists a good quantitative method of judging the quality of the learning process (by tracking the evolution of Δ). Below is a graph of the evolution of Δ for all the performed runs, against the background of the previous [gradient runs](../20200420/observations.md) (in grey) as a reference:
+The Q-learning algorithm has three important parameters α, γ and ε (they will be defined and explained below) that all should have a value between 0 and 1. For a while I have kept these fixed at α = 0.9, γ = 0.9 and ε = 0.5, and I would like to investigate here wether it is possible to optimize these values, now that there exists a good quantitative method of judging the quality of the learning process (by tracking the evolution of Δ). Below is a graph of the evolution of Δ for all the performed runs, against the background of the previous [gradient runs](/data/20200420/observations.md) (in grey) as a reference:
 
-![](Delta_all.png)
+![](/data/20200422/Delta_all.png)
 
 Each color in this graph corresponds to a change in one of the three parameters, where a dark shade corresponds to a high value (close to 1) and a light shade corresponds to a low value (close to 0). I will first briefly explain the function of these parameters and then go through each set of results separately.
 
@@ -26,7 +26,7 @@ Finally, ε is the parameter controlling the exploration of the birds using an �
 
 ### The learning rate α
 
-![Alpha](Delta_alpha.png)
+![Alpha](/data/20200422/Delta_alpha.png)
 
 As the above graph shows, changing α does not seem to have a significant effect on the learning curve. Variations occur, but there is not a correlation to be seen between this variance and α (note for example the two different runs with α = 0.5 on both ends of this variance). This variance is probably some random fluctuation as a consequence of the randomized initialization of the birds.
 
@@ -38,11 +38,11 @@ I don't know whether this means that I should lower the maximum reward signal (o
 
 ### The discount factor γ
 
-![Gamma](Delta_gamma.png)
+![Gamma](/data/20200422/Delta_gamma.png)
 
 Here are the results for γ. Again, no significant correlation between the learning curve and the value of γ. What does strike me, is that they all start quite a bit steeper than the reference runs. To check what is going on here I redid some reference runs (e.g. simulations with γ = 0.9) and these also turned out to be steeper than the old references (see below). I'm still not sure why this happens, all other parameters are equal. Perhaps something I changed to the code along the way is causing this. But ultimately this is good news, and it might not really be worthwile investigating this difference, since after all the difference is not very significant, since we're only graphing a little snippet of the whole y-axis, zooming out this difference is not so big anymore. Furthermore, after a while the runs do cross each other, so the effect is too tiny to care about in my opinion.
 
-![Gamma with new references](Delta_gamma_new_refs.png)
+![Gamma with new references](/data/20200422/Delta_gamma_new_refs.png)
 
 The fact that no significant correlation between γ and the learning curve is observed, might be a confirmation of my intuition that no complicated long-term behaviour strategies might exist in this problem (that is, strategies that take a relatively large amount of timesteps to anticipate upon). For this is ultimately what γ represents: the higher gamma is, the more terms representing future timesteps become significant.
 
@@ -50,6 +50,6 @@ But since I decided above to change α to 0.1, it might be a good idea to do ano
 
 ### The exploration paramater ε
 
-![Delta](Delta_epsilon.png)
+![Delta](/data/20200422/Delta_epsilon.png)
 
 In the last parameter ε we can finally see a definite correlation between its value and the steepness of the learning curve: higher ε means a steeper curve and thus better learning. The reference simulations (that have ε = 0.5) also fit in this pattern. This correlation makes a lot of sense, since a higher ε means more exploration to different states, so more Q-values in the table are visited and adjusted. This is also another confirmation of my belief that Q-learning in this multi-agent setting will converge to the desired policy. Note also the big jump in the learning curve that happens somewhere between ε = 0.15 and ε = 0.20.
