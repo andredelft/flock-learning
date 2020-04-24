@@ -10,7 +10,7 @@ D = 100 # Observation radius
 N = 2   # Max neigbours observed
 R = 1   # Reward signal
 
-alpha   = 0.9  # Learning rate
+alpha   = 0.1  # Learning rate
 gamma   = 0.9  # Disount factor
 epsilon = 0.5  # Epsilon-greedy parameter
 
