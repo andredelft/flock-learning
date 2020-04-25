@@ -116,6 +116,7 @@ class Birds(object):
                     for s in range(self.policies.shape[1]):
                         self.policies[i,s,np.argmax(Q_tables[i,s])] = 1
             self.Q_tables = Q_tables
+            self.Delta = self.calc_Delta()
         else:
             self.policies +=  1/len(self.action_space) # Fill all policy matrices
         self.observations = [dict() for _ in range(self.numbirds)]
@@ -145,6 +146,8 @@ class Birds(object):
                 'gamma': self.gamma,
                 'epsilon': self.epsilon
             }
+        if self.learning_alg == 'pol_from_Q':
+            params['Delta'] = self.Delta
         return params
 
     def _perform_observations(self, radius = D):

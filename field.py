@@ -193,8 +193,8 @@ class Field(object):
                     elif self.birds.learning_alg == 'Ried':
                         np.save(self.policy_fname, self.birds.policies)
                     elif self.birds.learning_alg == 'pol_from_Q' and tstep == 0:
-                        Delta = self.birds.calc_Delta()
-                        print(f'Delta = {Delta}')
+                        # Delta is already calculated (and constant)
+                        print(f'Delta = {self.birds.Delta}')
 
                     print(
                         f'Recorded up to timestep {tstep}' if tstep != 0

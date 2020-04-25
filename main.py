@@ -41,7 +41,7 @@ def load_from_Q(record_tag = '', data_dir = 'data', plot = False,
     )
 
 def load_from_Delta(Delta, data_dir = 'data', no_birds = 100, leader_frac = 0.25,
-                    no_dirs = 8, sim_length = 10000, **kwargs):
+                    no_dirs = 8, sim_length = 5000, **kwargs):
 
     params = {
         'no_birds': no_birds,
@@ -74,6 +74,12 @@ def tweak_learning_params(indexed_pars):
     )
 
 if __name__ == '__main__':
+
+    # Field(
+    #     100, record_data = True, plot = True, reward_signal = 5, record_mov = False,
+    #     learning_alg = 'Q', gradient_reward = True, track_time = True
+    # )
+
     # for record_tag in ['20200409-164937', '20200415-154211', '20200416-190443', '20200418-114214'][1:2]:
     #     date = record_tag.split('-')[0]
     #     load_from_Q(
@@ -81,12 +87,7 @@ if __name__ == '__main__':
     #         sim_length = 15_000, plot = False
     #     )
 
-    # Field(
-    #     100, record_data = True, plot = True, reward_signal = 5, record_mov = False,
-    #     learning_alg = 'Q', gradient_reward = True, track_time = True
-    # )
-
-    for Delta in np.linspace(0, 0.5, 51):
+    for Delta in np.linspace(0, 0.5, 501):
         load_from_Delta(Delta)
 
     # lp_tweaks = [
