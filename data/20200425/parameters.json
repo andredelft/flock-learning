@@ -1,0 +1,6515 @@
+{
+  "20200425-165601": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0
+  },
+  "20200425-170049": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.000999847584209724
+  },
+  "20200425-170543": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.001999695168419448
+  },
+  "20200425-171026": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0029995427526291725
+  },
+  "20200425-171448": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.003999390336838896
+  },
+  "20200425-171922": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.00499923792104862
+  },
+  "20200425-172357": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.006000609663161104
+  },
+  "20200425-172831": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.007000457247370828
+  },
+  "20200425-173258": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.008000304831580552
+  },
+  "20200425-173725": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.009000152415790276
+  },
+  "20200425-174159": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.01
+  },
+  "20200425-174624": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.010999847584209724
+  },
+  "20200425-175115": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.011999695168419448
+  },
+  "20200425-175626": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.012999542752629172
+  },
+  "20200425-180114": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.013999390336838896
+  },
+  "20200425-180702": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.01500076207895138
+  },
+  "20200425-181129": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.016000609663161105
+  },
+  "20200425-181631": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.01700045724737083
+  },
+  "20200425-182107": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.018000304831580553
+  },
+  "20200425-182613": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.019000152415790277
+  },
+  "20200425-183107": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.02
+  },
+  "20200425-183555": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.020999847584209724
+  },
+  "20200425-184056": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.021999695168419448
+  },
+  "20200425-184523": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.022999542752629172
+  },
+  "20200425-184949": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.023999390336838896
+  },
+  "20200425-185407": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.02499923792104862
+  },
+  "20200425-185842": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.026000609663161103
+  },
+  "20200425-190307": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.027000457247370827
+  },
+  "20200425-190727": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.02800030483158055
+  },
+  "20200425-191140": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.029000152415790275
+  },
+  "20200425-191605": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.03
+  },
+  "20200425-192040": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.030999847584209723
+  },
+  "20200425-192525": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.03199969516841945
+  },
+  "20200425-193009": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.032999542752629174
+  },
+  "20200425-193448": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.033999390336838894
+  },
+  "20200425-193958": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.03500076207895138
+  },
+  "20200425-194458": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.036000609663161105
+  },
+  "20200425-194941": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.037000457247370826
+  },
+  "20200425-195422": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.03800030483158055
+  },
+  "20200425-195905": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.039000152415790273
+  },
+  "20200425-200349": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.04
+  },
+  "20200425-200823": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.04099984758420972
+  },
+  "20200425-201306": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.04199969516841945
+  },
+  "20200425-201753": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.04299954275262917
+  },
+  "20200425-202221": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.043999390336838896
+  },
+  "20200425-202655": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.044999237921048624
+  },
+  "20200425-203142": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0460006096631611
+  },
+  "20200425-203612": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.04700045724737083
+  },
+  "20200425-204049": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.048000304831580555
+  },
+  "20200425-204534": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.049000152415790275
+  },
+  "20200425-204959": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.05
+  },
+  "20200425-205509": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.05099984758420972
+  },
+  "20200425-210005": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.05199969516841945
+  },
+  "20200425-210452": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.05299954275262917
+  },
+  "20200425-210935": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0539993903368389
+  },
+  "20200425-211426": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.05500076207895138
+  },
+  "20200425-211908": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0560006096631611
+  },
+  "20200425-212409": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.05700045724737083
+  },
+  "20200425-212903": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.05800030483158055
+  },
+  "20200425-213415": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.05900015241579028
+  },
+  "20200425-213918": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.06
+  },
+  "20200425-214359": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.060999847584209725
+  },
+  "20200425-214843": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.061999695168419446
+  },
+  "20200425-215323": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.06299954275262917
+  },
+  "20200425-215804": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0639993903368389
+  },
+  "20200425-220245": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.06499923792104861
+  },
+  "20200425-220732": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0660006096631611
+  },
+  "20200425-221233": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.06700045724737083
+  },
+  "20200425-221724": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.06800030483158055
+  },
+  "20200425-222204": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.06900015241579027
+  },
+  "20200425-222653": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.07
+  },
+  "20200425-223126": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.07099984758420973
+  },
+  "20200425-223608": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.07199969516841945
+  },
+  "20200425-224127": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.07299954275262917
+  },
+  "20200425-224605": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0739993903368389
+  },
+  "20200425-225102": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.07500076207895139
+  },
+  "20200425-225553": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0760006096631611
+  },
+  "20200425-230043": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.07700045724737083
+  },
+  "20200425-230537": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.07800030483158055
+  },
+  "20200425-231025": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.07900015241579028
+  },
+  "20200425-231504": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.08
+  },
+  "20200425-231945": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.08099984758420972
+  },
+  "20200425-232429": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.08199969516841944
+  },
+  "20200425-232916": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.08299954275262918
+  },
+  "20200425-233404": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0839993903368389
+  },
+  "20200425-233844": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.08500076207895138
+  },
+  "20200425-234326": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.0860006096631611
+  },
+  "20200425-234816": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.08700045724737082
+  },
+  "20200425-235311": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.08800030483158056
+  },
+  "20200425-235825": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.08900015241579028
+  },
+  "20200426-000322": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09
+  },
+  "20200426-000829": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09099984758420973
+  },
+  "20200426-001319": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09199969516841945
+  },
+  "20200426-001807": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09299954275262917
+  },
+  "20200426-002307": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09399939033683889
+  },
+  "20200426-002750": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09499923792104863
+  },
+  "20200426-003234": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09600060966316111
+  },
+  "20200426-003703": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09700045724737083
+  },
+  "20200426-004152": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09800030483158055
+  },
+  "20200426-004637": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.09900015241579027
+  },
+  "20200426-005149": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1
+  },
+  "20200426-005654": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.10099984758420973
+  },
+  "20200426-010150": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.10199969516841945
+  },
+  "20200426-010658": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.10299954275262917
+  },
+  "20200426-011213": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1039993903368389
+  },
+  "20200426-011721": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.10499923792104862
+  },
+  "20200426-012220": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1060006096631611
+  },
+  "20200426-012717": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.10700045724737083
+  },
+  "20200426-013217": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.10800030483158055
+  },
+  "20200426-013712": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.10900015241579028
+  },
+  "20200426-014201": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.11
+  },
+  "20200426-014705": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.11099984758420972
+  },
+  "20200426-015215": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.11199969516841944
+  },
+  "20200426-015720": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.11299954275262918
+  },
+  "20200426-020159": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1139993903368389
+  },
+  "20200426-020645": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.11500076207895138
+  },
+  "20200426-021146": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1160006096631611
+  },
+  "20200426-021638": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.11700045724737083
+  },
+  "20200426-022144": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.11800030483158055
+  },
+  "20200426-022639": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.11900015241579028
+  },
+  "20200426-023139": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.12
+  },
+  "20200426-023643": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.12099984758420973
+  },
+  "20200426-024141": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.12199969516841945
+  },
+  "20200426-024650": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.12299954275262917
+  },
+  "20200426-025158": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.12399939033683889
+  },
+  "20200426-025640": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.12499923792104863
+  },
+  "20200426-030120": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1260006096631611
+  },
+  "20200426-030556": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.12700045724737083
+  },
+  "20200426-031112": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.12800030483158056
+  },
+  "20200426-031602": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.12900015241579027
+  },
+  "20200426-032038": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.13
+  },
+  "20200426-032511": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1309998475842097
+  },
+  "20200426-032946": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.13199969516841945
+  },
+  "20200426-033423": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.13299954275262918
+  },
+  "20200426-033859": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.13399939033683889
+  },
+  "20200426-034331": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.13500076207895137
+  },
+  "20200426-034758": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1360006096631611
+  },
+  "20200426-035239": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.13700045724737084
+  },
+  "20200426-035717": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.13800030483158054
+  },
+  "20200426-040153": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.13900015241579028
+  },
+  "20200426-040626": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.14
+  },
+  "20200426-041053": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.14099984758420972
+  },
+  "20200426-041536": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.14199969516841945
+  },
+  "20200426-042005": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.14299954275262916
+  },
+  "20200426-042436": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1439993903368389
+  },
+  "20200426-042904": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.14499923792104863
+  },
+  "20200426-043345": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1460006096631611
+  },
+  "20200426-043820": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.14700045724737082
+  },
+  "20200426-044305": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.14800030483158055
+  },
+  "20200426-044808": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1490001524157903
+  },
+  "20200426-045258": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.15
+  },
+  "20200426-045748": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.15099984758420973
+  },
+  "20200426-050235": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.15199969516841944
+  },
+  "20200426-050715": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.15299954275262917
+  },
+  "20200426-051156": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1539993903368389
+  },
+  "20200426-051643": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1550007620789514
+  },
+  "20200426-052135": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1560006096631611
+  },
+  "20200426-052631": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.15700045724737083
+  },
+  "20200426-053112": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.15800030483158056
+  },
+  "20200426-053608": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.15900015241579027
+  },
+  "20200426-054112": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.16
+  },
+  "20200426-054602": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.16099984758420974
+  },
+  "20200426-055056": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.16199969516841944
+  },
+  "20200426-055538": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.16299954275262918
+  },
+  "20200426-060034": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.16399939033683889
+  },
+  "20200426-060530": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.16499923792104862
+  },
+  "20200426-061009": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1660006096631611
+  },
+  "20200426-061453": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.16700045724737084
+  },
+  "20200426-061938": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.16800030483158054
+  },
+  "20200426-062419": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.16900015241579028
+  },
+  "20200426-062908": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.17
+  },
+  "20200426-063355": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.17099984758420972
+  },
+  "20200426-063837": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.17199969516841945
+  },
+  "20200426-064328": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.17299954275262916
+  },
+  "20200426-064811": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1739993903368389
+  },
+  "20200426-065251": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.17500076207895138
+  },
+  "20200426-065738": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1760006096631611
+  },
+  "20200426-070240": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.17700045724737082
+  },
+  "20200426-070730": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.17800030483158055
+  },
+  "20200426-071220": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1790001524157903
+  },
+  "20200426-071730": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.18
+  },
+  "20200426-072212": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.18099984758420973
+  },
+  "20200426-072648": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.18199969516841946
+  },
+  "20200426-073136": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.18299954275262917
+  },
+  "20200426-073632": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1839993903368389
+  },
+  "20200426-074123": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1850007620789514
+  },
+  "20200426-074607": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1860006096631611
+  },
+  "20200426-075101": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.18700045724737083
+  },
+  "20200426-075558": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.18800030483158056
+  },
+  "20200426-080048": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.18900015241579027
+  },
+  "20200426-080532": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.19
+  },
+  "20200426-081033": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.19099984758420974
+  },
+  "20200426-081533": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.19199969516841944
+  },
+  "20200426-082016": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.19299954275262918
+  },
+  "20200426-082452": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.19399939033683888
+  },
+  "20200426-082933": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.19500076207895137
+  },
+  "20200426-083411": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.1960006096631611
+  },
+  "20200426-083855": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.19700045724737084
+  },
+  "20200426-084346": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.19800030483158054
+  },
+  "20200426-084833": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.19900015241579028
+  },
+  "20200426-085312": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2
+  },
+  "20200426-085752": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.20099984758420972
+  },
+  "20200426-090227": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.20199969516841945
+  },
+  "20200426-090654": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2029995427526292
+  },
+  "20200426-091132": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2039993903368389
+  },
+  "20200426-091612": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.20499923792104863
+  },
+  "20200426-092051": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2060006096631611
+  },
+  "20200426-092528": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.20700045724737082
+  },
+  "20200426-093027": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.20800030483158055
+  },
+  "20200426-093518": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.20900015241579029
+  },
+  "20200426-094016": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.21
+  },
+  "20200426-094516": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.21099984758420973
+  },
+  "20200426-095012": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.21199969516841946
+  },
+  "20200426-095504": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.21299954275262917
+  },
+  "20200426-095953": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2139993903368389
+  },
+  "20200426-100450": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.21500076207895139
+  },
+  "20200426-100937": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2160006096631611
+  },
+  "20200426-101427": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.21700045724737083
+  },
+  "20200426-101924": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.21800030483158056
+  },
+  "20200426-102355": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.21900015241579027
+  },
+  "20200426-102840": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.22
+  },
+  "20200426-103341": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.22099984758420974
+  },
+  "20200426-103835": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.22199969516841944
+  },
+  "20200426-104333": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.22299954275262918
+  },
+  "20200426-104828": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.22399939033683888
+  },
+  "20200426-105314": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.22499923792104862
+  },
+  "20200426-105755": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2260006096631611
+  },
+  "20200426-110247": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.22700045724737083
+  },
+  "20200426-110731": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.22800030483158054
+  },
+  "20200426-111225": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.22900015241579028
+  },
+  "20200426-111657": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.23
+  },
+  "20200426-112127": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.23099984758420972
+  },
+  "20200426-112628": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.23199969516841945
+  },
+  "20200426-113111": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.23299954275262919
+  },
+  "20200426-113610": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2339993903368389
+  },
+  "20200426-114057": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.23500076207895138
+  },
+  "20200426-114551": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2360006096631611
+  },
+  "20200426-115035": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.23700045724737082
+  },
+  "20200426-115507": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.23800030483158055
+  },
+  "20200426-115952": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.23900015241579028
+  },
+  "20200426-120424": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.24
+  },
+  "20200426-120858": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.24099984758420973
+  },
+  "20200426-121346": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.24199969516841946
+  },
+  "20200426-121831": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.24299954275262917
+  },
+  "20200426-122307": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2439993903368389
+  },
+  "20200426-122748": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2449992379210486
+  },
+  "20200426-123233": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2460006096631611
+  },
+  "20200426-123721": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.24700045724737082
+  },
+  "20200426-124216": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.24800030483158056
+  },
+  "20200426-124715": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.24900015241579027
+  },
+  "20200426-125221": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.25
+  },
+  "20200426-125717": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.25099984758420973
+  },
+  "20200426-130205": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.25199969516841947
+  },
+  "20200426-130643": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.25299954275262915
+  },
+  "20200426-131123": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2539993903368389
+  },
+  "20200426-131559": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2550007620789514
+  },
+  "20200426-132040": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2560006096631611
+  },
+  "20200426-132512": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2570004572473708
+  },
+  "20200426-132949": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.25800030483158054
+  },
+  "20200426-133436": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2590001524157903
+  },
+  "20200426-133916": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.26
+  },
+  "20200426-134417": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.26099984758420974
+  },
+  "20200426-134911": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2619996951684194
+  },
+  "20200426-135401": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.26299954275262916
+  },
+  "20200426-135908": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2639993903368389
+  },
+  "20200426-140403": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2650007620789514
+  },
+  "20200426-140848": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2660006096631611
+  },
+  "20200426-141350": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2670004572473708
+  },
+  "20200426-141848": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.26800030483158055
+  },
+  "20200426-142338": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2690001524157903
+  },
+  "20200426-142838": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.27
+  },
+  "20200426-143332": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2709998475842097
+  },
+  "20200426-143844": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.27199969516841943
+  },
+  "20200426-144355": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.27299954275262917
+  },
+  "20200426-144857": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2739993903368389
+  },
+  "20200426-145345": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.27500076207895136
+  },
+  "20200426-145844": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2760006096631611
+  },
+  "20200426-150337": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2770004572473708
+  },
+  "20200426-150819": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.27800030483158056
+  },
+  "20200426-151308": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2790001524157903
+  },
+  "20200426-151755": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.28
+  },
+  "20200426-152244": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2809998475842097
+  },
+  "20200426-152734": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.28199969516841944
+  },
+  "20200426-153221": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2829995427526292
+  },
+  "20200426-153707": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2839993903368389
+  },
+  "20200426-154147": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.28500076207895136
+  },
+  "20200426-154620": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2860006096631611
+  },
+  "20200426-155058": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.28700045724737083
+  },
+  "20200426-155539": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.28800030483158057
+  },
+  "20200426-160023": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2890001524157903
+  },
+  "20200426-160508": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.29
+  },
+  "20200426-160944": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2909998475842097
+  },
+  "20200426-161437": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.29199969516841945
+  },
+  "20200426-161914": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2929995427526292
+  },
+  "20200426-162346": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2939993903368389
+  },
+  "20200426-162817": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2950007620789514
+  },
+  "20200426-163250": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2960006096631611
+  },
+  "20200426-163748": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.29700045724737084
+  },
+  "20200426-164249": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.2980003048315806
+  },
+  "20200426-164738": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.29900015241579025
+  },
+  "20200426-165211": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3
+  },
+  "20200426-165651": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3009998475842097
+  },
+  "20200426-170142": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.30199969516841946
+  },
+  "20200426-170639": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3029995427526292
+  },
+  "20200426-171135": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.30399939033683887
+  },
+  "20200426-171625": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3049992379210486
+  },
+  "20200426-172130": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3060006096631611
+  },
+  "20200426-172619": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.30700045724737085
+  },
+  "20200426-173114": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.30800030483158053
+  },
+  "20200426-173609": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.30900015241579026
+  },
+  "20200426-174049": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.31
+  },
+  "20200426-174533": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.31099984758420973
+  },
+  "20200426-175007": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.31199969516841947
+  },
+  "20200426-175452": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.31299954275262915
+  },
+  "20200426-175938": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3139993903368389
+  },
+  "20200426-180412": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3150007620789514
+  },
+  "20200426-180850": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3160006096631611
+  },
+  "20200426-181336": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3170004572473708
+  },
+  "20200426-181817": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.31800030483158054
+  },
+  "20200426-182253": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3190001524157903
+  },
+  "20200426-182727": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.32
+  },
+  "20200426-183212": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.32099984758420974
+  },
+  "20200426-183704": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3219996951684195
+  },
+  "20200426-184201": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.32299954275262915
+  },
+  "20200426-184701": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3239993903368389
+  },
+  "20200426-185151": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3250007620789514
+  },
+  "20200426-185651": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3260006096631611
+  },
+  "20200426-190138": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3270004572473708
+  },
+  "20200426-190642": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.32800030483158055
+  },
+  "20200426-191148": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3290001524157903
+  },
+  "20200426-191657": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.33
+  },
+  "20200426-192138": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.33099984758420975
+  },
+  "20200426-192616": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.33199969516841943
+  },
+  "20200426-193102": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.33299954275262916
+  },
+  "20200426-193554": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3339993903368389
+  },
+  "20200426-194101": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.33500076207895135
+  },
+  "20200426-194603": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3360006096631611
+  },
+  "20200426-195103": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3370004572473708
+  },
+  "20200426-195606": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.33800030483158056
+  },
+  "20200426-200056": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3390001524157903
+  },
+  "20200426-200557": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.34
+  },
+  "20200426-201050": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3409998475842097
+  },
+  "20200426-201548": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.34199969516841944
+  },
+  "20200426-202040": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.34299954275262917
+  },
+  "20200426-202531": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3439993903368389
+  },
+  "20200426-203017": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.34499923792104864
+  },
+  "20200426-203506": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3460006096631611
+  },
+  "20200426-203954": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.34700045724737083
+  },
+  "20200426-204444": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.34800030483158056
+  },
+  "20200426-204932": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3490001524157903
+  },
+  "20200426-205414": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.35
+  },
+  "20200426-205853": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3509998475842097
+  },
+  "20200426-210325": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.35199969516841945
+  },
+  "20200426-210759": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3529995427526292
+  },
+  "20200426-211233": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3539993903368389
+  },
+  "20200426-211714": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3549992379210486
+  },
+  "20200426-212145": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3560006096631611
+  },
+  "20200426-212627": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.35700045724737084
+  },
+  "20200426-213115": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3580003048315806
+  },
+  "20200426-213546": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.35900015241579025
+  },
+  "20200426-214030": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.36
+  },
+  "20200426-214520": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3609998475842097
+  },
+  "20200426-215004": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.36199969516841946
+  },
+  "20200426-215441": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3629995427526292
+  },
+  "20200426-215912": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3639993903368389
+  },
+  "20200426-220355": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3649992379210486
+  },
+  "20200426-220821": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3660006096631611
+  },
+  "20200426-221258": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.36700045724737085
+  },
+  "20200426-221733": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3680003048315805
+  },
+  "20200426-222210": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.36900015241579026
+  },
+  "20200426-222644": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.37
+  },
+  "20200426-223120": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.37099984758420973
+  },
+  "20200426-223618": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.37199969516841946
+  },
+  "20200426-224116": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3729995427526292
+  },
+  "20200426-224607": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3739993903368389
+  },
+  "20200426-225044": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3750007620789514
+  },
+  "20200426-225535": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3760006096631611
+  },
+  "20200426-230032": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3770004572473708
+  },
+  "20200426-230501": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.37800030483158054
+  },
+  "20200426-230942": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.37900015241579027
+  },
+  "20200426-231422": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.38
+  },
+  "20200426-231858": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.38099984758420974
+  },
+  "20200426-232331": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3819996951684195
+  },
+  "20200426-232812": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.38299954275262915
+  },
+  "20200426-233247": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3839993903368389
+  },
+  "20200426-233722": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3849992379210486
+  },
+  "20200426-234152": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3860006096631611
+  },
+  "20200426-234621": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3870004572473708
+  },
+  "20200426-235105": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.38800030483158054
+  },
+  "20200426-235548": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3890001524157903
+  },
+  "20200427-000026": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.39
+  },
+  "20200427-000509": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.39099984758420975
+  },
+  "20200427-000940": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3919996951684194
+  },
+  "20200427-001412": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.39299954275262916
+  },
+  "20200427-001846": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3939993903368389
+  },
+  "20200427-002323": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3950007620789514
+  },
+  "20200427-002755": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3960006096631611
+  },
+  "20200427-003220": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3970004572473708
+  },
+  "20200427-003656": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.39800030483158055
+  },
+  "20200427-004133": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.3990001524157903
+  },
+  "20200427-004617": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4
+  },
+  "20200427-005053": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4009998475842097
+  },
+  "20200427-005527": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.40199969516841944
+  },
+  "20200427-010002": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.40299954275262917
+  },
+  "20200427-010450": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4039993903368389
+  },
+  "20200427-010921": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.40500076207895136
+  },
+  "20200427-011403": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4060006096631611
+  },
+  "20200427-011845": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.40700045724737083
+  },
+  "20200427-012322": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.40800030483158056
+  },
+  "20200427-012754": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4090001524157903
+  },
+  "20200427-013224": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.41
+  },
+  "20200427-013659": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4109998475842097
+  },
+  "20200427-014140": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.41199969516841944
+  },
+  "20200427-014619": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4129995427526292
+  },
+  "20200427-015054": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4139993903368389
+  },
+  "20200427-015526": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.41500076207895137
+  },
+  "20200427-015959": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4160006096631611
+  },
+  "20200427-020429": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.41700045724737084
+  },
+  "20200427-020905": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.41800030483158057
+  },
+  "20200427-021345": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.41900015241579025
+  },
+  "20200427-021817": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.42
+  },
+  "20200427-022300": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4209998475842097
+  },
+  "20200427-022739": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.42199969516841945
+  },
+  "20200427-023213": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4229995427526292
+  },
+  "20200427-023646": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4239993903368389
+  },
+  "20200427-024121": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4249992379210486
+  },
+  "20200427-024552": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4260006096631611
+  },
+  "20200427-025026": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.42700045724737085
+  },
+  "20200427-025507": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4280003048315805
+  },
+  "20200427-025942": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.42900015241579026
+  },
+  "20200427-030417": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.43
+  },
+  "20200427-030847": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4309998475842097
+  },
+  "20200427-031334": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.43199969516841946
+  },
+  "20200427-031834": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4329995427526292
+  },
+  "20200427-032317": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4339993903368389
+  },
+  "20200427-032812": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4350007620789514
+  },
+  "20200427-033302": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4360006096631611
+  },
+  "20200427-033802": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.43700045724737085
+  },
+  "20200427-034303": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.43800030483158053
+  },
+  "20200427-034756": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.43900015241579027
+  },
+  "20200427-035242": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.44
+  },
+  "20200427-035738": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.44099984758420974
+  },
+  "20200427-040220": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.44199969516841947
+  },
+  "20200427-040712": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.44299954275262915
+  },
+  "20200427-041205": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4439993903368389
+  },
+  "20200427-041706": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4449992379210486
+  },
+  "20200427-042153": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.44600060966316113
+  },
+  "20200427-042625": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4470004572473708
+  },
+  "20200427-043117": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.44800030483158054
+  },
+  "20200427-043617": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4490001524157903
+  },
+  "20200427-044102": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.45
+  },
+  "20200427-044547": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.45099984758420975
+  },
+  "20200427-045043": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4519996951684194
+  },
+  "20200427-045530": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.45299954275262916
+  },
+  "20200427-050023": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4539993903368389
+  },
+  "20200427-050510": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4550007620789514
+  },
+  "20200427-050949": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4560006096631611
+  },
+  "20200427-051442": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4570004572473708
+  },
+  "20200427-051946": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.45800030483158055
+  },
+  "20200427-052433": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4590001524157903
+  },
+  "20200427-052921": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.46
+  },
+  "20200427-053401": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4609998475842097
+  },
+  "20200427-053832": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.46199969516841943
+  },
+  "20200427-054316": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.46299954275262917
+  },
+  "20200427-054750": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4639993903368389
+  },
+  "20200427-055225": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.46499923792104864
+  },
+  "20200427-055655": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4660006096631611
+  },
+  "20200427-060130": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4670004572473708
+  },
+  "20200427-060559": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.46800030483158056
+  },
+  "20200427-061031": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4690001524157903
+  },
+  "20200427-061512": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.47
+  },
+  "20200427-061949": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4709998475842097
+  },
+  "20200427-062429": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.47199969516841944
+  },
+  "20200427-062857": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4729995427526292
+  },
+  "20200427-063337": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4739993903368389
+  },
+  "20200427-063807": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.47500076207895137
+  },
+  "20200427-064239": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4760006096631611
+  },
+  "20200427-064717": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.47700045724737083
+  },
+  "20200427-065155": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.47800030483158057
+  },
+  "20200427-065628": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4790001524157903
+  },
+  "20200427-070100": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.48
+  },
+  "20200427-070532": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4809998475842097
+  },
+  "20200427-071004": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.48199969516841945
+  },
+  "20200427-071432": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4829995427526292
+  },
+  "20200427-071908": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4839993903368389
+  },
+  "20200427-072348": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4849992379210486
+  },
+  "20200427-072820": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4860006096631611
+  },
+  "20200427-073254": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.48700045724737084
+  },
+  "20200427-073724": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4880003048315806
+  },
+  "20200427-074157": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.48900015241579026
+  },
+  "20200427-074627": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.49
+  },
+  "20200427-075058": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4909998475842097
+  },
+  "20200427-075524": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.49199969516841946
+  },
+  "20200427-075956": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4929995427526292
+  },
+  "20200427-080438": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4939993903368389
+  },
+  "20200427-080916": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4950007620789514
+  },
+  "20200427-081344": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.4960006096631611
+  },
+  "20200427-081819": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.49700045724737085
+  },
+  "20200427-082255": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.49800030483158053
+  },
+  "20200427-082729": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.49900015241579027
+  },
+  "20200427-083158": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Delta": 0.5
+  }
+}

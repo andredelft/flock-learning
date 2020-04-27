@@ -53,7 +53,9 @@ def plot_Delta(fname, **kwargs):
     data = np.load(fname)
     plt.plot(range(0, 500 * len(data), 500), data, **kwargs)
 
-def plot_all(data_dir = 'data', quantity = 'v', cap = 50, **kwargs):
+def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False, legend = True, **kwargs):
+    if expose_remote:
+        plt.figure()
     with open(path.join(data_dir,'parameters.json')) as f:
         pars = json.load(f)
     for fname in sorted(glob(f'{data_dir}/*-{quantity}.npy')):
@@ -75,4 +77,7 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, **kwargs):
     elif quantity == 'Delta':
         plt.ylabel('$\Delta$')
     plt.xlabel('Timestep')
-    plt.legend()
+    if legend:
+        plt.legend()
+    if expose_remote:
+        plt.savefig(f'../../public_html/{quantity}.png', dpi = 300)
