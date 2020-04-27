@@ -87,7 +87,7 @@ if __name__ == '__main__':
     #         sim_length = 15_000, plot = False
     #     )
 
-    for Delta in np.linspace(0, 0.5, 501):
+    for Delta in np.linspace(0.51, 1, 50):
         load_from_Delta(Delta)
 
     # lp_tweaks = [
