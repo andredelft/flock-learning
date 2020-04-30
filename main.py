@@ -73,7 +73,7 @@ def mp_wrapper(indexed_pars):
     time.sleep(5 * i) # To make sure they don't start at exactly the same time,
                       # resulting in the same record tag
     Field(
-        100, record_data = True, plot = False, sim_length = 80_000,
+        100, record_data = True, plot = False, sim_length = 40_000,
         reward_signal = 5, learning_alg = 'Q', gradient_reward = True, **pars
     )
 
