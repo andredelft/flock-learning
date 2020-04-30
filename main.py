@@ -57,47 +57,62 @@ def load_from_Delta(Delta, data_dir = 'data', no_birds = 100, leader_frac = 0.25
     for i in range(no_leaders, no_birds):
         for s in range(no_states):
             Q_tables[i,s,0] = 1
-    dev_inds = sample(range(no_states * no_birds), int(round(Delta * no_states * no_birds)))
+    dev_inds = sample(
+        range(no_states * no_birds), int(round(Delta * no_states * no_birds))
+    )
     for dev_ind in dev_inds:
         i = dev_ind // no_states
         s = dev_ind %  no_states
         Q_tables[i,s] = 1 - Q_tables[i,s] # flip the 1 and 0
-    load_from_Q(Q_tables = Q_tables, params = params, sim_length = sim_length, **kwargs)
-    # return Q_tables
+    load_from_Q(
+        Q_tables = Q_tables, params = params, sim_length = sim_length, **kwargs
+    )
 
-def tweak_learning_params(indexed_pars):
+def mp_wrapper(indexed_pars):
     i, pars = indexed_pars
-    time.sleep(5 * i) # To make sure they don't start at exactly the same time, resulting in the same record tag
+    time.sleep(5 * i) # To make sure they don't start at exactly the same time,
+                      # resulting in the same record tag
     Field(
-        100, record_data = True, plot = False, sim_length = 80_000, reward_signal = 5,
-        learning_alg = 'Q', gradient_reward = True, **pars
+        100, record_data = True, plot = False, sim_length = 80_000,
+        reward_signal = 5, learning_alg = 'Q', gradient_reward = True, **pars
     )
 
 if __name__ == '__main__':
 
+    # 1. Start a regular simulation by creating a Field instance. Things like
+    #    recording data and parameter specifications are all handled as keyword
+    #    arguments.
+
     # Field(
-    #     100, record_data = True, plot = True, reward_signal = 5, record_mov = False,
-    #     learning_alg = 'Q', gradient_reward = True, track_time = True
+    #     100, record_data = True, plot = False, record_mov = False,
+    #     learning_alg = 'Q', gradient_reward = True, track_time = True,
+    #     repos_every = 10_000, sim_length = 80_000, epsilon = 0.8
     # )
 
-    # for record_tag in ['20200409-164937', '20200415-154211', '20200416-190443', '20200418-114214'][1:2]:
-    #     date = record_tag.split('-')[0]
-    #     load_from_Q(
-    #         record_tag, data_dir = f'data/{date}', record_data = True, record_mov = True,
-    #         sim_length = 15_000, plot = False
-    #     )
+    # 2. Start a simulation with fixed Q-tables from a given file (the output of
+    #    a learning run)
 
-    for Delta in np.linspace(0.51, 1, 50):
-        load_from_Delta(Delta)
+    # load_from_Q(
+    #     record_tag, data_dir = f'data/{date}', record_data = True,
+    #     record_mov = True, sim_length = 15_000, plot = False
+    # )
 
-    # lp_tweaks = [
-    #     ('epsilon', 0.15),
-    #     ('epsilon', 0.3),
-    #     #('gamma', 0.5),
-    #     #('alpha', 0.5),
-    # ]
-    # pars = [{par: value, 'comment': f'vary_{par}'} for par, value in lp_tweaks]
-    #
-    # with ProcessPoolExecutor() as executor:
-    #     for _ in executor.map(tweak_learning_params, enumerate(pars)):
-    #         pass
+    # 3. Start a simulation with fixed Q-values from a specific value of Delta
+
+    # load_from_Delta(0.2)
+
+    # 4. Start multiple simulations at the same time using multiprocessing, with
+    #    the option of adjusting parameters in different runs (as exemplified
+    #    below with some learning pars)
+
+    par_tweaks = [
+        ('repos_every', 0),
+        ('repos_every', 1000),
+        ('repos_every', 5000),
+        ('repos_every', 10_000),
+    ]
+    pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
+
+    with ProcessPoolExecutor() as executor:
+        for _ in executor.map(mp_wrapper, enumerate(pars)):
+            pass
