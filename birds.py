@@ -12,7 +12,7 @@ R = 1   # Reward signal
 
 alpha   = 0.1  # Learning rate
 gamma   = 0.9  # Disount factor
-epsilon = 0.5  # Epsilon-greedy parameter
+epsilon = 0.9  # Epsilon-greedy parameter
 
 A = ['V', 'I'] # Action space
 

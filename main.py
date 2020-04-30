@@ -83,11 +83,11 @@ if __name__ == '__main__':
     #    recording data and parameter specifications are all handled as keyword
     #    arguments.
 
-    # Field(
-    #     100, record_data = True, plot = False, record_mov = False,
-    #     learning_alg = 'Q', gradient_reward = True, track_time = True,
-    #     repos_every = 10_000, sim_length = 80_000, epsilon = 0.8
-    # )
+    Field(
+        100, record_data = True, plot = False, record_mov = False,
+        learning_alg = 'Q', gradient_reward = True, track_time = True,
+        repos_every = 10_000, sim_length = 80_000
+    )
 
     # 2. Start a simulation with fixed Q-tables from a given file (the output of
     #    a learning run)
@@ -105,14 +105,14 @@ if __name__ == '__main__':
     #    the option of adjusting parameters in different runs (as exemplified
     #    below with some learning pars)
 
-    par_tweaks = [
-        ('repos_every', 0),
-        ('repos_every', 1000),
-        ('repos_every', 5000),
-        ('repos_every', 10_000),
-    ]
-    pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
-
-    with ProcessPoolExecutor() as executor:
-        for _ in executor.map(mp_wrapper, enumerate(pars)):
-            pass
+    # par_tweaks = [
+    #     ('repos_every', 0),
+    #     ('repos_every', 1000),
+    #     ('repos_every', 5000),
+    #     ('repos_every', 10_000),
+    # ]
+    # pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
+    #
+    # with ProcessPoolExecutor() as executor:
+    #     for _ in executor.map(mp_wrapper, enumerate(pars)):
+    #         pass
