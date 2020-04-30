@@ -10,28 +10,29 @@ from utils import gen_rt
 
 def benchmark():
     Field(
-        100, plot = False, record_mov = False, learning_alg = 'Q',
-        sim_length = 5000, record_data = True, comment = 'Reference'
+        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        record_time = True, record_data = True,
+        comment = 'Reference'
     )
     Field(
-        100, plot = False, record_mov = False, learning_alg = 'Q',
-        sim_length = 5000, record_quantities = ['t', 'v'],
+        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        record_quantities = ['t', 'v'],
         comment = 'Tracking v and t'
     )
     Field(
-        100, plot = False, record_mov = False, learning_alg = 'Q',
-        sim_length = 5000, record_quantities = ['t', 'Delta'],
+        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        record_quantities = ['t', 'Delta'],
         comment = 'Tracking Delta and t'
     )
     Field(
-        100, plot = False, record_mov = False, learning_alg = 'Q',
-        sim_length = 5000, record_quantities = ['t', 'Delta', 'Q'],
+        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        record_quantities = ['t', 'Delta', 'Q'],
         comment = 'Tracking Delta, Q and t'
     )
     Field(
-        100, plot = False, record_mov = False, learning_alg = 'Q',
-        sim_length = 5000, record_quantities = ['t', 'Delta', 'Q'],
-        record_every = 1000, comment = 'Tracking Delta, Q and t (record every 1000)'
+        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        record_quantities = ['t', 'Delta', 'Q'], record_every = 1000,
+        comment = 'Tracking Delta, Q and t (record every 1000)'
     )
 
 def load_from_Q(record_tag = '', data_dir = 'data', plot = False,
