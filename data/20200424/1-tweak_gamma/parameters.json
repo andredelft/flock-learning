@@ -69,6 +69,6 @@
       "gamma": 0.9,
       "epsilon": 0.5
     },
-    "comment": "vary_alpha"
+    "comment": "vary_gamma"
   }
 }
