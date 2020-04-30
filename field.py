@@ -46,6 +46,8 @@ class Field(object):
         self.record_tag = gen_record_tag()
         param_file = 'data/parameters.json'
         params = self.birds.request_params()
+        if self.repos_every:
+            params['repos_every'] = self.repos_every
         if comment:
             params['comment'] = comment
 
@@ -212,6 +214,11 @@ class Field(object):
                             f'± {round(stdev(self.times), 3)} s/timestep'
                         )
                         self.times = []
+
+            if self.repos_every and tstep % self.repos_every == 0:
+                self.birds.initialize_positions(self.field_dims)
+                # Redo observation step with new positions
+                self.birds.perform_observations()
 
             tstep += 1
             yield self.birds.positions

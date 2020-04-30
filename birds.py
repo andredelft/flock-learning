@@ -77,12 +77,7 @@ class Birds(object):
         self.numbirds = numbirds
         self.leader_frac = leader_frac
         self.leaders = int(self.numbirds * self.leader_frac)
-        self.positions = np.array([
-            np.array([
-                float(randint(*field_dims[0:2])),
-                float(randint(*field_dims[2:4]))
-            ]) for _ in range(self.numbirds)
-        ])
+        self.initialize_positions(field_dims)
         self.dirs = choices(DIRS_INDS, k = self.numbirds)
         if instincts:
             if len(instincts) != self.numbirds:
@@ -120,7 +115,7 @@ class Birds(object):
         else:
             self.policies +=  1/len(self.action_space) # Fill all policy matrices
         self.observations = [dict() for _ in range(self.numbirds)]
-        self._perform_observations()
+        self.perform_observations()
 
         if self.learning_alg == 'Q':
             self.alpha = alpha
@@ -150,8 +145,17 @@ class Birds(object):
             params['Delta'] = self.Delta
         return params
 
-    def _perform_observations(self, radius = D):
+    def initialize_positions(self, field_dims):
+        self.positions = np.array([
+            np.array([
+                float(randint(*field_dims[0:2])),
+                float(randint(*field_dims[2:4]))
+            ]) for _ in range(self.numbirds)
+        ])
+
+    def perform_observations(self, radius = D):
         tree = KDTree(self.positions)
+        new_obs = []
         for i in range(self.numbirds):
             # Might still be optimized, since each pair of neighbouring birds
             # is handled twice. But depends on KDTree's performance
@@ -168,7 +172,7 @@ class Birds(object):
                     neighbours[dir] = N
             self.observations[i] = neighbours
 
-    def _perform_step(self):
+    def perform_step(self):
         for i in range(self.numbirds):
             if self.actions[i] == 'V':
                 i_dir = discrete_Vicsek(self.observations[i])
@@ -260,13 +264,13 @@ class Birds(object):
         # print(f'Choosing actions: {round(t_end - t_start, 3)}')
 
         # t_start = time.perf_counter()
-        self._perform_step()
+        self.perform_step()
         # t_end = time.perf_counter()
         # print(f'Perform step: {round(t_end - t_start, 3)}')
 
         # t_start = time.perf_counter()
         self.prev_obs = self.observations
-        self._perform_observations()
+        self.perform_observations()
         # t_end = time.perf_counter()
         # print(f'Observing: {round(t_end - t_start, 3)}')
 

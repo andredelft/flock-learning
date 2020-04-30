@@ -1,0 +1,56 @@
+{
+  "20200429-160445": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "repos_every": 10000
+  },
+  "20200429-160530": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "repos_every": 1000
+  },
+  "20200429-173930": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 1,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.8
+    },
+    "repos_every": 10000
+  }
+}
