@@ -74,7 +74,7 @@ class Birds(object):
     def __init__(self, numbirds, field_dims, action_space = A, state_space = S,
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
                  alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
-                 Q_tables = None, gradient_reward = False, instincts = []):
+                 Q_tables = None, gradient_reward = True, instincts = []):
 
         # Initialize the birds and put them in the field
         self.numbirds = numbirds

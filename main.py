@@ -74,7 +74,7 @@ def mp_wrapper(indexed_pars):
                       # resulting in the same record tag
     Field(
         100, record_data = True, plot = False, sim_length = 40_000,
-        reward_signal = 5, learning_alg = 'Q', gradient_reward = True, **pars
+        learning_alg = 'Q', gradient_reward = True, **pars
     )
 
 if __name__ == '__main__':
@@ -85,8 +85,8 @@ if __name__ == '__main__':
 
     Field(
         100, record_data = True, plot = False, record_mov = False,
-        learning_alg = 'Q', gradient_reward = True, track_time = True,
-        repos_every = 10_000, sim_length = 80_000
+        learning_alg = 'Q', track_time = True, repos_every = 10_000,
+        sim_length = 40_000
     )
 
     # 2. Start a simulation with fixed Q-tables from a given file (the output of

@@ -73,5 +73,80 @@
     },
     "repos_every": 10000,
     "comment": "vary_repos_every"
+  },
+  "20200430-104707": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "comment": "vary_repos_every"
+  },
+  "20200430-104712": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "repos_every": 1000,
+    "comment": "vary_repos_every"
+  },
+  "20200430-104717": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "repos_every": 5000,
+    "comment": "vary_repos_every"
+  },
+  "20200430-104722": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "repos_every": 10000,
+    "comment": "vary_repos_every"
   }
 }
