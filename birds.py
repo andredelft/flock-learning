@@ -6,30 +6,33 @@ import time
 
 from q_learning import Qfunction
 
-D = 100 # Observation radius
-N = 2   # Max neigbours observed
-R = 1   # Reward signal
+D = 100  # Observation radius
+N = 2    # Max neigbours observed
+R = 5    # Reward signal
 
 alpha   = 0.1  # Learning rate
 gamma   = 0.9  # Disount factor
 epsilon = 0.9  # Epsilon-greedy parameter
 
-A = ['V', 'I'] # Action space
-
-NO_DIRS = 2 ** 3 # exponent should be 2 or 3
+NO_DIRS = 2 ** 3 # exponent can be 2 or 3 (state space explodes for > 3)
 DIRS = np.linspace(-np.pi, np.pi, NO_DIRS + 1)[:NO_DIRS]
 DIRS_INDS = list(range(NO_DIRS))
 STEPS = [np.array([np.cos(theta), np.sin(theta)]) for theta in DIRS]
 TRESHOLD = 0.9 * np.linalg.norm(STEPS[0] + STEPS[(NO_DIRS//2) + 1])
 
-S = range((N + 1) ** NO_DIRS) # Observation space
+A = ['V', 'I']                 # Action space
+S = range((N + 1) ** NO_DIRS)  # State space
 
 CARD_DIRS = {
     card_dir: i for card_dir, i in zip('WSEN',range(0, NO_DIRS, NO_DIRS//4))
 }
 
 def discrete_Vicsek(observation):
-    """ Returns the index of DIRS that is closest to the average direction """
+    """
+    Returns the index of DIRS that is closest to the average direction. If the
+    sum of directions is zero (e.g. one north and one south), it will return
+    NO_DIRS = len(DIRS) as an exception case.
+    """
     v = np.array([0.,0.])
     for dir,n in observation.items():
         v += n * STEPS[dir]
