@@ -25,15 +25,15 @@ def gen_fig(data_dir = DATA_DIR, save_file = True, expose_remote = False):
         record_tag = get_record_tag(fname)
         Delta.append(params[record_tag]['Delta'])
 
+    np.save(path.join(data_dir, 'avg_v.npy'), [Delta, avg_v])
     plt.figure()
     plt.plot(Delta, avg_v)
     plt.xlabel('$\\Delta$')
     plt.ylabel('Avg(v)')
     if save_file:
         if expose_remote:
-            data_dir = path.join(path.expanduser('~'),'public_html')
+            data_dir = path.join(path.expanduser('~'), 'public_html')
         plt.savefig(path.join(data_dir, 'avg_v.png'), dpi = 300)
-    np.save(path.join(data_dir, 'avg_v.npy'), [Delta, avg_v])
 
 if __name__ == "__main__":
-    gen_fig(expose_remote = True)
+    gen_fig()
