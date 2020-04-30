@@ -232,7 +232,7 @@ class Birds(object):
     def calc_v(self):
         return sum(STEPS[dir] for dir in self.dirs)/self.numbirds
 
-    def calc_Delta(self):
+    def calc_Delta(self, print_Delta = True):
         if self.learning_alg not in ['Q', 'pol_from_Q'] or self.action_space != ['V','I']:
             return None
 
@@ -247,6 +247,7 @@ class Birds(object):
                     if np.argmax(self.Q_tables[i,s]) != desired_ind:
                         Delta += 1
         Delta /= self.numbirds * len(S)
+        print(f'Delta = {Delta}')
         return Delta
 
     def update(self):

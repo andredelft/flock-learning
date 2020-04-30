@@ -5,7 +5,6 @@ import matplotlib.animation as animation
 import numpy as np
 import os
 from os import path
-from datetime import datetime
 import json
 import pickle
 from tqdm import trange
@@ -13,39 +12,58 @@ import time
 from statistics import stdev
 
 from birds import Birds
+from utils import gen_rt
 
 FIELD_DIMS = 400 * np.array([-1,1,-1,1])
 PLOTSCALE = 160
 
-def gen_record_tag():
-    return datetime.now().strftime("%Y%m%d-%H%M%S")
-
 class Field(object):
 
-
     def __init__(self, numbirds, sim_length = 12500, record_mov = False,
-                 record_data = False, field_dims = FIELD_DIMS, periodic = True,
-                 plotscale = PLOTSCALE, plot = True, comment = '', Q_every = 0,
-                 repos_every = 0, track_time = False, **kwargs):
+                 record_data = False, record_time = False,
+                 record_quantities = [], field_dims = FIELD_DIMS,
+                 periodic = True, plotscale = PLOTSCALE, plot = True,
+                 comment = '', Q_every = 0, repos_every = 0,
+                 record_every = 500, **kwargs):
+
+        if record_time or 't' in record_quantities:
+            self.t_prev = time.perf_counter()
+            self.times = []
 
         self.birds = Birds(numbirds, field_dims, **kwargs)
         self.field_dims = field_dims
         self.stream = self.data_stream()
         self.periodic = periodic
-        self.record_data = record_data
+
+        self.record_quantities = record_quantities
+        self.record_every = record_every
+        if (not self.record_quantities) and record_data:
+            # Record a default set of quantities if no specific are provided
+            # but record_data == True
+            if self.birds.learning_alg == 'Ried':
+                self.record_quantities = ['v', 'policies', 'instincts']
+            elif self.birds.learning_alg == 'Q':
+                self.record_quantities = ['v', 'Delta', 'Q', 'instincts']
+            elif self.birds.learning_alg == 'pol_from_Q':
+                self.record_quantities = ['v', 'instincts']
+
+        self.record_time = ('t' in self.record_quantities) or record_time
+        self.record_v = 'v' in self.record_quantities
+        self.record_Q = 'Q' in self.record_quantities
+        self.record_Delta = 'Delta' in self.record_quantities
+        self.record_policies = 'policies' in self.record_quantities
+        self.record_instincts = 'instincts' in self.record_quantities
+
         self.record_mov = record_mov
         self.Q_every = Q_every
         self.repos_every = repos_every
         self.plot = plot
         sim_length += 1
 
-        self.track_time = track_time
-        if self.track_time:
-            self.times = []
-
-        self.record_tag = gen_record_tag()
+        self.record_tag = gen_rt()
         param_file = 'data/parameters.json'
         params = self.birds.request_params()
+        params['record_every'] = self.record_every
         if self.repos_every:
             params['repos_every'] = self.repos_every
         if comment:
@@ -55,9 +73,9 @@ class Field(object):
             self.plot = True
             params['record_mov'] = True
 
-        # Do not track parameters when no data is recorded and only a plot is
+        # Do not record parameters when no data is recorded and only a plot is
         # generated
-        if not ((not self.record_data) and (not self.record_mov) and self.plot):
+        if not ((not self.record_quantities) and (not self.record_mov) and self.plot):
             if path.isfile(param_file):
                 with open(param_file) as f:
                     existing_pars = json.load(f)
@@ -70,31 +88,12 @@ class Field(object):
                 with open(param_file, 'w') as f:
                     json.dump({self.record_tag: params}, f, indent = 2)
 
-        if self.record_data:
-            # Setup files for tracking birds if record_data == True
-            if self.record_data:
-                self.v_fname = f'data/{self.record_tag}-v.npy'
-                # Initialize v-file so it always exists
-                np.save(self.v_fname, np.array([]))
-                self.v_history = []
+        # Setup the files for tracking the birds
+        if self.record_quantities:
+            self.init_record_files()
 
-                with open(f'data/{self.record_tag}-instincts.json','w') as f:
-                    json.dump(self.birds.instincts, f)
-
-                if self.birds.learning_alg == 'Q':
-                    if self.Q_every:
-                        os.mkdir(f'data/{self.record_tag}-Q')
-                        self.Q_fname = f'data/{self.record_tag}-Q/000000.npy'
-                    else:
-                        self.Q_fname = f'data/{self.record_tag}-Q.npy'
-                    if self.birds.action_space == ['V','I']:
-                        self.Delta_fname = f'data/{self.record_tag}-Delta.npy'
-                        np.save(self.Delta_fname, np.array([]))
-                elif self.birds.learning_alg == 'Ried':
-                    self.policy_fname = f'data/{self.record_tag}-policies.npy'
-
+        # Setup the figure and axes
         if self.plot:
-            # Setup the figure and axes
             self.fig, self.ax = plt.subplots(
                 figsize = (
                     abs(self.field_dims[1] - self.field_dims[0])/plotscale,
@@ -102,10 +101,11 @@ class Field(object):
                 )
             )
 
+        # Kick off the model!
         if record_mov:
             writer = animation.FFMpegWriter(fps=24)
             mov_name = f'movies/{self.record_tag}.mp4'
-            print(f'Initiated record file {self.record_tag}.mp4')
+            print(f'Initiated movie file {self.record_tag}.mp4')
             with writer.saving(self.fig, mov_name, 100):
                 self.setup_plot()
                 for i in trange(sim_length//5, desc="Recording frames"):
@@ -138,6 +138,86 @@ class Field(object):
         # Note that it expects a sequence of artists, thus the trailing comma.
         return self.scat,
 
+    def init_record_files(self):
+        if self.record_v:
+            self.v_fname = f'data/{self.record_tag}-v.npy'
+            # Initialize v-file so it always exists
+            np.save(self.v_fname, np.array([]))
+            self.v_history = []
+
+        if self.record_time:
+            self.t_fname = f'data/{self.record_tag}-t.npy'
+            np.save(self.t_fname, np.array([]))
+
+        if self.record_instincts:
+            with open(f'data/{self.record_tag}-instincts.json','w') as f:
+                json.dump(self.birds.instincts, f)
+
+        if self.record_Q:
+            if self.Q_every:
+                os.mkdir(f'data/{self.record_tag}-Q')
+                self.Q_fname = f'data/{self.record_tag}-Q/000000.npy'
+            else:
+                self.Q_fname = f'data/{self.record_tag}-Q.npy'
+
+        if self.record_Delta:
+            self.Delta_fname = f'data/{self.record_tag}-Delta.npy'
+            np.save(self.Delta_fname, np.array([]))
+
+        if self.record_policies:
+            self.policy_fname = f'data/{self.record_tag}-policies.npy'
+
+        print(f'Record files with tag {self.record_tag} initalized')
+
+
+    def record(self, tstep):
+        if self.record_v:
+            v = self.birds.calc_v()
+            self.v_history.append(v)
+
+        if tstep % self.record_every == 0:
+            if self.record_v:
+                v_data = np.load(self.v_fname)
+                if v_data.size == 0:
+                    v_data = self.v_history
+                else:
+                    v_data = np.append(v_data, self.v_history, axis = 0)
+                np.save(self.v_fname, v_data)
+                self.v_history = []
+
+            if self.record_Q:
+                if self.Q_every and tstep % self.Q_every == 0:
+                    self.Q_fname = f'data/{self.record_tag}-Q/{tstep:06}.npy'
+                np.save(
+                    self.Q_fname,
+                    np.array([Q.table for Q in self.birds.Qs])
+                )
+
+            if self.record_Delta:
+                if self.birds.learning_alg == 'Q':
+                    Delta = self.birds.calc_Delta()
+                    Delta_data = np.load(self.Delta_fname)
+                    Delta_data = np.append(Delta_data, Delta)
+                    np.save(self.Delta_fname, Delta_data)
+
+            if self.record_policies:
+                np.save(self.policy_fname, self.birds.policies)
+
+            if self.record_time:
+                if tstep != 0:
+                    # del self.times[0]
+                    print(
+                        f'{round(sum(self.times)/len(self.times),3)}',
+                        f'± {round(stdev(self.times), 3)} s/timestep'
+                    )
+                t_data = np.load(self.t_fname)
+                t_data = np.append(t_data, self.times, axis = 0)
+                np.save(self.t_fname, t_data)
+
+                self.times = []
+
+            print(f'Recorded up to timestep {tstep}')
+
     def data_stream(self):
 
         tstep = 0
@@ -164,56 +244,8 @@ class Field(object):
                             self.field_dims[3] - self.field_dims[2]
                         )
 
-            if self.record_data:
-                # Calculate average flight direction v of the birds and record it.
-                v = self.birds.calc_v()
-                self.v_history.append(v)
-
-                if tstep % 500 == 0:
-                    v_data = np.load(self.v_fname)
-                    if v_data.size == 0:
-                        v_data = self.v_history
-                    else:
-                        v_data = np.append(v_data, self.v_history, axis = 0)
-                    np.save(self.v_fname, v_data)
-                    self.v_history = []
-
-                    if self.Q_every and tstep % self.Q_every == 0:
-                        self.Q_fname = f'data/{self.record_tag}-Q/{tstep:06}.npy'
-
-                    if self.birds.learning_alg == 'Q':
-                        np.save(
-                            self.Q_fname,
-                            np.array([Q.table for Q in self.birds.Qs])
-                        )
-                        if self.birds.action_space == ['V','I']:
-                            Delta = self.birds.calc_Delta()
-                            print(f'Delta = {Delta}')
-                            Delta_data = np.load(self.Delta_fname)
-                            Delta_data = np.append(Delta_data, Delta)
-                            np.save(self.Delta_fname, Delta_data)
-                    elif self.birds.learning_alg == 'Ried':
-                        np.save(self.policy_fname, self.birds.policies)
-                    elif self.birds.learning_alg == 'pol_from_Q' and tstep == 0:
-                        # Delta is already calculated (and constant)
-                        print(f'Delta = {self.birds.Delta}')
-
-                    print(
-                        f'Recorded up to timestep {tstep}' if tstep != 0
-                        else f'Record file {self.record_tag} initalized'
-                    )
-                    if self.track_time and tstep != 0:
-                        del self.times[0]
-                        # First is always longer, because the saving time is
-                        # included, hence it is excluded from the statistics
-                        # NB: Saving takes around 2.6 seconds. Might be
-                        # worthwile to optimize (for 1E6 tsteps, saving each 500
-                        # steps takes 13 hrs in total!)
-                        print(
-                            f'{round(sum(self.times)/len(self.times),3)}',
-                            f'± {round(stdev(self.times), 3)} s/timestep'
-                        )
-                        self.times = []
+            if self.record_quantities and tstep != 0:
+                self.record(tstep)
 
             if self.repos_every and tstep % self.repos_every == 0:
                 self.birds.initialize_positions(self.field_dims)
@@ -226,12 +258,11 @@ class Field(object):
     def update(self,i): # When used in FuncAnimation, this function needs an
                         # additional argument for some reason (hence the i)
         """Update the scatter plot."""
-        if self.track_time:
-            start = time.perf_counter()
         data = next(self.stream)
-        if self.track_time:
-            finish = time.perf_counter()
-            self.times.append(finish - start)
+        if self.record_time:
+            t_now = time.perf_counter()
+            self.times.append(t_now - self.t_prev)
+            self.t_prev = t_now
 
         if self.plot:
             # Set x and y data...

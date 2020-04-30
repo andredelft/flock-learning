@@ -1,22 +1,13 @@
 from matplotlib import pyplot as plt
-# from matplotlib import style
 import numpy as np
 from os import path
 from glob import glob
 import json
-import pickle
-import regex
 
-from birds import discrete_Vicsek, CARD_DIRS
-
-re_tag = regex.compile(r'^[0-9]+-[0-9]+|^desired')
-
-def _find_tag(fpath):
-    fname = path.split(fpath)[1]
-    return re_tag.search(fname).group()
+from utils import get_rt
 
 def _parse_fpath(fpath, data_dir):
-    record_tag = _find_tag(fpath)
+    record_tag = get_rt(fpath)
     if fpath == record_tag:
         data_dir = 'data'
         fname = ''
@@ -53,13 +44,15 @@ def plot_Delta(fname, **kwargs):
     data = np.load(fname)
     plt.plot(range(0, 500 * len(data), 500), data, **kwargs)
 
-def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False, legend = True, **kwargs):
+def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
+             legend = True, **kwargs):
+
     if expose_remote:
         plt.figure()
     with open(path.join(data_dir,'parameters.json')) as f:
-        pars = json.load(f)
+        params = json.load(f)
     for fname in sorted(glob(f'{data_dir}/*-{quantity}.npy')):
-        record_tag = _find_tag(fname)
+        record_tag = get_rt(fname)
         if quantity == 'v':
             plot_mag(
                 fname, cap = cap,
@@ -71,13 +64,31 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
                 fname, label = record_tag,
                 **kwargs
             )
+        elif quantity == 't':
+            times = np.load(fname)
+            comment = params[record_tag].pop('comment', '')
+            time = f'{round(sum(times), 2)} s'
+            if comment:
+                label = f'{comment} ({time})'
+            else:
+                label = time
+            plt.plot(times, label = label)
+
     if quantity == 'v':
         plt.title(f'Magnitude of average velocity vector (Capsize = {cap})')
         plt.ylabel('v')
     elif quantity == 'Delta':
         plt.ylabel('$\Delta$')
+    elif quantity == 't':
+        plt.ylabel('Time (sec)')
+
     plt.xlabel('Timestep')
+
     if legend:
         plt.legend()
+
     if expose_remote:
-        plt.savefig(f'../../public_html/{quantity}.png', dpi = 300)
+        plt.savefig(
+            path.join(path.expanduser('~'), 'public_html/{quantity}.png'),
+            dpi = 300
+        )

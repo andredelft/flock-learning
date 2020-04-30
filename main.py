@@ -5,14 +5,40 @@ import numpy as np
 from random import sample
 from concurrent.futures import ProcessPoolExecutor
 
-from field import Field, gen_record_tag
+from field import Field
+from utils import gen_rt
 
+def benchmark():
+    Field(
+        100, plot = False, record_mov = False, learning_alg = 'Q',
+        sim_length = 5000, record_data = True, comment = 'Reference'
+    )
+    Field(
+        100, plot = False, record_mov = False, learning_alg = 'Q',
+        sim_length = 5000, record_quantities = ['t', 'v'],
+        comment = 'Tracking v and t'
+    )
+    Field(
+        100, plot = False, record_mov = False, learning_alg = 'Q',
+        sim_length = 5000, record_quantities = ['t', 'Delta'],
+        comment = 'Tracking Delta and t'
+    )
+    Field(
+        100, plot = False, record_mov = False, learning_alg = 'Q',
+        sim_length = 5000, record_quantities = ['t', 'Delta', 'Q'],
+        comment = 'Tracking Delta, Q and t'
+    )
+    Field(
+        100, plot = False, record_mov = False, learning_alg = 'Q',
+        sim_length = 5000, record_quantities = ['t', 'Delta', 'Q'],
+        record_every = 1000, comment = 'Tracking Delta, Q and t (record every 1000)'
+    )
 
 def load_from_Q(record_tag = '', data_dir = 'data', plot = False,
                 record_data = True, Q_tables = None, params = dict(), **kwargs):
 
     if not record_tag:
-        record_tag = gen_record_tag()
+        record_tag = gen_rt()
     if not params:
         with open(path.join(data_dir, 'parameters.json')) as f:
             params = json.load(f)[record_tag]
@@ -32,9 +58,8 @@ def load_from_Q(record_tag = '', data_dir = 'data', plot = False,
     if 'Q_params' in params.keys():
         params.update(params.pop('Q_params'))
     # pop some depracated or unused params
-    for key in ['no_dirs', 'observe_direction', 'comment']:
-        if key in params.keys():
-            params.pop(key)
+    [params.pop(key, '') for key in ['no_dirs', 'observe_direction', 'comment']]
+
     Field(
         no_birds, plot = plot, record_data = record_data,
         learning_alg = 'pol_from_Q', **params, **kwargs
@@ -79,15 +104,13 @@ def mp_wrapper(indexed_pars):
 
 if __name__ == '__main__':
 
+    # Four ways of running the model:
+    #
     # 1. Start a regular simulation by creating a Field instance. Things like
     #    recording data and parameter specifications are all handled as keyword
     #    arguments.
 
-    Field(
-        100, record_data = True, plot = False, record_mov = False,
-        learning_alg = 'Q', track_time = True, repos_every = 10_000,
-        sim_length = 40_000
-    )
+    benchmark()
 
     # 2. Start a simulation with fixed Q-tables from a given file (the output of
     #    a learning run)
