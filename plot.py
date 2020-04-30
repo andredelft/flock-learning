@@ -89,6 +89,6 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
 
     if expose_remote:
         plt.savefig(
-            path.join(path.expanduser('~'), 'public_html/{quantity}.png'),
+            path.join(path.expanduser('~'), f'public_html/{quantity}.png'),
             dpi = 300
         )

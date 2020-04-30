@@ -7,32 +7,43 @@ from concurrent.futures import ProcessPoolExecutor
 
 from field import Field
 from utils import gen_rt
+import plot as p
 
 def benchmark():
     Field(
-        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        100, sim_length = 10000, plot = False, learning_alg = 'Q',
         record_time = True, record_data = True,
-        comment = 'Reference'
+        comment = 'Reference: Q, v, Delta, t'
     )
     Field(
-        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        100, sim_length = 10000, plot = False, learning_alg = 'Q',
         record_quantities = ['t', 'v'],
         comment = 'Tracking v and t'
     )
     Field(
-        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        100, sim_length = 10000, plot = False, learning_alg = 'Q',
         record_quantities = ['t', 'Delta'],
         comment = 'Tracking Delta and t'
     )
     Field(
-        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        100, sim_length = 10000, plot = False, learning_alg = 'Q',
+        record_quantities = ['t', 'Q'],
+        comment = 'Tracking Q and t'
+    )
+    Field(
+        100, sim_length = 10000, plot = False, learning_alg = 'Q',
         record_quantities = ['t', 'Delta', 'Q'],
         comment = 'Tracking Delta, Q and t'
     )
     Field(
-        100, sim_length = 5000, plot = False, learning_alg = 'Q',
+        100, sim_length = 10000, plot = False, learning_alg = 'Q',
         record_quantities = ['t', 'Delta', 'Q'], record_every = 1000,
         comment = 'Tracking Delta, Q and t (record every 1000)'
+    )
+    Field(
+        100, sim_length = 10000, plot = False, learning_alg = 'Q',
+        record_quantities = ['t', 'Delta', 'Q'], record_every = 5000,
+        comment = 'Tracking Delta, Q and t (record every 5000)'
     )
 
 def load_from_Q(record_tag = '', data_dir = 'data', plot = False,
