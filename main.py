@@ -116,13 +116,17 @@ def mp_wrapper(indexed_pars):
 
 if __name__ == '__main__':
 
-    # Four ways of running the model:
+    # Different ways of running the model:
     #
     # 1. Start a regular simulation by creating a Field instance. Things like
     #    recording data and parameter specifications are all handled as keyword
     #    arguments.
 
-    benchmark()
+    # Field(
+    #     100, sim_length = 10000, plot = False, learning_alg = 'Q',
+    #     record_quantities = ['t', 'Delta', 'Q'], record_every = 5000,
+    #     comment = 'Tracking Delta, Q and t (record every 5000)'
+    # )
 
     # 2. Start a simulation with fixed Q-tables from a given file (the output of
     #    a learning run)
@@ -151,3 +155,11 @@ if __name__ == '__main__':
     # with ProcessPoolExecutor() as executor:
     #     for _ in executor.map(mp_wrapper, enumerate(pars)):
     #         pass
+
+    # 5. Run a benchmark test and create a figure with the results
+
+    benchmark()
+    p.plot_all(
+        quantity = 't', save_as = 'xmaris_bm.png',
+        title = 'Benchmark test on xmaris', legend = 8
+    )
