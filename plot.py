@@ -45,13 +45,13 @@ def plot_Delta(fname, **kwargs):
     plt.plot(range(0, 500 * len(data), 500), data, **kwargs)
 
 def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
-             legend = True, **kwargs):
+             legend = True, title = '', save_as = '', **kwargs):
 
     if expose_remote:
         plt.figure()
     with open(path.join(data_dir,'parameters.json')) as f:
         params = json.load(f)
-    for fname in sorted(glob(f'{data_dir}/*-{quantity}.npy')):
+    for i, fname in enumerate(sorted(glob(f'{data_dir}/*-{quantity}.npy'))):
         record_tag = get_rt(fname)
         if quantity == 'v':
             plot_mag(
@@ -66,13 +66,19 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
             )
         elif quantity == 't':
             times = np.load(fname)
+            # cum_times = []
+            # cum_time = 0
+            # for time in times:
+            #     cum_time += time
+            #     cum_times.append(cum_time)
+            tot_time = sum(times)
             comment = params[record_tag].pop('comment', '')
-            time = f'{round(sum(times), 2)} s'
+            time = f'{round(tot_time, 2)} s'
             if comment:
                 label = f'{comment} ({time})'
             else:
                 label = time
-            plt.plot(times, label = label)
+            plt.bar(i, tot_time, label = label)
 
     if quantity == 'v':
         plt.title(f'Magnitude of average velocity vector (Capsize = {cap})')
@@ -84,11 +90,20 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
 
     plt.xlabel('Timestep')
 
+    if title:
+        plt.title(title)
+
     if legend:
-        plt.legend()
+        if type(legend) in [str, int]:
+            # Pass in the legend location via legend variable 
+            plt.legend(loc = legend)
+        else:
+            plt.legend()
 
     if expose_remote:
         plt.savefig(
             path.join(path.expanduser('~'), f'public_html/{quantity}.png'),
             dpi = 300
         )
+    elif save_as:
+        plt.savefig(path.join(data_dir, save_as), dpi = 300)

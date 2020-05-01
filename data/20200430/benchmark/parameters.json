@@ -1,0 +1,135 @@
+{
+  "20200430-205430": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 500,
+    "comment": "Reference: Q, v, Delta, t"
+  },
+  "20200430-210439": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 500,
+    "comment": "Tracking v and t"
+  },
+  "20200430-211343": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 500,
+    "comment": "Tracking Delta and t"
+  },
+  "20200430-212339": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 500,
+    "comment": "Tracking Q and t"
+  },
+  "20200430-213244": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 500,
+    "comment": "Tracking Delta, Q and t"
+  },
+  "20200430-214238": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 1000,
+    "comment": "Tracking Delta, Q and t (record every 1000)"
+  },
+  "20200430-215209": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 5000,
+    "comment": "Tracking Delta, Q and t (record every 5000)"
+  }
+}
