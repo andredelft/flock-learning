@@ -162,7 +162,8 @@ class Field(object):
 
         if self.record_Delta:
             self.Delta_fname = f'data/{self.record_tag}-Delta.npy'
-            np.save(self.Delta_fname, np.array([]))
+            Delta = self.birds.calc_Delta()
+            np.save(self.Delta_fname, np.array([Delta]))
 
         if self.record_policies:
             self.policy_fname = f'data/{self.record_tag}-policies.npy'

@@ -46,27 +46,31 @@ def benchmark():
         comment = 'Tracking Delta, Q and t (record every 5000)'
     )
 
-def load_from_Q(record_tag = '', data_dir = 'data', plot = False,
+def load_from_Q(fname = '', record_tag = '', data_dir = 'data', plot = False,
                 record_data = True, Q_tables = None, params = dict(), **kwargs):
 
-    if not record_tag:
-        record_tag = gen_rt()
     if not params:
         with open(path.join(data_dir, 'parameters.json')) as f:
             params = json.load(f)[record_tag]
         params['comment'] = record_tag
         params.pop('learning_alg')
+
     no_birds = params.pop('no_birds')
+
     instinct_file = path.join(data_dir, f'{record_tag}-instincts.json')
     if path.isfile(instinct_file):
         with open(instinct_file) as f:
             instincts = json.load(f)
             params['instincts'] = instincts
+
     if type(Q_tables) == np.ndarray:
         params['Q_tables'] = Q_tables
+    elif fname:
+        params['Q_file'] = fname
     else:
         Q_file = path.join(data_dir, f'{record_tag}-Q.npy')
         params['Q_file'] = Q_file
+
     if 'Q_params' in params.keys():
         params.update(params.pop('Q_params'))
     # pop some depracated or unused params
@@ -123,17 +127,17 @@ if __name__ == '__main__':
     #    arguments.
 
     # Field(
-    #     100, sim_length = 10000, plot = False, learning_alg = 'Q',
-    #     record_quantities = ['t', 'Delta', 'Q'], record_every = 5000,
-    #     comment = 'Tracking Delta, Q and t (record every 5000)'
+    #     100, sim_length = 10000, plot = True, learning_alg = 'Q',
+    #     record_data = True, record_every = 20
     # )
 
     # 2. Start a simulation with fixed Q-tables from a given file (the output of
     #    a learning run)
 
     # load_from_Q(
-    #     record_tag, data_dir = f'data/{date}', record_data = True,
-    #     record_mov = True, sim_length = 15_000, plot = False
+    #     fname = 'data/20200501-164233-Q/1130000.npy', data_dir = 'data',
+    #     record_tag = '20200501-164233', record_data = False,
+    #     record_mov = False, sim_length = 15_000, plot = True
     # )
 
     # 3. Start a simulation with fixed Q-values from a specific value of Delta
@@ -158,8 +162,8 @@ if __name__ == '__main__':
 
     # 5. Run a benchmark test and create a figure with the results
 
-    benchmark()
-    p.plot_all(
-        quantity = 't', save_as = 'xmaris_bm.png',
-        title = 'Benchmark test on xmaris', legend = 8
-    )
+    # benchmark()
+    # p.plot_all(
+    #     quantity = 't', save_as = 'xmaris_bm.png',
+    #     title = 'Benchmark test on xmaris', legend = 8
+    # )

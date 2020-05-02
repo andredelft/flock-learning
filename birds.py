@@ -107,9 +107,9 @@ class Birds(object):
         if self.learning_alg == 'pol_from_Q':
             if (not Q_file) and (type(Q_tables) != np.ndarray):
                 raise Exception('No Q-values provided')
-            elif Q_file:
-                Q_tables = np.load(Q_file)
             else:
+                if Q_file:
+                    Q_tables = np.load(Q_file)
                 for i in range(self.numbirds):
                     for s in range(self.policies.shape[1]):
                         self.policies[i,s,np.argmax(Q_tables[i,s])] = 1
