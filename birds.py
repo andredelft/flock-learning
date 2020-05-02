@@ -239,14 +239,17 @@ class Birds(object):
         Delta = 0
         for i in range(self.numbirds):
             desired_ind = 1 if self.instincts[i] == 'E' else 0
-            for s in S:
-                if self.learning_alg == 'Q':
-                    if np.argmax(self.Qs[i].table[s]) != desired_ind:
-                        Delta += 1
-                elif self.learning_alg == 'pol_from_Q':
-                    if np.argmax(self.Q_tables[i,s]) != desired_ind:
-                        Delta += 1
-        Delta /= self.numbirds * len(S)
+
+            if self.learning_alg == 'Q':
+                Delta += np.sum(
+                    self.Qs[i].table[:,desired_ind] - self.Qs[i].table[:,1-desired_ind] < 0
+                )
+            elif self.learning_alg == 'pol_from_Q':
+                Delta += np.sum(
+                    self.Q_tables[i,:,desired_ind] - self.Q_tables[i,:,1-desired_ind] < 0
+                )
+
+        Delta /= self.numbirds * len(self.state_space)
         print(f'Delta = {Delta}')
         return Delta
 
