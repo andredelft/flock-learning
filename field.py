@@ -233,39 +233,39 @@ class Field(object):
             # Note that it expects a sequence of artists, thus the trailing comma.
             return self.scat,
 
-     def data_stream(self):
+    def data_stream(self):
 
-         tstep = 0
-         while True:
-             self.birds.update()
+        tstep = 0
+        while True:
+            self.birds.update()
 
-             # Periodic boundaries
-             if self.periodic:
-                 for i in range(self.birds.numbirds):
-                     if self.birds.positions[i,0] < self.field_dims[0]:
-                         self.birds.positions[i,0] += (
-                             self.field_dims[1] - self.field_dims[0]
-                         )
-                     elif self.birds.positions[i,0] > self.field_dims[1]:
-                         self.birds.positions[i,0] -= (
-                             self.field_dims[1] - self.field_dims[0]
-                         )
-                     if self.birds.positions[i,1] < self.field_dims[2]:
-                         self.birds.positions[i,1] += (
-                             self.field_dims[3] - self.field_dims[2]
-                         )
-                     elif self.birds.positions[i,1] > self.field_dims[3]:
-                         self.birds.positions[i,1] -= (
-                             self.field_dims[3] - self.field_dims[2]
-                         )
+            # Periodic boundaries
+            if self.periodic:
+                for i in range(self.birds.numbirds):
+                    if self.birds.positions[i,0] < self.field_dims[0]:
+                        self.birds.positions[i,0] += (
+                            self.field_dims[1] - self.field_dims[0]
+                        )
+                    elif self.birds.positions[i,0] > self.field_dims[1]:
+                        self.birds.positions[i,0] -= (
+                            self.field_dims[1] - self.field_dims[0]
+                        )
+                    if self.birds.positions[i,1] < self.field_dims[2]:
+                        self.birds.positions[i,1] += (
+                            self.field_dims[3] - self.field_dims[2]
+                        )
+                    elif self.birds.positions[i,1] > self.field_dims[3]:
+                        self.birds.positions[i,1] -= (
+                            self.field_dims[3] - self.field_dims[2]
+                        )
 
-             if self.record_quantities:
-                 self.record(tstep)
+            if self.record_quantities:
+                self.record(tstep)
 
-             if self.repos_every and tstep % self.repos_every == 0:
-                 self.birds.initialize_positions(self.field_dims)
-                 # Redo observation step with new positions
-                 self.birds.perform_observations()
+            if self.repos_every and tstep % self.repos_every == 0:
+                self.birds.initialize_positions(self.field_dims)
+                # Redo observation step with new positions
+                self.birds.perform_observations()
 
-             tstep += 1
-             yield self.birds.positions
+            tstep += 1
+            yield self.birds.positions
