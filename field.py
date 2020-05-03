@@ -35,30 +35,29 @@ class Field(object):
         self.stream = self.data_stream()
         self.periodic = periodic
 
-        self.record_quantities = record_quantities
         self.record_every = record_every
-        if (not self.record_quantities) and record_data:
-            # Record a default set of quantities if no specific are provided
-            # but record_data == True
+        if (not record_quantities) and record_data:
+            # Record a default set of quantities to be recorded if no specific
+            # quantities are provided but record_data == True
             if self.birds.learning_alg == 'Ried':
-                self.record_quantities = ['v', 'policies', 'instincts']
+                record_quantities = ['v', 'policies', 'instincts']
             elif self.birds.learning_alg == 'Q':
-                self.record_quantities = ['v', 'Delta', 'Q', 'instincts']
+                record_quantities = ['v', 'Delta', 'Q', 'instincts']
             elif self.birds.learning_alg == 'pol_from_Q':
-                self.record_quantities = ['v', 'instincts']
+                record_quantities = ['v', 'instincts']
 
-        self.record_time = ('t' in self.record_quantities) or record_time
-        self.record_v = 'v' in self.record_quantities
-        self.record_Q = 'Q' in self.record_quantities
-        self.record_Delta = 'Delta' in self.record_quantities
-        self.record_policies = 'policies' in self.record_quantities
-        self.record_instincts = 'instincts' in self.record_quantities
+        self.record_time = record_time
+        self.record_v = 'v' in record_quantities
+        self.record_Q = 'Q' in record_quantities
+        self.record_Delta = 'Delta' in record_quantities
+        self.record_policies = 'policies' in record_quantities
+        self.record_instincts = 'instincts' in record_quantities
 
         self.record_mov = record_mov
         self.Q_every = Q_every
         self.repos_every = repos_every
         self.plot = plot
-        sim_length += 1
+        self.sim_length = sim_length + 1 # include zero, but don't count it
 
         self.record_tag = gen_rt()
         param_file = 'data/parameters.json'
@@ -156,20 +155,18 @@ class Field(object):
         if self.record_Q:
             if self.Q_every:
                 os.mkdir(f'data/{self.record_tag}-Q')
-                self.Q_fname = f'data/{self.record_tag}-Q/000000.npy'
+                self.Q_fname = f'data/{self.record_tag}-Q/0000000.npy'
             else:
                 self.Q_fname = f'data/{self.record_tag}-Q.npy'
 
         if self.record_Delta:
             self.Delta_fname = f'data/{self.record_tag}-Delta.npy'
-            Delta = self.birds.calc_Delta()
-            np.save(self.Delta_fname, np.array([Delta]))
+            np.save(self.Delta_fname, np.array([]))
 
         if self.record_policies:
             self.policy_fname = f'data/{self.record_tag}-policies.npy'
 
         print(f'Record files with tag {self.record_tag} initalized')
-
 
     def record(self, tstep):
         if self.record_v:
@@ -219,46 +216,9 @@ class Field(object):
 
             print(f'Recorded up to timestep {tstep}')
 
-    def data_stream(self):
-
-        tstep = 0
-        while True:
-            self.birds.update()
-
-            # Periodic boundaries
-            if self.periodic:
-                for i in range(self.birds.numbirds):
-                    if self.birds.positions[i,0] < self.field_dims[0]:
-                        self.birds.positions[i,0] += (
-                            self.field_dims[1] - self.field_dims[0]
-                        )
-                    elif self.birds.positions[i,0] > self.field_dims[1]:
-                        self.birds.positions[i,0] -= (
-                            self.field_dims[1] - self.field_dims[0]
-                        )
-                    if self.birds.positions[i,1] < self.field_dims[2]:
-                        self.birds.positions[i,1] += (
-                            self.field_dims[3] - self.field_dims[2]
-                        )
-                    elif self.birds.positions[i,1] > self.field_dims[3]:
-                        self.birds.positions[i,1] -= (
-                            self.field_dims[3] - self.field_dims[2]
-                        )
-
-            if self.record_quantities and tstep != 0:
-                self.record(tstep)
-
-            if self.repos_every and tstep % self.repos_every == 0:
-                self.birds.initialize_positions(self.field_dims)
-                # Redo observation step with new positions
-                self.birds.perform_observations()
-
-            tstep += 1
-            yield self.birds.positions
-
     def update(self,i): # When used in FuncAnimation, this function needs an
                         # additional argument for some reason (hence the i)
-        """Update the scatter plot."""
+
         data = next(self.stream)
         if self.record_time:
             t_now = time.perf_counter()
@@ -266,9 +226,46 @@ class Field(object):
             self.t_prev = t_now
 
         if self.plot:
-            # Set x and y data...
+            # Update the scatter plot
             self.scat.set_offsets(data[:, :2])
 
             # We need to return the updated artist for FuncAnimation to draw..
             # Note that it expects a sequence of artists, thus the trailing comma.
             return self.scat,
+
+     def data_stream(self):
+
+         tstep = 0
+         while True:
+             self.birds.update()
+
+             # Periodic boundaries
+             if self.periodic:
+                 for i in range(self.birds.numbirds):
+                     if self.birds.positions[i,0] < self.field_dims[0]:
+                         self.birds.positions[i,0] += (
+                             self.field_dims[1] - self.field_dims[0]
+                         )
+                     elif self.birds.positions[i,0] > self.field_dims[1]:
+                         self.birds.positions[i,0] -= (
+                             self.field_dims[1] - self.field_dims[0]
+                         )
+                     if self.birds.positions[i,1] < self.field_dims[2]:
+                         self.birds.positions[i,1] += (
+                             self.field_dims[3] - self.field_dims[2]
+                         )
+                     elif self.birds.positions[i,1] > self.field_dims[3]:
+                         self.birds.positions[i,1] -= (
+                             self.field_dims[3] - self.field_dims[2]
+                         )
+
+             if self.record_quantities:
+                 self.record(tstep)
+
+             if self.repos_every and tstep % self.repos_every == 0:
+                 self.birds.initialize_positions(self.field_dims)
+                 # Redo observation step with new positions
+                 self.birds.perform_observations()
+
+             tstep += 1
+             yield self.birds.positions
