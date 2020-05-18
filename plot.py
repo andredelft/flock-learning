@@ -78,7 +78,8 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
                 label = f'{comment} ({time})'
             else:
                 label = time
-            plt.bar(i, tot_time, label = label)
+            # plt.bar(i, tot_time, label = label)
+            plt.plot(times, label = label)
 
     if quantity == 'v':
         plt.title(f'Magnitude of average velocity vector (Capsize = {cap})')
@@ -93,9 +94,9 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
     if title:
         plt.title(title)
 
-    if legend:
+    if legend or legend == 0:
         if type(legend) in [str, int]:
-            # Pass in the legend location via legend variable 
+            # Pass in the legend location via legend variable
             plt.legend(loc = legend)
         else:
             plt.legend()
