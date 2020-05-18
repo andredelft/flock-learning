@@ -12,7 +12,7 @@ R = 5    # Reward signal
 
 alpha   = 0.1  # Learning rate
 gamma   = 0.9  # Disount factor
-epsilon = 0.9  # Epsilon-greedy parameter
+epsilon = 0.5  # Epsilon-greedy parameter
 
 NO_DIRS = 2 ** 3 # exponent can be 2 or 3 (state space explodes for > 3)
 DIRS = np.linspace(-np.pi, np.pi, NO_DIRS + 1)[:NO_DIRS]

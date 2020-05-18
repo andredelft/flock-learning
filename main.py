@@ -114,7 +114,7 @@ def mp_wrapper(indexed_pars):
     time.sleep(5 * i) # To make sure they don't start at exactly the same time,
                       # resulting in the same record tag
     Field(
-        100, record_data = True, plot = False, sim_length = 40_000,
+        100, record_data = True, plot = False, sim_length = 80_000,
         learning_alg = 'Q', gradient_reward = True, **pars
     )
 
@@ -126,11 +126,11 @@ if __name__ == '__main__':
     #    recording data and parameter specifications are all handled as keyword
     #    arguments.
 
-    Field(
-        100, sim_length = 10_000_000, plot = False, learning_alg = 'Q',
-        record_quantities = ['Delta', 'Q', 'instincts'], record_every = 5000,
-        Q_every = 50_000
-    )
+    # Field(
+    #     100, sim_length = 10_000_000, plot = False, learning_alg = 'Q',
+    #     record_quantities = ['Delta', 'Q', 'instincts'], record_every = 5000,
+    #     Q_every = 50_000
+    # )
 
     # 2. Start a simulation with fixed Q-tables from a given file (the output of
     #    a learning run)
@@ -149,22 +149,35 @@ if __name__ == '__main__':
     #    the option of adjusting parameters in different runs (as exemplified
     #    below with some learning pars)
 
-    # par_tweaks = [
-    #     ('repos_every', 0),
-    #     ('repos_every', 1000),
-    #     ('repos_every', 5000),
-    #     ('repos_every', 10_000),
-    # ]
-    # pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
-    #
-    # with ProcessPoolExecutor() as executor:
-    #     for _ in executor.map(mp_wrapper, enumerate(pars)):
-    #         pass
+    par_tweaks = [
+        ('alpha', 0.3),
+        ('alpha', 0.5),
+        ('alpha', 0.7),
+        ('alpha', 0.9),
+        ('gamma', 0.1),
+        ('gamma', 0.3),
+        ('gamma', 0.5),
+        ('gamma', 0.7),
+        ('epsilon', 0.1),
+        ('epsilon', 0.3),
+        ('epsilon', 0.7),
+        ('epsilon', 0.9),
+    ]
+    pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
+
+    with ProcessPoolExecutor() as executor:
+        for _ in executor.map(mp_wrapper, enumerate([{'comment': 'reference'} for _ in range(2)])):
+            pass
+        for _ in executor.map(mp_wrapper, enumerate(pars)):
+            pass
+        for _ in executor.map(mp_wrapper, enumerate([{'comment': 'reference'} for _ in range(2)])):
+            pass
+
 
     # 5. Run a benchmark test and create a figure with the results
 
     # benchmark()
     # p.plot_all(
-    #     quantity = 't', save_as = 'xmaris_bm.png',
-    #     title = 'Benchmark test on xmaris', legend = 8
+    #     quantity = 't', save_as = 'benchmark.png',
+    #     title = 'Benchmark test', legend = 8
     # )
