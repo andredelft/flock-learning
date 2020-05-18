@@ -52,6 +52,7 @@ class Field(object):
         self.record_Delta = 'Delta' in record_quantities
         self.record_policies = 'policies' in record_quantities
         self.record_instincts = 'instincts' in record_quantities
+        self.record_quantities = record_quantities or record_time
 
         self.record_mov = record_mov
         self.Q_every = Q_every
@@ -74,7 +75,7 @@ class Field(object):
 
         # Do not record parameters when no data is recorded and only a plot is
         # generated
-        if not ((not self.record_quantities) and (not self.record_mov) and self.plot):
+        if not ((not record_quantities) and (not self.record_mov) and self.plot):
             if path.isfile(param_file):
                 with open(param_file) as f:
                     existing_pars = json.load(f)
@@ -88,7 +89,7 @@ class Field(object):
                     json.dump({self.record_tag: params}, f, indent = 2)
 
         # Setup the files for tracking the birds
-        if self.record_quantities:
+        if record_quantities:
             self.init_record_files()
 
         # Setup the figure and axes
@@ -155,9 +156,8 @@ class Field(object):
         if self.record_Q:
             if self.Q_every:
                 os.mkdir(f'data/{self.record_tag}-Q')
-                self.Q_fname = f'data/{self.record_tag}-Q/0000000.npy'
-            else:
-                self.Q_fname = f'data/{self.record_tag}-Q.npy'
+            
+            self.Q_fname = f'data/{self.record_tag}-Q.npy'
 
         if self.record_Delta:
             self.Delta_fname = f'data/{self.record_tag}-Delta.npy'
@@ -185,11 +185,15 @@ class Field(object):
 
             if self.record_Q:
                 if self.Q_every and tstep % self.Q_every == 0:
-                    self.Q_fname = f'data/{self.record_tag}-Q/{tstep:06}.npy'
-                np.save(
-                    self.Q_fname,
-                    np.array([Q.table for Q in self.birds.Qs])
-                )
+                    np.save(
+                        f'data/{self.record_tag}-Q/{tstep:08}.npy',
+                        np.array([Q.table for Q in self.birds.Qs])
+                    )
+                else:
+                    np.save(
+                        self.Q_fname,
+                        np.array([Q.table for Q in self.birds.Qs])
+                    )
 
             if self.record_Delta:
                 if self.birds.learning_alg == 'Q':

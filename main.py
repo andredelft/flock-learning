@@ -74,7 +74,7 @@ def load_from_Q(fname = '', record_tag = '', data_dir = 'data', plot = False,
     if 'Q_params' in params.keys():
         params.update(params.pop('Q_params'))
     # pop some depracated or unused params
-    [params.pop(key, '') for key in ['no_dirs', 'observe_direction', 'comment']]
+    [params.pop(key, '') for key in ['no_dirs', 'observe_direction', 'comment', 'record_every']]
 
     Field(
         no_birds, plot = plot, record_data = record_data,
@@ -126,10 +126,11 @@ if __name__ == '__main__':
     #    recording data and parameter specifications are all handled as keyword
     #    arguments.
 
-    # Field(
-    #     100, sim_length = 10000, plot = True, learning_alg = 'Q',
-    #     record_data = True, record_every = 20
-    # )
+    Field(
+        100, sim_length = 10_000_000, plot = False, learning_alg = 'Q',
+        record_quantities = ['Delta', 'Q', 'instincts'], record_every = 5000,
+        Q_every = 50_000
+    )
 
     # 2. Start a simulation with fixed Q-tables from a given file (the output of
     #    a learning run)

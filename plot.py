@@ -40,9 +40,9 @@ def plot_mag_arg(fname):
     a[1].set_ylabel('Arg(v)')
     a[1].plot(avg([np.arctan2(v[1],v[0]) for v in data], cap = 100))
 
-def plot_Delta(fname, **kwargs):
+def plot_Delta(fname, record_every = 500, **kwargs):
     data = np.load(fname)
-    plt.plot(range(0, 500 * len(data), 500), data, **kwargs)
+    plt.plot(range(0, record_every * len(data), record_every), data, **kwargs)
 
 def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
              legend = True, title = '', save_as = '', **kwargs):
@@ -60,8 +60,9 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
                 **kwargs
             )
         elif quantity == 'Delta':
+            record_every = params[record_tag].pop('record_every', 500)
             plot_Delta(
-                fname, label = record_tag,
+                fname, label = record_tag, record_every = record_every,
                 **kwargs
             )
         elif quantity == 't':

@@ -1,0 +1,216 @@
+{
+  "20200501-164233": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 5000
+  },
+  "20200502-150036": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 5000
+  },
+  "20200503-123922": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.37756439567139155,
+    "record_every": 500
+  },
+  "20200503-124043": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.42514250876390797,
+    "record_every": 500
+  },
+  "20200503-161553": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 5000
+  },
+  "20200503-161904": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 5000
+  },
+  "20200503-164228": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 5000
+  },
+  "20200503-164429": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 5000
+  },
+  "20200503-165028": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 5000
+  },
+  "20200503-175819": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.44310623380582226,
+    "record_every": 500
+  },
+  "20200503-180806": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 5000
+  },
+  "20200503-184320": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.49855204999237923,
+    "record_every": 500
+  },
+  "20200503-190052": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.44216735253772294,
+    "record_every": 500
+  }
+}
