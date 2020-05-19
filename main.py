@@ -150,27 +150,23 @@ if __name__ == '__main__':
     #    below with some learning pars)
 
     par_tweaks = [
-        ('alpha', 0.3),
-        ('alpha', 0.5),
-        ('alpha', 0.7),
-        ('alpha', 0.9),
-        ('gamma', 0.1),
-        ('gamma', 0.3),
-        ('gamma', 0.5),
-        ('gamma', 0.7),
-        ('epsilon', 0.1),
-        ('epsilon', 0.3),
-        ('epsilon', 0.7),
-        ('epsilon', 0.9),
+        ('alpha', 0.0),
+        ('alpha', 0.2),
+        ('alpha', 0.8),
+        ('alpha', 1),
+        ('gamma', 0.0),
+        ('gamma', 0.2),
+        ('gamma', 0.6),
+        ('gamma', 0.8),
+        ('epsilon', 0.0),
+        ('epsilon', 0.2),
+        ('epsilon', 0.6),
+        ('epsilon', 0.8),
     ]
     pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
-
+    pars += [{'comment': 'reference'} for _ in range(2)] # reference simulations
     with ProcessPoolExecutor() as executor:
-        for _ in executor.map(mp_wrapper, enumerate([{'comment': 'reference'} for _ in range(2)])):
-            pass
         for _ in executor.map(mp_wrapper, enumerate(pars)):
-            pass
-        for _ in executor.map(mp_wrapper, enumerate([{'comment': 'reference'} for _ in range(2)])):
             pass
 
 
