@@ -10,7 +10,7 @@ class Qfunction(object):
 
         alpha   : The learning rate, providing a weight for the old Q-values
                   relative to the new value.
-        gamma   : The discount factor, providing a weight for expected future
+        gamma   : The discount fctor, providing a weight for expected future
                   reward signals. Initially, this only has the effect of
                   including the expected Q-value of 1 timestep ahead, but once
                   the Q-tables have been explored sufficiently, this reflects
@@ -31,8 +31,8 @@ class Qfunction(object):
         if alpha < 0 or alpha > 1:
             raise ValueError("0 <= alpha <= 1 is required")
         self.alpha = alpha
-        if gamma < 0 or gamma > 1:
-            raise ValueError("0 <= gamma <= 1 is required")
+        if gamma < 0 or gamma >= 1:
+            raise ValueError("0 <= gamma < 1 is required")
         self.gamma = gamma
         self.A = A
         self.S = S

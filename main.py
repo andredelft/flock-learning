@@ -6,7 +6,7 @@ from random import sample
 from concurrent.futures import ProcessPoolExecutor
 
 from field import Field
-from utils import gen_rt
+from utils import gen_rt, get_rt
 import plot as p
 
 def benchmark():
@@ -46,14 +46,16 @@ def benchmark():
         comment = 'Tracking Delta, Q and t (record every 5000)'
     )
 
-def load_from_Q(fname = '', record_tag = '', data_dir = 'data', plot = False,
-                record_data = True, Q_tables = None, params = dict(), **kwargs):
+def load_from_Q(fpath, record_tag, data_dir = 'data', plot = False,
+                record_data = True, Q_tables = None, params = None, comment = '',
+                **kwargs):
 
     if not params:
         with open(path.join(data_dir, 'parameters.json')) as f:
             params = json.load(f)[record_tag]
-        params['comment'] = record_tag
-        params.pop('learning_alg')
+
+    params['comment'] = comment if comment else record_tag
+    params.pop('learning_alg')
 
     no_birds = params.pop('no_birds')
 
@@ -65,16 +67,14 @@ def load_from_Q(fname = '', record_tag = '', data_dir = 'data', plot = False,
 
     if type(Q_tables) == np.ndarray:
         params['Q_tables'] = Q_tables
-    elif fname:
-        params['Q_file'] = fname
     else:
-        Q_file = path.join(data_dir, f'{record_tag}-Q.npy')
+        Q_file = fpath
         params['Q_file'] = Q_file
 
     if 'Q_params' in params.keys():
         params.update(params.pop('Q_params'))
     # pop some depracated or unused params
-    [params.pop(key, '') for key in ['no_dirs', 'observe_direction', 'comment', 'record_every']]
+    [params.pop(key, '') for key in ['no_dirs', 'observe_direction', 'record_every']]
 
     Field(
         no_birds, plot = plot, record_data = record_data,
@@ -114,8 +114,8 @@ def mp_wrapper(indexed_pars):
     time.sleep(5 * i) # To make sure they don't start at exactly the same time,
                       # resulting in the same record tag
     Field(
-        100, record_data = True, plot = False, sim_length = 80_000,
-        learning_alg = 'Q', gradient_reward = True, **pars
+        100, record_data = True, plot = False, sim_length = 1_000_000,
+        learning_alg = 'Q', Q_every = 10_000, record_every = 5_000, **pars
     )
 
 if __name__ == '__main__':
@@ -150,21 +150,19 @@ if __name__ == '__main__':
     #    below with some learning pars)
 
     par_tweaks = [
-        ('alpha', 0.0),
-        ('alpha', 0.2),
-        ('alpha', 0.8),
-        ('alpha', 1),
         ('gamma', 0.0),
-        ('gamma', 0.2),
-        ('gamma', 0.6),
-        ('gamma', 0.8),
-        ('epsilon', 0.0),
-        ('epsilon', 0.2),
-        ('epsilon', 0.6),
-        ('epsilon', 0.8),
+        ('gamma', 0.99),
+        # ('alpha', 0.0),
+        # ('alpha', 0.2),
+        # ('alpha', 0.8),
+        # ('alpha', 1),
+        # ('epsilon', 0.0),
+        # ('epsilon', 0.2),
+        # ('epsilon', 0.6),
+        # ('epsilon', 0.8),
     ]
     pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
-    pars += [{'comment': 'reference'} for _ in range(2)] # reference simulations
+    pars += [{par: value, 'gradient_reward': False, 'comment': f'vary_{par} (no gradient)'} for par, value in par_tweaks] # reference simulations
     with ProcessPoolExecutor() as executor:
         for _ in executor.map(mp_wrapper, enumerate(pars)):
             pass

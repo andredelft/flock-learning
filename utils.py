@@ -1,4 +1,5 @@
 from os import path
+import os
 from datetime import datetime
 import regex
 import numpy as np
@@ -12,8 +13,12 @@ def gen_rt():
     return datetime.now().strftime("%Y%m%d-%H%M%S")
 
 def get_rt(fpath):
-    fname = path.split(fpath)[1]
-    return re_tag.search(fname).group()
+    if path.isdir(fpath):
+        last_dir = fpath.split(os.sep)[-1]
+        return re_tag.search(last_dir).group()
+    else:
+        fname = path.split(fpath)[1]
+        return re_tag.search(fname).group()
 
 # https://gist.github.com/phobson/7916777
 def shiftedColorMap(cmap, start=0, midpoint=0.5, stop=1.0, name='shiftedcmap'):

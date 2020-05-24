@@ -108,7 +108,7 @@ class Field(object):
             print(f'Initiated movie file {self.record_tag}.mp4')
             with writer.saving(self.fig, mov_name, 100):
                 self.setup_plot()
-                for i in trange(sim_length//5, desc="Recording frames"):
+                for i in trange(self.sim_length//5, desc="Recording frames"):
                     writer.grab_frame()
                     # Record every fifth frame
                     for _ in range(5):
@@ -120,7 +120,7 @@ class Field(object):
             )
             plt.show()
         else: # No visualization, only recording of data
-            for i in range(sim_length):
+            for i in range(self.sim_length):
                 self.update(i)
 
     def setup_plot(self):
@@ -156,7 +156,7 @@ class Field(object):
         if self.record_Q:
             if self.Q_every:
                 os.mkdir(f'data/{self.record_tag}-Q')
-            
+
             self.Q_fname = f'data/{self.record_tag}-Q.npy'
 
         if self.record_Delta:

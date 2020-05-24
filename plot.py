@@ -3,6 +3,7 @@ import numpy as np
 from os import path
 from glob import glob
 import json
+import regex
 
 from utils import get_rt
 
@@ -44,6 +45,43 @@ def plot_Delta(fname, record_every = 500, **kwargs):
     data = np.load(fname)
     plt.plot(range(0, record_every * len(data), record_every), data, **kwargs)
 
+def plot_delta_lf(fname, **kwargs):
+    data_dir = path.split(fname)[0]
+    record_tag = get_rt(fname)
+    Q_dir = path.join(data_dir, f'{record_tag}-Q')
+    with open(path.join(data_dir, f'{record_tag}-instincts.json')) as f:
+        instincts = json.load(f)
+    no_birds = len(instincts)
+    no_leaders = len([inst for inst in instincts if inst == 'E'])
+    if path.isdir(Q_dir):
+        delta_l = []
+        delta_f = []
+        timesteps = []
+        for Qname in sorted(glob(f'{Q_dir}/*.npy')):
+            Q = np.load(Qname)
+            print(Q.shape)
+            timestep = int(regex.search(r'\d+', path.split(Qname)[1]).group())
+            dl = 0
+            df = 0
+            for i, inst in enumerate(instincts):
+                if inst == 'E':
+                    dl += np.sum(Q[i,:,1] - Q[i,:,0] < 0)
+                else:
+                    df += np.sum(Q[i,:,0] - Q[i,:,1] < 0)
+            dl /= no_leaders * Q.shape[1]
+            df /= (no_birds - no_leaders) * Q.shape[1]
+            timesteps.append(timestep)
+            delta_l.append(dl)
+            delta_f.append(df)
+            print(timestep, dl, df)
+        plt.plot(timesteps, delta_l, label = f'{record_tag}_l')
+        plt.plot(timesteps, delta_f, label = f'{record_tag}_f')
+    else:
+        print(
+            f'The Q-tables of {record_tag} have not been tracked, so delta_l and '
+            'delta_f cannot be reproduced'
+        )
+
 def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
              legend = True, title = '', save_as = '', **kwargs):
 
@@ -51,6 +89,13 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
         plt.figure()
     with open(path.join(data_dir,'parameters.json')) as f:
         params = json.load(f)
+
+    if quantity == 'Delta_lf':
+        quantity = 'Delta'
+        lf = True
+    elif quantity == 'Delta':
+        lf = False
+
     for i, fname in enumerate(sorted(glob(f'{data_dir}/*-{quantity}.npy'))):
         record_tag = get_rt(fname)
         if quantity == 'v':
@@ -65,6 +110,8 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
                 fname, label = record_tag, record_every = record_every,
                 **kwargs
             )
+            if lf:
+                plot_delta_lf(fname, **kwargs)
         elif quantity == 't':
             times = np.load(fname)
             # cum_times = []
@@ -85,7 +132,7 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
     if quantity == 'v':
         plt.title(f'Magnitude of average velocity vector (Capsize = {cap})')
         plt.ylabel('v')
-    elif quantity == 'Delta':
+    elif quantity == 'Delta' or quantity == 'Delta_lf':
         plt.ylabel('$\Delta$')
     elif quantity == 't':
         plt.ylabel('Time (sec)')
