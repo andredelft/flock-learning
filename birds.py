@@ -83,9 +83,9 @@ As of 25/05/2020, discrete_Vicsek passes both tests.
 def _to_obs(i):
     """ Converts the observation index back to the observation dictionary. """
     if NO_DIRS == 4:
-        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, N):>04}')}
+        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, N + 1):>04}')}
     elif NO_DIRS == 8:
-        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, N):>08}')}
+        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, N + 1):>08}')}
 
 def _rot(obs, n = 1):
     """ Returns obs rotated by 90 degrees n times. """
@@ -100,7 +100,7 @@ def _rot(obs, n = 1):
 def _get_maj_obs():
     maj = {card_dir: [] for card_dir in CARD_DIRS.keys()}
     for i in range((N + 1) ** NO_DIRS):
-        vic_dir = discrete_Vicsek(to_obs(i), strict = True)
+        vic_dir = discrete_Vicsek(_to_obs(i), strict = True)
         for card_dir, i_dir in CARD_DIRS.items():
             if vic_dir == i_dir:
                 maj[card_dir].append(i)
