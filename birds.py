@@ -6,9 +6,9 @@ import time
 
 from q_learning import Qfunction
 
-D = 100  # Observation radius
+r = 100  # Observation radius
 N = 2    # Max neigbours observed
-R = 5    # Reward signal
+R = 5    # Maximum reward signal
 
 alpha   = 0.1  # Learning rate
 gamma   = 0.9  # Disount factor
@@ -17,21 +17,21 @@ epsilon = 0.5  # Epsilon-greedy parameter
 NO_DIRS = 2 ** 3 # exponent can be 2 or 3 (state space explodes for > 3)
 DIRS = np.linspace(-np.pi, np.pi, NO_DIRS + 1)[:NO_DIRS]
 DIRS_INDS = list(range(NO_DIRS))
-STEPS = [np.array([np.cos(theta), np.sin(theta)]) for theta in DIRS]
+STEPS = [np.array([round(np.cos(theta), 5), round(np.sin(theta), 5)]) for theta in DIRS]
 TRESHOLD = 0.9 * np.linalg.norm(STEPS[0] + STEPS[(NO_DIRS//2) + 1])
 
-A = ['V', 'I']                 # Action space
-S = range((N + 1) ** NO_DIRS)  # State space
+A = ['V', 'I']                # Action space
+S = range((N + 1) ** NO_DIRS) # State space
 
 CARD_DIRS = {
     card_dir: i for card_dir, i in zip('WSEN',range(0, NO_DIRS, NO_DIRS//4))
 }
 
-def discrete_Vicsek(observation):
+def discrete_Vicsek(observation, strict = False):
     """
     Returns the index of DIRS that is closest to the average direction. If the
     sum of directions is zero (e.g. one north and one south), it will return
-    NO_DIRS = len(DIRS) as an exception case.
+    NO_DIRS (= len(DIRS)) as an exception case.
     """
     v = np.array([0.,0.])
     for dir,n in observation.items():
@@ -41,11 +41,11 @@ def discrete_Vicsek(observation):
         i = bisect_left(DIRS, theta)
         if i == NO_DIRS:
             delta_1 = theta - DIRS[i - 1]
-            delta_2 = 2 * np.pi - theta
-            if delta_1 < delta_2:
+            delta_2 = np.pi - theta
+            if abs(delta_1 - delta_2) < 1e-4:
+                return NO_DIRS if strict else choice([i - 1, i])
+            elif delta_1 < delta_2:
                 return i - 1
-            elif delta_1 == delta_2:
-                return choice([i - 1, i])
             else:
                 return 0
         elif i == 0:
@@ -54,20 +54,82 @@ def discrete_Vicsek(observation):
         else:
             delta_1 = theta - DIRS[i - 1]
             delta_2 = DIRS[i] - theta
-            if delta_1 < delta_2:
+            if abs(delta_1 - delta_2) < 1e-4:
+                return NO_DIRS if strict else choice([i - 1, i])
+            elif delta_1 < delta_2:
                 return i - 1
-            elif delta_1 == delta_2:
-                # Important to avoid a biased direction
-                return choice([i - 1, i])
             else:
                 return i
     else:
-        # Sum of dirs is below treshold (i.e., zero)
+        # Sum of dirs is below treshold (i.e. zero)
         return NO_DIRS
 
 def ternary(numbers):
     numbers = list(numbers)
     return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
+
+"""
+_get_maj_obs and _check_rotational_symmetry have been used to check whether
+discrete_Vicsek works as expected. The first returns a list for each cardinal
+direction with all the possible observations in which discrete_Vicsek points
+in that direction (by symmetry, these lists should be equal in size). The second
+checks the 90 degree rotational symmetry more thoroughly by iterating over all
+possible observations, performing 90 degree rotations and checking whether
+discrete_Vicsek rotates accordingly. Both make use of _to_obs and _rot.
+
+As of 25/05/2020, discrete_Vicsek passes both tests.
+"""
+
+def _to_obs(i):
+    """ Converts the observation index back to the observation dictionary. """
+    if NO_DIRS == 4:
+        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, N):>04}')}
+    elif NO_DIRS == 8:
+        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, N):>08}')}
+
+def _rot(obs, n = 1):
+    """ Returns obs rotated by 90 degrees n times. """
+    if n == 0:
+        return obs
+    new_obs = {i: obs[(i - 2) % NO_DIRS] for i in range(NO_DIRS)}
+    if n == 1:
+        return new_obs
+    elif n > 1 and type(n) == int:
+        return _rot(new_obs, n - 1)
+
+def _get_maj_obs():
+    maj = {card_dir: [] for card_dir in CARD_DIRS.keys()}
+    for i in range((N + 1) ** NO_DIRS):
+        vic_dir = discrete_Vicsek(to_obs(i), strict = True)
+        for card_dir, i_dir in CARD_DIRS.items():
+            if vic_dir == i_dir:
+                maj[card_dir].append(i)
+    print([len(dirs) for dirs in maj.values()])
+    return maj
+
+def _check_rotational_symmetry():
+    if NO_DIRS != 8:
+        raise ValueError('This function only works for NO_DIRS == 8')
+    not_symmetric = []
+    for i in range(N ** NO_DIRS):
+        obs = _to_obs(i)
+        vic_dirs = [
+            discrete_Vicsek(_rot(obs, n), strict = True) for n in range(4)
+        ]
+        if 8 in vic_dirs and vic_dirs != [8,8,8,8]:
+            not_symmetric.append((obs, vic_dirs))
+        elif 0 in vic_dirs:
+            ind = vic_dirs.index(0)
+            shifted = [vic_dirs[(i + ind) % 4] for i in range(4)]
+            if not shifted == [0,2,4,6]:
+                not_symmetric.append((obs, vic_dirs))
+        elif 1 in vic_dirs:
+            ind = vic_dirs.index(1)
+            shifted = [vic_dirs[(i + ind) % 4] for i in range(4)]
+            if not shifted == [1,3,5,7]:
+                not_symmetric.append((obs, vic_dirs))
+    print(len(not_symmetric))
+    return not_symmetric
 
 class Birds(object):
 
@@ -156,7 +218,7 @@ class Birds(object):
             ]) for _ in range(self.numbirds)
         ])
 
-    def perform_observations(self, radius = D):
+    def perform_observations(self, radius = r, max_neighbours = N):
         tree = KDTree(self.positions)
         new_obs = []
         for i in range(self.numbirds):
@@ -169,10 +231,9 @@ class Birds(object):
             for n in neighbours_inds:
                 neighbours[self.dirs[n]] += 1
 
-            # Maximum of N
             for dir in neighbours.keys():
-                if neighbours[dir] > N:
-                    neighbours[dir] = N
+                if neighbours[dir] > max_neighbours:
+                    neighbours[dir] = max_neighbours
             self.observations[i] = neighbours
 
     def perform_step(self):
@@ -233,7 +294,10 @@ class Birds(object):
         return sum(STEPS[dir] for dir in self.dirs)/self.numbirds
 
     def calc_Delta(self, print_Delta = True):
-        if self.learning_alg not in ['Q', 'pol_from_Q'] or self.action_space != ['V','I']:
+        if (
+            self.learning_alg not in ['Q', 'pol_from_Q']
+            or self.action_space != ['V','I']
+        ):
             return None
 
         Delta = 0
@@ -242,11 +306,13 @@ class Birds(object):
 
             if self.learning_alg == 'Q':
                 Delta += np.sum(
-                    self.Qs[i].table[:,desired_ind] - self.Qs[i].table[:,1-desired_ind] < 0
+                    self.Qs[i].table[:,desired_ind]
+                    - self.Qs[i].table[:,1-desired_ind] < 0
                 )
             elif self.learning_alg == 'pol_from_Q':
                 Delta += np.sum(
-                    self.Q_tables[i,:,desired_ind] - self.Q_tables[i,:,1-desired_ind] < 0
+                    self.Q_tables[i,:,desired_ind]
+                    - self.Q_tables[i,:,1-desired_ind] < 0
                 )
 
         Delta /= self.numbirds * len(self.state_space)
