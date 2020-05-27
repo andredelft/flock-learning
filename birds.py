@@ -6,7 +6,7 @@ import time
 
 from q_learning import Qfunction
 
-r = 100  # Observation radius
+d = 100  # Observation radius
 N = 2    # Max neigbours observed
 R = 5    # Maximum reward signal
 
@@ -17,11 +17,13 @@ epsilon = 0.5  # Epsilon-greedy parameter
 NO_DIRS = 2 ** 3 # exponent can be 2 or 3 (state space explodes for > 3)
 DIRS = np.linspace(-np.pi, np.pi, NO_DIRS + 1)[:NO_DIRS]
 DIRS_INDS = list(range(NO_DIRS))
-STEPS = [np.array([round(np.cos(theta), 5), round(np.sin(theta), 5)]) for theta in DIRS]
+STEPS = [np.array([
+    round(np.cos(theta), 5), round(np.sin(theta), 5)
+]) for theta in DIRS]
 TRESHOLD = 0.9 * np.linalg.norm(STEPS[0] + STEPS[(NO_DIRS//2) + 1])
 
 A = ['V', 'I']                # Action space
-S = range((N + 1) ** NO_DIRS) # State space
+S = range((N + 1) ** NO_DIRS) # Observation space
 
 CARD_DIRS = {
     card_dir: i for card_dir, i in zip('WSEN',range(0, NO_DIRS, NO_DIRS//4))
@@ -136,7 +138,8 @@ class Birds(object):
     def __init__(self, numbirds, field_dims, action_space = A, state_space = S,
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
                  alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
-                 Q_tables = None, gradient_reward = True, instincts = []):
+                 Q_tables = None, gradient_reward = True, observation_radius = d,
+                 instincts = []):
 
         # Initialize the birds and put them in the field
         self.numbirds = numbirds
@@ -162,6 +165,7 @@ class Birds(object):
         self.state_space = state_space
         self.reward_signal = reward_signal
         self.gradient = gradient_reward
+        self.observation_radius = observation_radius
         self.learning_alg = learning_alg
         self.policies = np.zeros(
             [self.numbirds, len(S), len(self.action_space)]
@@ -195,6 +199,7 @@ class Birds(object):
             'no_birds': self.numbirds,
             'action_space': self.action_space,
             'leader_frac': self.leader_frac,
+            'observation_radius': self.observation_radius,
             'reward_signal': self.reward_signal,
             'learning_alg': self.learning_alg,
             'gradient_reward': self.gradient,
@@ -218,13 +223,15 @@ class Birds(object):
             ]) for _ in range(self.numbirds)
         ])
 
-    def perform_observations(self, radius = r, max_neighbours = N):
+    def perform_observations(self, max_neighbours = N):
         tree = KDTree(self.positions)
         new_obs = []
         for i in range(self.numbirds):
             # Might still be optimized, since each pair of neighbouring birds
             # is handled twice. But depends on KDTree's performance
-            neighbours_inds = tree.query_ball_point(self.positions[i], radius)
+            neighbours_inds = tree.query_ball_point(
+                self.positions[i], self.observation_radius
+            )
             neighbours_inds.remove(i)
             neighbours = {n: 0 for n in DIRS_INDS}
 
