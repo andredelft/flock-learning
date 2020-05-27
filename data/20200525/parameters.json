@@ -1,0 +1,230 @@
+{
+  "20200525-223243": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.0,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma"
+  },
+  "20200525-223248": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.2,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma"
+  },
+  "20200525-223253": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.4,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma"
+  },
+  "20200525-223258": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.6,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma"
+  },
+  "20200525-223303": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.8,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma"
+  },
+  "20200525-223308": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.99,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma"
+  },
+  "20200525-223314": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.0,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma (no gradient)"
+  },
+  "20200525-223319": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.2,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma (no gradient)"
+  },
+  "20200526-034511": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.4,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma (no gradient)"
+  },
+  "20200526-034641": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.6,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma (no gradient)"
+  },
+  "20200526-034647": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.8,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma (no gradient)"
+  },
+  "20200526-035027": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.99,
+      "epsilon": 0.5
+    },
+    "record_every": 1000,
+    "comment": "vary_gamma (no gradient)"
+  }
+}
