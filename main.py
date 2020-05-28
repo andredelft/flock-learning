@@ -175,3 +175,30 @@ if __name__ == '__main__':
     #     quantity = 't', save_as = 'benchmark.png',
     #     title = 'Benchmark test', legend = 8
     # )
+
+    # For tonight:
+    # Q_dirs = sorted(glob('data/20200525/2020052[56]-*-Q'))
+    # for Q_dir in Q_dirs:
+    #     for fname in sorted(glob(f'{Q_dir}/*.npy')):
+    #         record_tag = get_rt(Q_dir)
+    #         timestep = int(regex.search('\d+', path.split(fname)[1]).group())
+    #         m.load_from_Q(fname, record_tag, data_dir = 'data/20200525', comment = f'{record_tag}-{timestep:>06}', sim_length = 1500)
+
+    # def avg_v():
+    #     plt.figure()
+    #     fnames = sorted(glob('data/*-v.npy'))
+    #     avg_v = []
+    #     timesteps = []
+    #     with open('data/parameters.json') as f:
+    #         params = json.load(f)
+    #     for fname in sorted(fnames):
+    #         record_tag = get_rt(fname)
+    #         timestep = int(params[record_tag]['comment'].split('-')[-1])
+    #         print(timestep)
+    #         data = np.load(fname)
+    #         v = [x ** 2 + y ** 2 for x,y in data[500:]]
+    #         if len(v) > 0:
+    #             avg_v.append(sum(v)/len(v))
+    #             timesteps.append(timestep)
+    #     plt.scatter(timesteps, avg_v, marker = '.')
+    #     plt.savefig(path.join(path.expanduser('~'), 'public_html', 'avg_v.png'), dpi = 300)
