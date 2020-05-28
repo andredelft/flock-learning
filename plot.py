@@ -19,8 +19,10 @@ def _parse_fpath(fpath, data_dir):
 def avg(data, cap = 20):
     return [sum(data[i:i + cap])/cap for i in range(len(data) - cap)]
 
-def plot_mag(fname, cap = 50, **kwargs):
+def plot_mag(fname, cap = 50, max = None, **kwargs):
     data = np.load(fname)
+    if max:
+        data = data[:max]
     plt.plot(avg([np.linalg.norm(v) for v in data], cap = cap), **kwargs)
 
 def plot_vx(fname, label = '', cap = 50):
