@@ -177,9 +177,9 @@ def gen_avg_v(data_dir, save_dir):
             if len(v_mag) > 0:
                 avg_v = sum(v_mag)/len(v_mag)
                 if orig_rt in avg_v_dict.keys():
-                    avg_v_dict[orig_rt].append((avg_v, timestep))
+                    avg_v_dict[orig_rt].append((timestep, avg_v))
                 else:
-                    avg_v_dict[orig_rt] = [(avg_v, timestep)]
+                    avg_v_dict[orig_rt] = [(timestep, timestep)]
 
     # Reformat data and save
     for record_tag, data in avg_v_dict.items():
@@ -187,7 +187,7 @@ def gen_avg_v(data_dir, save_dir):
         avg_v = []
         for entry in data:
             timesteps.append(entry[0])
-            avg_v.append(entry[0])
+            avg_v.append(entry[1])
             np.save(
                 path.join(save_dir, f'{record_tag}-avg_v.npy'),
                 np.array([timesteps, avg_v])
