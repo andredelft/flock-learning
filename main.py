@@ -4,6 +4,8 @@ import time
 import numpy as np
 from random import sample
 from concurrent.futures import ProcessPoolExecutor
+from glob import glob
+import regex
 
 from field import Field
 from utils import gen_rt, get_rt
@@ -117,17 +119,24 @@ def load_from_Delta(Delta, data_dir = 'data', no_birds = 100, leader_frac = 0.25
         Q_tables = Q_tables, params = params, sim_length = sim_length, **kwargs
     )
 
+def run_Q_dirs(data_dir):
+    Q_dirs = sorted(glob(path.join(data_dir,'*-Q')))
+    for Q_dir in Q_dirs:
+        for fpath in sorted(glob(f'{Q_dir}/*.npy')):
+            record_tag = get_rt(Q_dir)
+            timestep = int(regex.search('\d+', path.split(fpath)[1]).group())
+            load_from_Q(fpath, record_tag, data_dir = data_dir, comment = f'{record_tag}-{timestep:>06}', sim_length = 1500)
+
 def mp_wrapper(indexed_pars):
     i, pars = indexed_pars
     time.sleep(5 * i) # To make sure they don't start at exactly the same time,
                       # resulting in the same record tag
     Field(
-        100, record_data = True, plot = False, sim_length = 5_000,
-        learning_alg = 'Q', Q_every = 100, record_every = 100, **pars
+        100, record_data = True, plot = False, sim_length = 5000,
+        learning_alg = 'Q', Q_every = 100, record_every = 100, gradient_reward = False, **pars
     )
 
 if __name__ == '__main__':
-    pass
 
     # Different ways of running the model:
     #
@@ -158,23 +167,13 @@ if __name__ == '__main__':
     #    the option of adjusting parameters in different runs (as exemplified
     #    below with some learning pars)
 
-    # par_tweaks = [
-    #     ('gamma', 0.0),
-    #     ('gamma', 0.99),
-        # ('alpha', 0.0),
-        # ('alpha', 0.2),
-        # ('alpha', 0.8),
-        # ('alpha', 1),
-        # ('epsilon', 0.0),
-        # ('epsilon', 0.2),
-        # ('epsilon', 0.6),
-        # ('epsilon', 0.8),
-    # ]
-    # pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
-    # pars += [{par: value, 'gradient_reward': False, 'comment': f'vary_{par} (no gradient)'} for par, value in par_tweaks] # reference simulations
-    # with ProcessPoolExecutor() as executor:
-    #     for _ in executor.map(mp_wrapper, enumerate(pars)):
-    #         pass
+    #    for obs_rad in [10, 50, 100, 150]:
+    #        pars.append({'observation_radius': obs_rad, 'leader_frac': lead_frac})
+    #pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
+    #pars += [{par: value, 'gradient_reward': False, 'comment': f'vary_{par} (no gradient)'} for par, value in par_tweaks] # reference simulations
+    #with ProcessPoolExecutor() as executor:
+    #    for _ in executor.map(mp_wrapper, enumerate(pars)):
+    #        pass
 
 
     # 5. Run a benchmark test and create a figure with the results
@@ -211,3 +210,6 @@ if __name__ == '__main__':
     #             timesteps.append(timestep)
     #     plt.scatter(timesteps, avg_v, marker = '.')
     #     plt.savefig(path.join(path.expanduser('~'), 'public_html', 'avg_v.png'), dpi = 300)
+    # 6.
+    data_dir = 'data/20200528/1-lf_or'
+    run_Q_dirs(data_dir)
