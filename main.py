@@ -46,16 +46,23 @@ def benchmark():
         comment = 'Tracking Delta, Q and t (record every 5000)'
     )
 
-def load_from_Q(fpath, record_tag, data_dir = 'data', plot = False,
+def load_from_Q(fpath = None, record_tag = None, data_dir = 'data', plot = False,
                 record_data = True, Q_tables = None, params = None, comment = '',
                 **kwargs):
+
+    if (not fpath) and (not record_tag) and (type(Q_tables) != np.ndarray):
+        raise ValueError(
+            "Not enough information provided. Either the path to a Q-table " +
+            "and the associated record tag should be given or a Q-table " +
+            "should be provided via 'Q_tables' (as a numpy array)"
+        )
 
     if not params:
         with open(path.join(data_dir, 'parameters.json')) as f:
             params = json.load(f)[record_tag]
 
     params['comment'] = comment if comment else record_tag
-    params.pop('learning_alg')
+    params.pop('learning_alg', '')
 
     no_birds = params.pop('no_birds')
 
@@ -82,15 +89,15 @@ def load_from_Q(fpath, record_tag, data_dir = 'data', plot = False,
     )
 
 def load_from_Delta(Delta, data_dir = 'data', no_birds = 100, leader_frac = 0.25,
-                    no_dirs = 8, sim_length = 5000, **kwargs):
+                    sim_length = 5000, **kwargs):
 
     params = {
         'no_birds': no_birds,
         'leader_frac': leader_frac,
         'action_space': ['V', 'I']
     }
-    no_states = 3 ** no_dirs
-    no_leaders = int(no_birds * leader_frac)
+    no_states = 3 ** 8
+    no_leaders = round(no_birds * leader_frac)
     Q_tables = np.zeros([no_birds, no_states, 2])
     for i in range(no_leaders):
         for s in range(no_states):
@@ -105,6 +112,7 @@ def load_from_Delta(Delta, data_dir = 'data', no_birds = 100, leader_frac = 0.25
         i = dev_ind // no_states
         s = dev_ind %  no_states
         Q_tables[i,s] = 1 - Q_tables[i,s] # flip the 1 and 0
+
     load_from_Q(
         Q_tables = Q_tables, params = params, sim_length = sim_length, **kwargs
     )
@@ -114,11 +122,12 @@ def mp_wrapper(indexed_pars):
     time.sleep(5 * i) # To make sure they don't start at exactly the same time,
                       # resulting in the same record tag
     Field(
-        100, record_data = True, plot = False, sim_length = 1_000_000,
-        learning_alg = 'Q', Q_every = 10_000, record_every = 5_000, **pars
+        100, record_data = True, plot = False, sim_length = 5_000,
+        learning_alg = 'Q', Q_every = 100, record_every = 100, **pars
     )
 
 if __name__ == '__main__':
+    pass
 
     # Different ways of running the model:
     #
@@ -149,9 +158,9 @@ if __name__ == '__main__':
     #    the option of adjusting parameters in different runs (as exemplified
     #    below with some learning pars)
 
-    par_tweaks = [
-        ('gamma', 0.0),
-        ('gamma', 0.99),
+    # par_tweaks = [
+    #     ('gamma', 0.0),
+    #     ('gamma', 0.99),
         # ('alpha', 0.0),
         # ('alpha', 0.2),
         # ('alpha', 0.8),
@@ -160,12 +169,12 @@ if __name__ == '__main__':
         # ('epsilon', 0.2),
         # ('epsilon', 0.6),
         # ('epsilon', 0.8),
-    ]
-    pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
-    pars += [{par: value, 'gradient_reward': False, 'comment': f'vary_{par} (no gradient)'} for par, value in par_tweaks] # reference simulations
-    with ProcessPoolExecutor() as executor:
-        for _ in executor.map(mp_wrapper, enumerate(pars)):
-            pass
+    # ]
+    # pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
+    # pars += [{par: value, 'gradient_reward': False, 'comment': f'vary_{par} (no gradient)'} for par, value in par_tweaks] # reference simulations
+    # with ProcessPoolExecutor() as executor:
+    #     for _ in executor.map(mp_wrapper, enumerate(pars)):
+    #         pass
 
 
     # 5. Run a benchmark test and create a figure with the results
