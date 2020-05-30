@@ -24,10 +24,8 @@ IMG_DIR = path.join(HERE, 'thesis-figures')
 
 # mpl.rcParams['font.serif'] = ['Palatino']
 mpl.rcParams['font.family'] = 'serif'
-# mpl.rcParams['mathtext.it'] = 'Brill'
-# mpl.rcParams['mathtext.bf'] = 'Brill:bold'
-# mpl.rcParams['mathtext.rm'] = 'Brill'
-mpl.rcParams['mathtext.fontset'] = 'cm'
+mpl.rc('text', usetex = True)
+mpl.rcParams['text.latex.preamble']=[r'\usepackage{amsmath,palatino,mathpazo}']
 # mpl.rcParams['savefig.dpi'] = 600
 FIGSIZE_X, FIGSIZE_Y = [5,4]
 mpl.rcParams['figure.figsize'] = [FIGSIZE_X, FIGSIZE_Y]
@@ -62,10 +60,11 @@ def plot_delta(ax, fname, data_dir = '', delta_t = DELTA_T, **kwargs):
     data = np.load(fpath)
     ax.plot(range(0, delta_t * len(data), delta_t), data, **kwargs)
 
-LF_VMIN, LF_VMAX = (0.18, 0.9)
-LF_CMAP_LABEL = 'YlOrRd'
+ORIG_CMAP_LABEL = 'YlOrRd'
+LF_VMIN, LF_VMAX = (0.15, 0.9)
+LF_CMAP_LABEL = f'Shifted{ORIG_CMAP_LABEL}'
 shiftedColorMap(
-    plt.get_cmap(LF_CMAP_LABEL), LF_VMIN, (LF_VMAX + LF_VMIN)/2, LF_VMAX, f'Shifted{LF_CMAP_LABEL}'
+    plt.get_cmap(ORIG_CMAP_LABEL), LF_VMIN, (LF_VMAX + LF_VMIN)/2, LF_VMAX, LF_CMAP_LABEL
 )
 LF_CMAP = plt.get_cmap(LF_CMAP_LABEL)
 
@@ -86,46 +85,58 @@ class Figures:
         a[1].set_xlabel(r'$\Delta$')
         a[0].set_xlim(0,1)
         a[1].set_xlim(0,0.5)
-        plt.tight_layout()
-        plt.savefig(path.join(IMG_DIR, 'v_delta.pdf'))
+        fig.tight_layout()
+        fig.savefig(path.join(IMG_DIR, 'v_delta.pdf'))
 
     def optpol_leader_fractions():
-        fig, ax = plt.subplots()
-        data_dir = path.join(DATA_DIR, '20200406')
+        fig, a = plt.subplots(1,2, figsize = [FIGSIZE_X, 0.55 * FIGSIZE_Y])
+        data_dir = path.join(DATA_DIR, '20200529', '1-opt_pol')
         with open(path.join(data_dir, 'parameters.json')) as f:
             params = json.load(f)
         # record_tags = [rt for rt in params.keys() if not rt.startswith('desired')]
-        fpaths = glob(f'{data_dir}/*-v.npy')
 
-        for fpath in sorted(fpaths):
+        for fpath in sorted(glob(f'{data_dir}/*-v.npy')):
             record_tag = get_rt(fpath)
-            if 'comment' in params[record_tag].keys() and params[record_tag]['comment'].startswith('desired'):
-                # data = np.load(fpath)
-                p.plot_mag(fpath, c = LF_CMAP(
-                    (LF_VMAX - LF_VMIN) * (params[record_tag]['leader_frac'] - 0.05) / 0.25 + LF_VMIN
-                ), max = 900)
+            leader_frac = params[record_tag]['leader_frac']
+            color = LF_CMAP(leader_frac/0.25)
+            v = np.load(fpath)[:4000]
+            v_mag = p.avg([x ** 2 + y ** 2 for (x,y) in v], cap = 50)
+            v_arg = [np.arctan2(y,x) for (x,y) in v]
+            a[0].plot(v_mag, c = color)
+            a[1].plot(v_arg, c = color)
 
-        axins = inset_axes(ax, width = '100%', height = '100%', bbox_to_anchor = (270, 45, 45, 6))
+        axins = inset_axes(a[0], width = '100%', height = '100%', bbox_to_anchor = (118, 53, 45, 6))
 
         cbar = plt.colorbar(
-            mpl.cm.ScalarMappable(cmap = plt.get_cmap(f'Shifted{LF_CMAP_LABEL}')),
+            mpl.cm.ScalarMappable(cmap = LF_CMAP),
             cax = axins, orientation = 'horizontal', ticks = [0,1]
         )
         # axins.xaxis.xticks.horizontalalignment('left')
-        axins.set_xticklabels([0.05,0.25])
+        axins.set_xticklabels([0, 0.25])
         axins.tick_params(labelsize = 8)
         axins.xaxis.set_ticks_position('top')
         axins.xaxis.set_label_position('top')
-        axins.set_xlabel('Leader fraction', horizontalalignment = 'right', verticalalignment = 'center', fontsize = 7)
+        axins.set_xlabel(r'$l$', horizontalalignment = 'right', verticalalignment = 'center', fontsize = 9)
         axins.xaxis.set_label_coords(-0.08, .5)
 
-        ax.set_ylabel('$v$')
-        ax.set_xlabel('Timestep')
-        # ax.set_xlim(-30, 1000)
-        # fig.tight_layout()
+        a[0].set_ylabel(r'$|\boldsymbol{v}|$')
+        a[1].set_ylabel(r'$\arg(\boldsymbol{v})$')
+        a[1].set_yticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi])
+        a[1].set_yticklabels([r'$-\pi$', r'$-\frac{\pi}{2}$', 0, r'$\frac{\pi}{2}$', r'$\pi$'])
+        # a[1].yaxis.set_label_position('right')
+        # a[1].yaxis.set_ticks_position('right')
+        for i in range(2):
+            a[i].set_xlabel('Timestep')
+            a[i].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
+
+        fig.tight_layout()
         fig.savefig(path.join(IMG_DIR, 'optpol_leader_fractions.pdf'))
 
-    def lead_frac_obs_rad():
+    def lead_frac_obs_rad_discrete(
+            data_dir_left = path.join(DATA_DIR, '20200528', '1-lf_or'),
+            data_dir_right = path.join(DATA_DIR, '20200528', '2-avg_v'),
+            save_as = 'lead_frac_obs_rad_discrete.pdf'
+    ):
         figsize_x = 1.1 * FIGSIZE_X
         figsize_y = 2 * FIGSIZE_Y
         fig, a = plt.subplots(4, 2, figsize = [figsize_x, figsize_y])
@@ -137,7 +148,7 @@ class Figures:
             150: 3
         }
 
-        data_dir = path.join(DATA_DIR, '20200527', '2-lf_or')
+        data_dir = data_dir_left
         with open(path.join(data_dir, 'parameters.json')) as f:
             params = json.load(f)
 
@@ -147,13 +158,11 @@ class Figures:
             lead_frac = params[record_tag]['leader_frac']
             delta_t = params[record_tag]['record_every']
             fig_nums = (or_dict[obs_rad], 0)
-            color = LF_CMAP(
-                (LF_VMAX - LF_VMIN) * params[record_tag]['leader_frac'] / 0.40 + LF_VMIN
-            )
+            color = LF_CMAP(params[record_tag]['leader_frac']/0.40)
             label = r'$\Delta$' if obs_rad == 50 and lead_frac == 0.40 else None
             plot_delta(a[fig_nums], fpath, delta_t = delta_t, c = color, label = label)
 
-        data_dir = path.join(DATA_DIR, '20200527', '3-avg_v')
+        data_dir = data_dir_right
 
         for fpath in sorted(glob(path.join(data_dir, '*-avg_v.npy'))):
             record_tag = get_rt(fpath)
@@ -161,29 +170,24 @@ class Figures:
             lead_frac = params[record_tag]['leader_frac']
             fig_nums = (or_dict[obs_rad], 1)
             data = np.load(fpath)
-            color = LF_CMAP(
-                (LF_VMAX - LF_VMIN) * params[record_tag]['leader_frac'] / 0.40 + LF_VMIN
-            )
+            color = LF_CMAP(params[record_tag]['leader_frac']/0.40)
             label = r'$\langle v \rangle$' if obs_rad == 50 and lead_frac == 0.40 else None
             a[fig_nums].scatter(data[0], data[1], marker = '.', c = len(data[0]) * [color], label = label)
 
         # axins = inset_axes(a[0,0], width = '100%', height = '100%', bbox_to_anchor = (143, 2 * 185, 35, 5))
         axins = inset_axes(a[0,1], width='30%', height='5%', loc='upper center')
         cbar = plt.colorbar(
-            mpl.cm.ScalarMappable(cmap = plt.get_cmap(f'Shifted{LF_CMAP_LABEL}')),
+            mpl.cm.ScalarMappable(cmap = LF_CMAP),
             cax = axins, orientation = 'horizontal', ticks = [0,1]
         )
-        axins.set_xticklabels([0,0.40])
+        axins.set_xticklabels([0, 0.40])
         axins.tick_params(labelsize = 8)
-        # axins.xaxis.set_ticks_position('top')
-        # axins.xaxis.set_label_position('top')
-        axins.set_xlabel('Leader fraction', fontsize = 7)#horizontalalignment = 'right', verticalalignment = 'center', fontsize = 7)
-        # axins.xaxis.set_label_coords(-0.08, .5)
-
+        axins.set_xlabel(r'$l$', horizontalalignment = 'right', verticalalignment = 'center')
+        axins.xaxis.set_label_coords(-0.08, .5)
 
         for obs_rad, fig_row in or_dict.items():
             a[fig_row, 0].set_ylim(0.47, 0.51)
-            a[fig_row, 0].set_title(f'$d = {obs_rad}$', loc = 'left')
+            a[fig_row, 0].set_title(f'$d/L = {obs_rad/400}$', loc = 'left')
             a[fig_row, 1].set_ylim(-0.05, 1.05)
             a[fig_row, 0].set_ylabel(r'$\Delta$')
             a[fig_row, 1].set_ylabel(r'$\langle v \rangle$', rotation = 270, labelpad = 17)
@@ -196,9 +200,16 @@ class Figures:
             for i in range(3):
                 a[i,j].set_xticklabels([])
 
+        fig.tight_layout()
+        fig.savefig(path.join(IMG_DIR, save_as))
 
-        plt.tight_layout()
-        fig.savefig(path.join(IMG_DIR, 'lead_frac_obs_rad.pdf'))
+    def lead_frac_obs_rad_gradient():
+        # Same figure, different data
+        Figures.lead_frac_obs_rad_discrete(
+            data_dir_left = path.join(DATA_DIR, '20200527', '2-lf_or'),
+            data_dir_right = path.join(DATA_DIR, '20200527', '3-avg_v'),
+            save_as = 'lead_frac_obs_rad_gradient.pdf'
+        )
 
     def tweaking_the_learning_params():
         fig, a = plt.subplots(2,2)
@@ -274,8 +285,8 @@ class Figures:
         a[1][1].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
         a[1][1].set_xlabel('Timestep')
 
-        plt.tight_layout()
-        plt.savefig(path.join(IMG_DIR, 'tweaking_the_learning_params.pdf'))
+        fig.tight_layout()
+        fig.savefig(path.join(IMG_DIR, 'tweaking_the_learning_params.pdf'))
 
     # def gamma_gradient():
     #     plt.figure()
@@ -299,39 +310,40 @@ class Figures:
     #         Delta_f /= 75 * Q.shape[1]
     #         data.append([gamma, Delta_l, Delta_f])
 
-    def long_run():
-        record_tag = '20200503-180806'
-        data_dir = path.join(DATA_DIR, '20200501')
-        fpath = path.join(data_dir, f'{record_tag}-Delta.npy')
-        with open(path.join(data_dir, 'parameters.json')) as f:
-            params = json.load(f)
-        delta_t = params[record_tag]['record_every']
-        plt.figure()
-        p.plot_Delta(fpath, record_every = delta_t)
-
-        # Plot Delta_f and Delta_l in the same figure
-        fpath = path.join(data_dir, f'{record_tag}-Delta_lf.npy')
-        data = np.load(fpath)
-        Delta_l = data[:,0]
-        Delta_f = data[:,1]
-        plt.plot(50_000 * np.arange(len(Delta_l)), Delta_l)
-        plt.plot(50_000 * np.arange(len(Delta_f)), Delta_f)
-
-        # Fit results to an exponential curve
-        # Delta = np.load(fpath)
-        # t = np.arange(0, delta_t * len(Delta), delta_t)
-        # p0 = [1e-6]
-        # popt, pcov = curve_fit(exp_func, t, Delta, p0 = p0)
-        # print(popt)
-        # plt.plot(t, exp_func(t, *popt))
-
-        plt.ticklabel_format(style = 'sci', axis = 'x', scilimits = (6,6))
-        plt.xlabel('Timestep')
-        plt.tight_layout()
-        plt.savefig(path.join(IMG_DIR, 'long_run.pdf'))
+    # def long_run():
+    #     record_tag = '20200503-180806'
+    #     data_dir = path.join(DATA_DIR, '20200501')
+    #     fpath = path.join(data_dir, f'{record_tag}-Delta.npy')
+    #     with open(path.join(data_dir, 'parameters.json')) as f:
+    #         params = json.load(f)
+    #     delta_t = params[record_tag]['record_every']
+    #     plt.figure()
+    #     p.plot_Delta(fpath, record_every = delta_t)
+    #
+    #     # Plot Delta_f and Delta_l in the same figure
+    #     fpath = path.join(data_dir, f'{record_tag}-Delta_lf.npy')
+    #     data = np.load(fpath)
+    #     Delta_l = data[:,0]
+    #     Delta_f = data[:,1]
+    #     plt.plot(50_000 * np.arange(len(Delta_l)), Delta_l)
+    #     plt.plot(50_000 * np.arange(len(Delta_f)), Delta_f)
+    #
+    #     # Fit results to an exponential curve
+    #     # Delta = np.load(fpath)
+    #     # t = np.arange(0, delta_t * len(Delta), delta_t)
+    #     # p0 = [1e-6]
+    #     # popt, pcov = curve_fit(exp_func, t, Delta, p0 = p0)
+    #     # print(popt)
+    #     # plt.plot(t, exp_func(t, *popt))
+    #
+    #     plt.ticklabel_format(style = 'sci', axis = 'x', scilimits = (6,6))
+    #     plt.xlabel('Timestep')
+    #     plt.tight_layout()
+    #     plt.savefig(path.join(IMG_DIR, 'long_run.pdf'))
 
 if __name__ == "__main__":
     if sys.argv[-1] == 'update_all' or len(sys.argv) == 1:
+        # A bit of a hack to run all methods in Figures class
         for func in Figures.__dict__.keys():
             if not func.startswith('__'):
                 getattr(Figures, func)()

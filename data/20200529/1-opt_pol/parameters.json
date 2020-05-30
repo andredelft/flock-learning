@@ -1,0 +1,317 @@
+{
+  "20200529-084128": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-084902": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-085538": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-090306": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.01,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-090935": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.01,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-091522": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.01,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-092137": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.02,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-092811": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.02,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-093540": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.02,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-094328": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.05,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-094936": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.05,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-095542": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.05,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-100307": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.1,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-100837": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.1,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-101423": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.1,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-102011": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.2,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-102959": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.2,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-104642": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.2,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-105223": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-105749": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  },
+  "20200529-110338": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "pol_from_Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Delta": 0.0,
+    "record_every": 500
+  }
+}
