@@ -101,6 +101,7 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
     for i, fname in enumerate(sorted(glob(f'{data_dir}/*-{quantity}.npy'))):
         record_tag = get_rt(fname)
         if quantity == 'v':
+            label = record_tag if legend else None
             plot_mag(
                 fname, cap = cap,
                 label = record_tag,
@@ -135,7 +136,7 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
         plt.title(f'Magnitude of average velocity vector (Capsize = {cap})')
         plt.ylabel('v')
     elif quantity == 'Delta' or quantity == 'Delta_lf':
-        plt.ylabel('$\Delta$')
+        plt.ylabel(r'$\Delta$')
     elif quantity == 't':
         plt.ylabel('Time (sec)')
 
@@ -170,7 +171,7 @@ def gen_avg_v(data_dir, save_dir):
         record_tag = get_rt(fpath)
         comment_parts = params[record_tag].get('comment', '').split('-')
         if len(comment_parts) == 3:
-            orig_rt = '-'.join(comment_parts[:2]) 
+            orig_rt = '-'.join(comment_parts[:2])
             timestep = int(comment_parts[2])
             v = np.load(fpath)
             v_mag = [x ** 2 + y ** 2 for (x,y) in v[500:]]
@@ -192,4 +193,3 @@ def gen_avg_v(data_dir, save_dir):
                 path.join(save_dir, f'{record_tag}-avg_v.npy'),
                 np.array([timesteps, avg_v])
             )
-

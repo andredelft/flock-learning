@@ -1,5 +1,3 @@
-# Inspired by https://stackoverflow.com/questions/9401658/how-to-animate-a-scatter-plot
-
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
@@ -46,7 +44,7 @@ class Field(object):
             elif self.birds.learning_alg == 'pol_from_Q':
                 record_quantities = ['v', 'instincts']
 
-        self.record_time = record_time
+        self.record_time = record_time or 't' in record_quantities
         self.record_v = 'v' in record_quantities
         self.record_Q = 'Q' in record_quantities
         self.record_Delta = 'Delta' in record_quantities
@@ -124,10 +122,10 @@ class Field(object):
                 self.update(i)
 
     def setup_plot(self):
-        """Initial drawing of the scatter plot."""
+        # https://stackoverflow.com/questions/9401658/how-to-animate-a-scatter-plot
         x, y, = next(self.stream).T
         self.scat = self.ax.scatter(
-            x, y, vmin=0, vmax=1, cmap="coolwarm", edgecolor="k",
+            x, y, vmin = 0, vmax = 1, cmap = "coolwarm", edgecolor = "k",
             c = [
                 1 if self.birds.instincts[i] == 'E' else 0
                 for i in range(self.birds.numbirds)
@@ -218,7 +216,8 @@ class Field(object):
 
                 self.times = []
 
-            print(f'Recorded up to timestep {tstep}')
+            if not self.record_mov: # to not interfere with tqdm progress bar
+                print(f'Recorded up to timestep {tstep}')
 
     def update(self,i): # When used in FuncAnimation, this function needs an
                         # additional argument for some reason (hence the i)

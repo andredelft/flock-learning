@@ -275,7 +275,7 @@ class Birds(object):
             reward = self.reward(i)
             if reward:
                 a_ind = self.action_space.index(self.actions[i])
-                self.policies[i,s,a_ind] += reward/100
+                self.policies[i,s,a_ind] += reward
                 self.policies[i,s] = self.policies[i,s]/sum(self.policies[i,s])
 
     def Q_learning(self):

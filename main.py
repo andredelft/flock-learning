@@ -137,6 +137,13 @@ def mp_wrapper(indexed_pars):
     )
 
 if __name__ == '__main__':
+    action_space = ['V', 'I']
+    for r in [1, 5, 10, 50, 100, 200]:
+        Field(
+            100, sim_length = 5000, gradient_reward = False, reward_signal = r,
+            action_space = action_space, plot = False, record_mov = False, learning_alg = 'Ried',
+        )
+
 
     # Different ways of running the model:
     #
@@ -210,6 +217,8 @@ if __name__ == '__main__':
     #             timesteps.append(timestep)
     #     plt.scatter(timesteps, avg_v, marker = '.')
     #     plt.savefig(path.join(path.expanduser('~'), 'public_html', 'avg_v.png'), dpi = 300)
+
     # 6.
-    data_dir = 'data/20200528/1-lf_or'
-    run_Q_dirs(data_dir)
+
+    # data_dir = 'data/20200528/1-lf_or'
+    # run_Q_dirs(data_dir)
