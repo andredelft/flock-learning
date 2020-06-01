@@ -1,0 +1,158 @@
+{
+  "20200531-094310": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 1,
+    "learning_alg": "Ried",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "record_every": 500
+  },
+  "20200531-094413": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 1,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 500
+  },
+  "20200531-094521": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Ried",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "record_every": 500
+  },
+  "20200531-094628": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 500
+  },
+  "20200531-094733": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 10,
+    "learning_alg": "Ried",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "record_every": 500
+  },
+  "20200531-094835": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 10,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 500
+  },
+  "20200531-094942": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 20,
+    "learning_alg": "Ried",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "record_every": 500
+  },
+  "20200531-095045": {
+    "no_birds": 100,
+    "action_space": [
+      "N",
+      "E",
+      "S",
+      "W",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 20,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 500
+  }
+}
