@@ -80,7 +80,7 @@ class Figures:
 
         for i,d in enumerate(data):
             a[i].scatter(*d, marker = '.')
-            a[i].set_ylim(0,1)
+            a[i].set_ylim(0, 1.05)
             a[i].set_ylabel(r'$\langle v \rangle$')
         a[1].set_xlabel(r'$\Delta$')
         a[0].set_xlim(0,1)
@@ -187,7 +187,9 @@ class Figures:
 
         for obs_rad, fig_row in or_dict.items():
             a[fig_row, 0].set_ylim(0.47, 0.51)
-            a[fig_row, 0].set_title(f'$d/L = {obs_rad/400}$', loc = 'left')
+            a[fig_row, 0].set_title(f'$d/L = {obs_rad/800}$', loc = 'left')
+            n = round(np.pi * obs_rad**2 * 100 / (800**2), 2)
+            a[fig_row, 1].set_title(f'$n = {n}$', loc = 'right')
             a[fig_row, 1].set_ylim(-0.05, 1.05)
             a[fig_row, 0].set_ylabel(r'$\Delta$')
             a[fig_row, 1].set_ylabel(r'$\langle v \rangle$', rotation = 270, labelpad = 17)
