@@ -136,7 +136,7 @@ def _check_rotational_symmetry():
 class Birds(object):
 
     def __init__(self, numbirds, field_dims, action_space = A, state_space = S,
-                 leader_frac = 0.25, reward_signal = R, learning_alg = 'Ried',
+                 leader_frac = 0.25, reward_signal = R, learning_alg = 'Q',
                  alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
                  Q_tables = None, gradient_reward = True, observation_radius = d,
                  instincts = []):

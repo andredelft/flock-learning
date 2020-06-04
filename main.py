@@ -137,13 +137,23 @@ def mp_wrapper(indexed_pars):
     )
 
 if __name__ == '__main__':
-    action_space = ['V', 'I']
-    for r in [1, 5, 10, 50, 100, 200]:
-        Field(
-            100, sim_length = 5000, gradient_reward = False, reward_signal = r,
-            action_space = action_space, plot = False, record_mov = False, learning_alg = 'Ried',
-        )
+    #action_space = ['V', 'I']
+    #for r in [1, 5, 10, 50, 100, 200]:
+    #    Field(
+    #        100, sim_length = 5000, gradient_reward = False, reward_signal = r,
+    #        action_space = action_space, plot = False, record_mov = False, learning_alg = 'Ried', record_data = True
+    #    )
 
+    for par in ['alpha', 'gamma', 'epsilon']:
+        for value in [0, 0.2, 0.4, 0.6, 0.8, 1]:
+            if par == 'gamma' and value == 1:
+                value = 0.99
+            par_dict = {par: value, 'comment': f'vary_{par}'}
+            Field(
+                100, sim_length = 5000, plot = False, record_mov = False,
+                record_quantities = ['Q', 'instincts', 'Delta'], record_every = 500,
+                Q_every = 500, **par_dict
+            )
 
     # Different ways of running the model:
     #
@@ -178,6 +188,8 @@ if __name__ == '__main__':
     #        pars.append({'observation_radius': obs_rad, 'leader_frac': lead_frac})
     #pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
     #pars += [{par: value, 'gradient_reward': False, 'comment': f'vary_{par} (no gradient)'} for par, value in par_tweaks] # reference simulations
+    
+
     #with ProcessPoolExecutor() as executor:
     #    for _ in executor.map(mp_wrapper, enumerate(pars)):
     #        pass

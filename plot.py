@@ -85,9 +85,9 @@ def plot_delta_lf(fname, **kwargs):
         )
 
 def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
-             legend = True, title = '', save_as = '', **kwargs):
+             show_legend = True, title = '', save_as = '', **kwargs):
 
-    if expose_remote:
+    if expose_remote or save_as:
         plt.figure()
     with open(path.join(data_dir,'parameters.json')) as f:
         params = json.load(f)
@@ -101,7 +101,7 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
     for i, fname in enumerate(sorted(glob(f'{data_dir}/*-{quantity}.npy'))):
         record_tag = get_rt(fname)
         if quantity == 'v':
-            label = record_tag if legend else None
+            label = record_tag if show_legend else None
             plot_mag(
                 fname, cap = cap,
                 label = record_tag,
@@ -145,10 +145,10 @@ def plot_all(data_dir = 'data', quantity = 'v', cap = 50, expose_remote = False,
     if title:
         plt.title(title)
 
-    if legend or legend == 0:
-        if type(legend) in [str, int]:
+    if show_legend or show_legend == 0:
+        if type(show_legend) in [str, int]:
             # Pass in the legend location via legend variable
-            plt.legend(loc = legend)
+            plt.legend(loc = show_legend)
         else:
             plt.legend()
 
