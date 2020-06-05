@@ -213,82 +213,108 @@ class Figures:
             save_as = 'lead_frac_obs_rad_gradient.pdf'
         )
 
-    def tweaking_the_learning_params():
-        fig, a = plt.subplots(2,2)
+    def learning_params():
+        figsize_x = 1.1 * FIGSIZE_X
+        figsize_y = 1.5 * FIGSIZE_Y
+        fig, a = plt.subplots(3, 2, figsize = [figsize_x, figsize_y])
 
-        ref_cvalue = 0.4
-        ref_fnames = []
-        par_fnames = {
-            'alpha': [],
-            'gamma': [],
-            'epsilon': []
-        }
+        record_every = 500
 
-        lp_data_dir = path.join(DATA_DIR, '20200519')
-        fnames = sorted(fname for fname in os.listdir(lp_data_dir) if fname.endswith('-Delta.npy'))
-        with open(path.join(lp_data_dir, 'parameters.json')) as f:
+        delta_dir = path.join(DATA_DIR, '20200603', '1-lp_data')
+        avg_v_dir = path.join(DATA_DIR, '20200603', '2-avg_v')
+
+        with open(path.join(delta_dir, 'parameters.json')) as f:
             params = json.load(f)
 
-        for fname in fnames:
-            pars = params[get_rt(fname)]
-            comment = pars.pop('comment', '')
-            if comment == 'reference':
-                ref_fnames.append(fname)
-            elif comment.startswith('vary_'):
-                par_fnames[comment.split('_')[1]].append(fname)
-
-        for i, fname in enumerate(ref_fnames):
-            plot_delta(
-                a[0][0], fname, data_dir = lp_data_dir, label = get_rt(fname),
-                color = CMAP['references'](-0.7 * (i/len(ref_fnames)) + 0.9)
-            )
-            plot_delta(
-                a[0][1], fname, data_dir = lp_data_dir, label = get_rt(fname),
-                color = CMAP['references'](ref_cvalue)
-            )
-            plot_delta(
-                a[1][0], fname, data_dir = lp_data_dir, label = get_rt(fname),
-                color = CMAP['references'](ref_cvalue)
-            )
-            plot_delta(
-                a[1][1], fname, data_dir = lp_data_dir, label = get_rt(fname),
-                color = CMAP['references'](ref_cvalue)
-            )
-
-        axins = dict()
-        for par, fignums in zip(['alpha', 'gamma', 'epsilon'], [(0,1), (1,0), (1,1)]):
-            for fname in par_fnames[par]:
-                record_tag = get_rt(fname)
-                value = params[record_tag]['Q_params'][par]
+        for i,par in enumerate(['alpha', 'gamma', 'epsilon']):
+            record_tags = [rt for rt in params if params[rt]['comment'] == f'vary_{par}']
+            for record_tag in record_tags:
+                par_value = params[record_tag]['Q_params'][par]
                 plot_delta(
-                    a[fignums], fname, data_dir = lp_data_dir,
-                    color = CMAP[par](value)
+                    a[i,0], f'{record_tag}-Delta.npy', data_dir = delta_dir,
+                    delta_t = record_every, color = CMAP[par](par_value)
                 )
-            axins[par] = inset_axes(a[fignums], width='20%', height='3%', loc='upper right')
-            cbar = fig.colorbar(
-                mpl.cm.ScalarMappable(cmap = CMAP[par]), cax=axins[par],
-                orientation='horizontal', ticks=[0, 1]
-            )
-            cbar.ax.set_ylabel(fr'$\{par}$  ', rotation = 0, y = -1)
+                data = np.load(path.join(avg_v_dir, f'{record_tag}-avg_v.npy'))
+                a[i, 1].scatter(*data, color = CMAP[par](par_value), marker = '.')
 
-        a[0][0].set_ylim(0.415, 0.505)
-        a[0][1].set_ylim(0.415, 0.505)
-        a[1][0].set_ylim(0.415, 0.505)
-        a[1][1].set_ylim(0.415, 0.505)
+        fig.savefig('learning_params.pdf')
 
-        a[0][0].set_xticklabels([])
-        a[0][1].set_xticklabels([])
-        a[0][1].set_yticklabels([])
-        a[1][1].set_yticklabels([])
-        a[0][0].set_ylabel(r'$\Delta$')
-        a[1][0].set_ylabel(r'$\Delta$')
-        a[1][0].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
-        a[1][0].set_xlabel(r'Timestep')
-        a[1][1].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
-        a[1][1].set_xlabel('Timestep')
-
-        fig.tight_layout()
-        fig.savefig(path.join(IMG_DIR, 'tweaking_the_learning_params.pdf'))
+    # def tweaking_the_learning_params():
+    #     fig, a = plt.subplots(2,2)
+    #
+    #     ref_cvalue = 0.4
+    #     ref_fnames = []
+    #     par_fnames = {
+    #         'alpha': [],
+    #         'gamma': [],
+    #         'epsilon': []
+    #     }
+    #
+    #     lp_data_dir = path.join(DATA_DIR, '20200519')
+    #     fnames = sorted(fname for fname in os.listdir(lp_data_dir) if fname.endswith('-Delta.npy'))
+    #     with open(path.join(lp_data_dir, 'parameters.json')) as f:
+    #         params = json.load(f)
+    #
+    #     for fname in fnames:
+    #         pars = params[get_rt(fname)]
+    #         comment = pars.pop('comment', '')
+    #         if comment == 'reference':
+    #             ref_fnames.append(fname)
+    #         elif comment.startswith('vary_'):
+    #             par_fnames[comment.split('_')[1]].append(fname)
+    #
+    #     for i, fname in enumerate(ref_fnames):
+    #         plot_delta(
+    #             a[0][0], fname, data_dir = lp_data_dir, label = get_rt(fname),
+    #             color = CMAP['references'](-0.7 * (i/len(ref_fnames)) + 0.9)
+    #         )
+    #         plot_delta(
+    #             a[0][1], fname, data_dir = lp_data_dir, label = get_rt(fname),
+    #             color = CMAP['references'](ref_cvalue)
+    #         )
+    #         plot_delta(
+    #             a[1][0], fname, data_dir = lp_data_dir, label = get_rt(fname),
+    #             color = CMAP['references'](ref_cvalue)
+    #         )
+    #         plot_delta(
+    #             a[1][1], fname, data_dir = lp_data_dir, label = get_rt(fname),
+    #             color = CMAP['references'](ref_cvalue)
+    #         )
+    #
+    #     axins = dict()
+    #     for par, fignums in zip(['alpha', 'gamma', 'epsilon'], [(0,1), (1,0), (1,1)]):
+    #         for fname in par_fnames[par]:
+    #             record_tag = get_rt(fname)
+    #             value = params[record_tag]['Q_params'][par]
+    #             plot_delta(
+    #                 a[fignums], fname, data_dir = lp_data_dir,
+    #                 color = CMAP[par](value)
+    #             )
+    #         axins[par] = inset_axes(a[fignums], width='20%', height='3%', loc='upper right')
+    #         cbar = fig.colorbar(
+    #             mpl.cm.ScalarMappable(cmap = CMAP[par]), cax=axins[par],
+    #             orientation='horizontal', ticks=[0, 1]
+    #         )
+    #         cbar.ax.set_ylabel(fr'$\{par}$  ', rotation = 0, y = -1)
+    #
+    #     a[0][0].set_ylim(0.415, 0.505)
+    #     a[0][1].set_ylim(0.415, 0.505)
+    #     a[1][0].set_ylim(0.415, 0.505)
+    #     a[1][1].set_ylim(0.415, 0.505)
+    #
+    #     a[0][0].set_xticklabels([])
+    #     a[0][1].set_xticklabels([])
+    #     a[0][1].set_yticklabels([])
+    #     a[1][1].set_yticklabels([])
+    #     a[0][0].set_ylabel(r'$\Delta$')
+    #     a[1][0].set_ylabel(r'$\Delta$')
+    #     a[1][0].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
+    #     a[1][0].set_xlabel(r'Timestep')
+    #     a[1][1].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
+    #     a[1][1].set_xlabel('Timestep')
+    #
+    #     fig.tight_layout()
+    #     fig.savefig(path.join(IMG_DIR, 'tweaking_the_learning_params.pdf'))
 
     # def gamma_gradient():
     #     plt.figure()
