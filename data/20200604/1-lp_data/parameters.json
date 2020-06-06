@@ -1,0 +1,662 @@
+{
+  "20200604-153042": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.0,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-153503": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-153929": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.2,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-154353": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.30000000000000004,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-154832": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.4,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-155300": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.5,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-155739": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.6000000000000001,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-160202": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.7000000000000001,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-160642": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.8,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-161114": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.9,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-161540": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 1.0,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200604-162006": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.0,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-162435": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.1,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-162907": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.2,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-163336": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.30000000000000004,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-163805": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.4,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-164229": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.5,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-164654": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.6000000000000001,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-165117": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.7000000000000001,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-165545": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.8,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-170013": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-170442": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.99,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200604-170912": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.0
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-171335": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.1
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-171808": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.2
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-172237": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.30000000000000004
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-172706": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.4
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-173139": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-173602": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.6000000000000001
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-174030": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.7000000000000001
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-174455": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.8
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-174922": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200604-175341": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": true,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 1.0
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  }
+}

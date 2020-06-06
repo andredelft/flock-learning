@@ -218,10 +218,10 @@ class Figures:
         figsize_y = 1.5 * FIGSIZE_Y
         fig, a = plt.subplots(3, 2, figsize = [figsize_x, figsize_y])
 
-        record_every = 500
+        record_every = 100
 
-        delta_dir = path.join(DATA_DIR, '20200603', '1-lp_data')
-        avg_v_dir = path.join(DATA_DIR, '20200603', '2-avg_v')
+        delta_dir = path.join(DATA_DIR, '20200604', '1-lp_data')
+        avg_v_dir = path.join(DATA_DIR, '20200604', '2-avg_v')
 
         with open(path.join(delta_dir, 'parameters.json')) as f:
             params = json.load(f)
@@ -234,10 +234,12 @@ class Figures:
                     a[i,0], f'{record_tag}-Delta.npy', data_dir = delta_dir,
                     delta_t = record_every, color = CMAP[par](par_value)
                 )
-                data = np.load(path.join(avg_v_dir, f'{record_tag}-avg_v.npy'))
-                a[i, 1].scatter(*data, color = CMAP[par](par_value), marker = '.')
+                fpath = path.join(avg_v_dir, f'{record_tag}-avg_v.npy')
+                if path.isfile(fpath):
+                    data = np.load(fpath)
+                    a[i, 1].scatter(*data, color = CMAP[par](par_value), marker = '.')
 
-        fig.savefig('learning_params.pdf')
+        fig.savefig(path.join(IMG_DIR,'learning_params.pdf'))
 
     # def tweaking_the_learning_params():
     #     fig, a = plt.subplots(2,2)

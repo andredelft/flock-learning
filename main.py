@@ -145,14 +145,14 @@ if __name__ == '__main__':
     #    )
 
     for par in ['alpha', 'gamma', 'epsilon']:
-        for value in [0, 0.2, 0.4, 0.6, 0.8, 1]:
-            if par == 'gamma' and value == 1:
+        for value in np.arange(0, 1.1, 0.1):
+            if par == 'gamma' and value > 0.99:
                 value = 0.99
             par_dict = {par: value, 'comment': f'vary_{par}'}
             Field(
                 100, sim_length = 5000, plot = False, record_mov = False,
-                record_quantities = ['Q', 'instincts', 'Delta'], record_every = 500,
-                Q_every = 500, **par_dict
+                record_quantities = ['Q', 'instincts', 'Delta'], record_every = 100,
+                Q_every = 100, **par_dict
             )
 
     # Different ways of running the model:
