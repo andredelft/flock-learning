@@ -22,28 +22,28 @@ else:
 DATA_DIR = path.join(HERE, 'data')
 IMG_DIR = path.join(HERE, 'thesis-figures')
 
-# mpl.rcParams['font.serif'] = ['Palatino']
+FIGSIZE_X, FIGSIZE_Y = [5,4]
+
+mpl.rcParams['figure.figsize'] = [FIGSIZE_X, FIGSIZE_Y]
 mpl.rcParams['font.family'] = 'serif'
+
+# Use tex and match style to thesis
 mpl.rc('text', usetex = True)
 mpl.rcParams['text.latex.preamble']=[r'\usepackage{amsmath,palatino,mathpazo}']
-# mpl.rcParams['savefig.dpi'] = 600
-FIGSIZE_X, FIGSIZE_Y = [5,4]
-mpl.rcParams['figure.figsize'] = [FIGSIZE_X, FIGSIZE_Y]
-# mpl.rcParams["savefig.format"] = '.pdf'
-mpl.rcParams['savefig.directory'] = IMG_DIR
 
-vmin, vmax = (0.2, 1)
+# Register some shifted colormaps
+VMIN, VMAX = (0.2, 1)
 
 for name in ['Blues', 'Reds', 'Greens']:
     shiftedColorMap(
-        plt.get_cmap(name), vmin, (vmax + vmin)/2, vmax, f'Shifted{name}'
+        plt.get_cmap(name), VMIN, (VMAX + VMIN)/2, VMAX, f'Shifted{name}'
     )
 
-CMAP = {
+LP_CMAPS = {
     'alpha': plt.get_cmap('ShiftedBlues'),
     'gamma': plt.get_cmap('ShiftedReds'),
-    'epsilon': plt.get_cmap('ShiftedGreens'),
-    'references': plt.get_cmap('Greys')
+    'epsilon': plt.get_cmap('ShiftedGreens')
+    # 'references': plt.get_cmap('Greys')
 }
 
 def get_path(fname):
@@ -132,11 +132,76 @@ class Figures:
         fig.tight_layout()
         fig.savefig(path.join(IMG_DIR, 'optpol_leader_fractions.pdf'))
 
+    def learning_params():
+        figsize_x = 1.1 * FIGSIZE_X
+        figsize_y = 1.5 * FIGSIZE_Y
+        fig, a = plt.subplots(3, 2, figsize = [figsize_x, figsize_y])
+
+        pars = ['alpha', 'gamma', 'epsilon']
+        record_every = 100
+
+        delta_dir = path.join(DATA_DIR, '20200604', '1-lp_data')
+        avg_v_dir = path.join(DATA_DIR, '20200604', '2-avg_v')
+
+        with open(path.join(delta_dir, 'parameters.json')) as f:
+            params = json.load(f)
+
+        # All runs together is a bit much, thus only a few are allowed.
+        # This can be configured below:
+        allowed_inds = [
+            0,  # 1 (0.99 for gamma)
+            # 1,  # 0.9
+            2,  # 0.8
+            # 3,  # 0.7
+            4,  # 0.6
+            # 5,  # 0.5
+            6,  # 0.4
+            # 7,  # 0.3
+            8,  # 0.2
+            9,  # 0.1
+            10, # 0.0
+        ]
+
+        for i,par in enumerate(pars):
+            record_tags = [rt for rt in params if params[rt]['comment'] == f'vary_{par}']
+            # sort by increasing parameter value
+            record_tags.sort(key = lambda rt: params[rt]['Q_params'][par], reverse = True)
+
+            for rt_ind in allowed_inds:
+                record_tag = record_tags[rt_ind]
+                par_value = params[record_tag]['Q_params'][par]
+                plot_delta(
+                    a[i,0], f'{record_tag}-Delta.npy', data_dir = delta_dir,
+                    delta_t = record_every, color = LP_CMAPS[par](par_value)
+                )
+                fpath = path.join(avg_v_dir, f'{record_tag}-avg_v.npy')
+                if path.isfile(fpath):
+                    data = np.load(fpath)
+                    a[i, 1].scatter(*data, color = LP_CMAPS[par](par_value), marker = '.')
+
+        for i in range(3):
+            a[i, 0].set_ylim(0.471, 0.503)
+            a[i, 0].set_ylabel(r'$\Delta$')
+            a[i, 1].set_ylabel(r'$\langle v \rangle$', rotation = 270, labelpad = 17)
+            a[i, 1].yaxis.set_label_position('right')
+            a[i, 1].yaxis.set_ticks_position('right')
+            if i != 2:
+                for j in range(2):
+                    a[i,j].set_xticklabels([])
+            else:
+                for j in range(2):
+                    a[i,j].set_xlabel('Timestep')
+                    a[i,j].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
+
+        fig.tight_layout()
+        fig.savefig(path.join(IMG_DIR,'learning_params.pdf'))
+
     def lead_frac_obs_rad_discrete(
-            data_dir_left = path.join(DATA_DIR, '20200528', '1-lf_or'),
-            data_dir_right = path.join(DATA_DIR, '20200528', '2-avg_v'),
-            save_as = 'lead_frac_obs_rad_discrete.pdf'
+        data_dir_left = path.join(DATA_DIR, '20200528', '1-lf_or'),
+        data_dir_right = path.join(DATA_DIR, '20200528', '2-avg_v'),
+        save_as = 'lead_frac_obs_rad_discrete.pdf'
     ):
+
         figsize_x = 1.1 * FIGSIZE_X
         figsize_y = 2 * FIGSIZE_Y
         fig, a = plt.subplots(4, 2, figsize = [figsize_x, figsize_y])
@@ -212,34 +277,6 @@ class Figures:
             data_dir_right = path.join(DATA_DIR, '20200527', '3-avg_v'),
             save_as = 'lead_frac_obs_rad_gradient.pdf'
         )
-
-    def learning_params():
-        figsize_x = 1.1 * FIGSIZE_X
-        figsize_y = 1.5 * FIGSIZE_Y
-        fig, a = plt.subplots(3, 2, figsize = [figsize_x, figsize_y])
-
-        record_every = 100
-
-        delta_dir = path.join(DATA_DIR, '20200604', '1-lp_data')
-        avg_v_dir = path.join(DATA_DIR, '20200604', '2-avg_v')
-
-        with open(path.join(delta_dir, 'parameters.json')) as f:
-            params = json.load(f)
-
-        for i,par in enumerate(['alpha', 'gamma', 'epsilon']):
-            record_tags = [rt for rt in params if params[rt]['comment'] == f'vary_{par}']
-            for record_tag in record_tags:
-                par_value = params[record_tag]['Q_params'][par]
-                plot_delta(
-                    a[i,0], f'{record_tag}-Delta.npy', data_dir = delta_dir,
-                    delta_t = record_every, color = CMAP[par](par_value)
-                )
-                fpath = path.join(avg_v_dir, f'{record_tag}-avg_v.npy')
-                if path.isfile(fpath):
-                    data = np.load(fpath)
-                    a[i, 1].scatter(*data, color = CMAP[par](par_value), marker = '.')
-
-        fig.savefig(path.join(IMG_DIR,'learning_params.pdf'))
 
     # def tweaking_the_learning_params():
     #     fig, a = plt.subplots(2,2)
