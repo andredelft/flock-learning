@@ -7,7 +7,7 @@ import time
 from q_learning import Qfunction
 
 d = 100  # Observation radius
-N = 2    # Max neigbours observed
+M = 2    # Max neigbours observed
 R = 5    # Maximum reward signal
 
 alpha   = 0.1  # Learning rate
@@ -23,7 +23,7 @@ STEPS = [np.array([
 TRESHOLD = 0.9 * np.linalg.norm(STEPS[0] + STEPS[(NO_DIRS//2) + 1])
 
 A = ['V', 'I']                # Action space
-S = range((N + 1) ** NO_DIRS) # Observation space
+O = range((M + 1) ** NO_DIRS) # Observation space
 
 CARD_DIRS = {
     card_dir: i for card_dir, i in zip('WSEN',range(0, NO_DIRS, NO_DIRS//4))
@@ -71,7 +71,7 @@ def ternary(numbers):
     return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
 
 """
-_get_maj_obs and _check_rotational_symmetry have been used to check whether
+get_maj_obs and check_rotational_symmetry have been used to check whether
 discrete_Vicsek works as expected. The first returns a list for each cardinal
 direction with all the possible observations in which discrete_Vicsek points
 in that direction (by symmetry, these lists should be equal in size). The second
@@ -85,12 +85,12 @@ As of 25/05/2020, discrete_Vicsek passes both tests.
 def _to_obs(i):
     """ Converts the observation index back to the observation dictionary. """
     if NO_DIRS == 4:
-        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, N + 1):>04}')}
+        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, M + 1):>04}')}
     elif NO_DIRS == 8:
-        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, N + 1):>08}')}
+        return {n: int(a) for n,a in enumerate(f'{np.base_repr(i, M + 1):>08}')}
 
 def _rot(obs, n = 1):
-    """ Returns obs rotated by 90 degrees n times. """
+    """ Returns obs n times rotated by 90 degrees. """
     if n == 0:
         return obs
     new_obs = {i: obs[(i - 2) % NO_DIRS] for i in range(NO_DIRS)}
@@ -99,9 +99,9 @@ def _rot(obs, n = 1):
     elif n > 1 and type(n) == int:
         return _rot(new_obs, n - 1)
 
-def _get_maj_obs():
+def get_maj_obs(print_sizes = True):
     maj = {card_dir: [] for card_dir in CARD_DIRS.keys()}
-    for i in range((N + 1) ** NO_DIRS):
+    for i in O:
         vic_dir = discrete_Vicsek(_to_obs(i), strict = True)
         for card_dir, i_dir in CARD_DIRS.items():
             if vic_dir == i_dir:
@@ -109,11 +109,11 @@ def _get_maj_obs():
     print([len(dirs) for dirs in maj.values()])
     return maj
 
-def _check_rotational_symmetry():
+def check_rotational_symmetry():
     if NO_DIRS != 8:
         raise ValueError('This function only works for NO_DIRS == 8')
     not_symmetric = []
-    for i in range(N ** NO_DIRS):
+    for i in O:
         obs = _to_obs(i)
         vic_dirs = [
             discrete_Vicsek(_rot(obs, n), strict = True) for n in range(4)
@@ -130,12 +130,15 @@ def _check_rotational_symmetry():
             shifted = [vic_dirs[(i + ind) % 4] for i in range(4)]
             if not shifted == [1,3,5,7]:
                 not_symmetric.append((obs, vic_dirs))
-    print(len(not_symmetric))
-    return not_symmetric
+    if len(not_symmetric) == 0:
+        print('discrete_Vicsek is completely rotationally symmetric')
+    else:
+        print('Asymmetry found, its indices are returned')
+        return not_symmetric
 
 class Birds(object):
 
-    def __init__(self, numbirds, field_dims, action_space = A, state_space = S,
+    def __init__(self, numbirds, field_dims, action_space = A, observation_space = O,
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Q',
                  alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
                  Q_tables = None, gradient_reward = True, observation_radius = d,
@@ -162,13 +165,13 @@ class Birds(object):
 
         # Initialize all the reinforcement learning objects objects
         self.action_space = action_space
-        self.state_space = state_space
+        self.observation_space = observation_space
         self.reward_signal = reward_signal
         self.gradient = gradient_reward
         self.observation_radius = observation_radius
         self.learning_alg = learning_alg
         self.policies = np.zeros(
-            [self.numbirds, len(S), len(self.action_space)]
+            [self.numbirds, len(O), len(self.action_space)]
         )
         if self.learning_alg == 'pol_from_Q':
             if (not Q_file) and (type(Q_tables) != np.ndarray):
@@ -191,7 +194,7 @@ class Birds(object):
             self.gamma = gamma
             self.epsilon = epsilon
             self.Qs = [Qfunction(
-                alpha, gamma, self.state_space, self.action_space
+                alpha, gamma, self.observation_space, self.action_space
             ) for _ in range(self.numbirds)]
 
     def request_params(self):
@@ -223,7 +226,7 @@ class Birds(object):
             ]) for _ in range(self.numbirds)
         ])
 
-    def perform_observations(self, max_neighbours = N):
+    def perform_observations(self, max_neighbours = M):
         tree = KDTree(self.positions)
         new_obs = []
         for i in range(self.numbirds):
@@ -322,7 +325,7 @@ class Birds(object):
                     - self.Q_tables[i,:,1-desired_ind] < 0
                 )
 
-        Delta /= self.numbirds * len(self.state_space)
+        Delta /= self.numbirds * len(self.observation_space)
         print(f'Delta = {Delta}')
         return Delta
 
