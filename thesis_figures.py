@@ -362,21 +362,85 @@ class Figures:
     #     for dname in sorted(glob(f'{data_dir}/*-Q/')):
     #         record_tag = get_rt(dir)
 
-    # def delta_lf():
-    #
-    #     for fname in sorted(fnames_gamma):
-    #         record_tag = get_rt(fname)
-    #         gamma = params[record_tag]['Q_params']['gamma']
-    #         Q = np.load(fname)
-    #         Delta_l, Delta_f = (0,0)
-    #         for i in range(25):
-    #             Delta_l += np.sum(Q[i,:,1] - Q[i,:,0] < 0)
-    #         for i in range(25, 100):
-    #             Delta_f += np.sum(Q[i,:,0] - Q[i,:,1] < 0)
-    #         Delta_l /= 25 * Q.shape[1]
-    #         Delta_f /= 75 * Q.shape[1]
-    #         data.append([gamma, Delta_l, Delta_f])
+    def delta_lf():
+        fig, a = plt.subplots(1, 2, figsize = [FIGSIZE_X, 0.55 * FIGSIZE_Y])
+        data_dir = path.join(DATA_DIR, '20200608', '1-lp_data')
 
+        with open(path.join(data_dir, 'parameters.json')) as f:
+            params = json.load(f)
+
+        # All runs together is a bit much, thus only a few are allowed.
+        # This can be configured below:
+        allowed_inds = [
+            0,  # 1 (0.99 for gamma)
+            # 1,  # 0.9
+            2,  # 0.8
+            # 3,  # 0.7
+            4,  # 0.6
+            # 5,  # 0.5
+            6,  # 0.4
+            # 7,  # 0.3
+            8,  # 0.2
+            9,  # 0.1
+            10, # 0.0
+        ]
+
+        par = 'gamma'
+        record_tags = [rt for rt in params if params[rt]['comment'] == f'vary_{par}']
+        # sort by increasing parameter value
+        record_tags.sort(key = lambda rt: params[rt]['Q_params'][par], reverse = True)
+
+        for rt_ind in allowed_inds:
+            data = []
+            record_tag = record_tags[rt_ind]
+            par_value = params[record_tag]['Q_params'][par]
+            Q_dir = path.join(data_dir, f'{record_tag}-Q')
+            for fpath in sorted(glob(path.join(Q_dir, f'*.npy'))):
+                Q = np.load(fpath)
+                timestep = int(regex.search(r'\d+', path.split(fpath)[1]).group())
+                Delta_l, Delta_f = (0,0)
+                for i in range(25):
+                    Delta_l += np.sum(Q[i,:,1] - Q[i,:,0] < 0)
+                for i in range(25, 100):
+                    Delta_f += np.sum(Q[i,:,0] - Q[i,:,1] < 0)
+                Delta_l /= 25 * Q.shape[1]
+                Delta_f /= 75 * Q.shape[1]
+                data.append([timestep, Delta_l, Delta_f])
+            timesteps, Delta_l, Delta_f = [],[],[]
+            for entry in data:
+                timesteps.append(entry[0])
+                Delta_l.append(entry[1])
+                Delta_f.append(entry[2])
+            np.save(path.join(data_dir, f'{record_tag}-Delta_l.npy'), [timesteps, Delta_l])
+            np.save(path.join(data_dir, f'{record_tag}-Delta_f.npy'), [timesteps, Delta_f])
+            a[0].plot(timesteps, Delta_l, color = LP_CMAP[par](par_value))
+            a[1].plot(timesteps, Delta_f, color = LP_CMAP[par](par_value))
+
+        fig.savefig(path.join(path.expanduser('~'), 'public_html', 'Delta_lf.pdf'))
+
+    def Delta_card_dir():
+        fig, a = plt.subplots(4, 2, figsize = [FIGSIZE_X, 2 * FIGSIZE_Y])
+        data_dir = path.join(DATA_DIR, '20200604', '1-lp_data')
+        bird_types = 'lf'
+        card_dirs = 'NESW'
+        
+        with open(path.join(data_dir, 'parameters.json')) as f:
+            params = json.load(f)
+
+        record_tags = [
+            rt for rt in params.keys() if params[rt]['comment'] == 'vary_gamma'
+        ]
+        
+        for record_tag in record_tags:
+            gamma = params[record_tag]['Q_params']['gamma']
+            for i, card_dir in enumerate(card_dirs):
+                for j, bird_type in enumerate(bird_types):
+                    fname = f'{record_tag}-Delta_{bird_type}{card_dir}.npy'
+                    data = np.load(path.join(data_dir, fname))
+                    a[i,j].plot(*data, color = LP_CMAPS['gamma'](gamma))
+
+        fig.savefig(path.join(IMG_DIR, 'Delta_card_dir.pdf'))
+    
     # def long_run():
     #     record_tag = '20200503-180806'
     #     data_dir = path.join(DATA_DIR, '20200501')

@@ -364,3 +364,4 @@ class Birds(object):
             self.Q_learning()
         # t_end = time.perf_counter()
         # print(f'Learning: {round(t_end - t_start, 3)}')
+

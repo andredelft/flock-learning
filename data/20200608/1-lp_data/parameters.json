@@ -1,0 +1,662 @@
+{
+  "20200608-161020": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.0,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-161418": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-161818": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.2,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-162215": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.30000000000000004,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-162617": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.4,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-163021": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.5,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-163422": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.6000000000000001,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-163825": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.7000000000000001,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-164229": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.8,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-164641": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.9,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-165047": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 1.0,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_alpha"
+  },
+  "20200608-165458": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.0,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-165901": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.1,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-170306": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.2,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-170706": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.30000000000000004,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-171110": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.4,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-171518": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.5,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-171929": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.6000000000000001,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-172337": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.7000000000000001,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-172746": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.8,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-173153": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-173557": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.99,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_gamma"
+  },
+  "20200608-173959": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.0
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-174401": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.1
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-174806": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.2
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-175215": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.30000000000000004
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-175621": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.4
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-180033": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.5
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-180436": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.6000000000000001
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-180838": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.7000000000000001
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-181243": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.8
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-181648": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 0.9
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  },
+  "20200608-182052": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.9,
+      "epsilon": 1.0
+    },
+    "record_every": 100,
+    "comment": "vary_epsilon"
+  }
+}

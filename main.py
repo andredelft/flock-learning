@@ -152,7 +152,7 @@ if __name__ == '__main__':
             Field(
                 100, sim_length = 5000, plot = False, record_mov = False,
                 record_quantities = ['Q', 'instincts', 'Delta'], record_every = 100,
-                Q_every = 100, **par_dict
+                gradient_reward = False, Q_every = 100, **par_dict
             )
 
     # Different ways of running the model:
