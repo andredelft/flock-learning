@@ -106,7 +106,10 @@ def get_maj_obs(print_sizes = True):
         for card_dir, i_dir in CARD_DIRS.items():
             if vic_dir == i_dir:
                 maj[card_dir].append(i)
-    print([len(dirs) for dirs in maj.values()])
+
+    if print_sizes:
+        print([len(dirs) for dirs in maj.values()])
+
     return maj
 
 def check_rotational_symmetry():
@@ -364,4 +367,3 @@ class Birds(object):
             self.Q_learning()
         # t_end = time.perf_counter()
         # print(f'Learning: {round(t_end - t_start, 3)}')
-
