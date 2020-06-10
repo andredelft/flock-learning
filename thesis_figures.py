@@ -420,7 +420,7 @@ class Figures:
 
     def Delta_card_dir():
         fig, a = plt.subplots(4, 2, figsize = [FIGSIZE_X, 2 * FIGSIZE_Y])
-        data_dir = path.join(DATA_DIR, '20200604', '1-lp_data')
+        data_dir = path.join(DATA_DIR, '20200608', '1-lp_data')
         bird_types = 'lf'
         card_dirs = 'NESW'
         
@@ -438,9 +438,21 @@ class Figures:
                     fname = f'{record_tag}-Delta_{bird_type}{card_dir}.npy'
                     data = np.load(path.join(data_dir, fname))
                     a[i,j].plot(*data, color = LP_CMAPS['gamma'](gamma))
+        
+        a[0,0].set_title('Leaders')
+        a[0,1].set_title('Followers')
+        for i in range(4):
+            a[i,1].set_yticklabels([])
+            for j in range(2):
+                a[i,j].set_ylim([0.425, 0.51])
+                if i != 3:
+                    a[i,j].set_xticklabels([])
 
-        fig.savefig(path.join(IMG_DIR, 'Delta_card_dir.pdf'))
-    
+        fig.tight_layout()
+        fig.savefig(
+            path.join(data_dir, 'Delta_card_dir_disc.pdf')
+        )
+
     # def long_run():
     #     record_tag = '20200503-180806'
     #     data_dir = path.join(DATA_DIR, '20200501')
