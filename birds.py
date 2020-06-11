@@ -286,8 +286,8 @@ class Birds(object):
 
     def Q_learning(self):
         for i in range(self.numbirds):
-            s = ternary(self.observations[i].values())
-            s_prime = ternary(self.prev_obs[i].values())
+            s = ternary(self.prev_obs[i].values())
+            s_prime = ternary(self.observations[i].values())
 
             # Update the Q-table
             self.Qs[i].update(s, self.actions[i], s_prime, self.reward(i))
