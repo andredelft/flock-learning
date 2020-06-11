@@ -1,0 +1,102 @@
+{
+  "20200610-134930": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0,
+      "epsilon": 0.5
+    },
+    "record_every": 500,
+    "comment": "vary_gamma"
+  },
+  "20200610-134935": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.99,
+      "epsilon": 0.5
+    },
+    "record_every": 500,
+    "comment": "vary_gamma"
+  },
+  "20200610-205540": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.25,
+      "epsilon": 0.5
+    },
+    "record_every": 500,
+    "comment": "vary_gamma"
+  },
+  "20200610-205545": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.5,
+      "epsilon": 0.5
+    },
+    "record_every": 500,
+    "comment": "vary_gamma"
+  },
+  "20200610-205550": {
+    "no_birds": 100,
+    "action_space": [
+      "V",
+      "I"
+    ],
+    "leader_frac": 0.25,
+    "observation_radius": 100,
+    "reward_signal": 5,
+    "learning_alg": "Q",
+    "gradient_reward": false,
+    "no_dirs": 8,
+    "Q_params": {
+      "alpha": 0.1,
+      "gamma": 0.75,
+      "epsilon": 0.5
+    },
+    "record_every": 500,
+    "comment": "vary_gamma"
+  }
+}

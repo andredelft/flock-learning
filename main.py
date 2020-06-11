@@ -132,28 +132,30 @@ def mp_wrapper(indexed_pars):
     time.sleep(5 * i) # To make sure they don't start at exactly the same time,
                       # resulting in the same record tag
     Field(
-        100, record_data = True, plot = False, sim_length = 5000,
-        learning_alg = 'Q', Q_every = 100, record_every = 100, gradient_reward = False, **pars
+        100, record_data = True, plot = False, sim_length = 500_000,
+        learning_alg = 'Q', Q_every = 10_000, record_every = 10_000, gradient_reward = False, **pars
     )
 
 if __name__ == '__main__':
     #action_space = ['V', 'I']
-    #for r in [1, 5, 10, 50, 100, 200]:
+    #for :
     #    Field(
     #        100, sim_length = 5000, gradient_reward = False, reward_signal = r,
-    #        action_space = action_space, plot = False, record_mov = False, learning_alg = 'Ried', record_data = True
+    #        action_space = ['V', 'I'], plot = False, record_mov = False, learning_alg = 'Ried', record_data = True
     #    )
 
-    for par in ['alpha', 'gamma', 'epsilon']:
-        for value in np.arange(0, 1.1, 0.1):
-            if par == 'gamma' and value > 0.99:
-                value = 0.99
-            par_dict = {par: value, 'comment': f'vary_{par}'}
-            Field(
-                100, sim_length = 5000, plot = False, record_mov = False,
-                record_quantities = ['Q', 'instincts', 'Delta'], record_every = 100,
-                gradient_reward = False, Q_every = 100, **par_dict
-            )
+    
+    #for par in ['alpha', 'gamma', 'epsilon']:
+    #for gamma in [0,0.99]:
+    
+    values = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99]
+    pars = [{'gamma': gamma, 'comment': f'vary_gamma'} for gamma in values]
+    
+    for par_dict in pars:
+        Field(
+            100, record_data = True, plot = False, sim_length = 500_000,
+            learning_alg = 'Q', Q_every = 10_000, record_every = 10_000, gradient_reward = False, **pars
+        )
 
     # Different ways of running the model:
     #
