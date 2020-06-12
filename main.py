@@ -154,7 +154,7 @@ if __name__ == '__main__':
     for par_dict in pars:
         Field(
             100, record_data = True, plot = False, sim_length = 500_000,
-            learning_alg = 'Q', Q_every = 10_000, record_every = 10_000, gradient_reward = False, **pars
+            learning_alg = 'Q', Q_every = 10_000, record_every = 10_000, gradient_reward = False, **par_dict
         )
 
     # Different ways of running the model:

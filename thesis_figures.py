@@ -418,7 +418,7 @@ class Figures:
 
         fig.savefig(path.join(path.expanduser('~'), 'public_html', 'Delta_lf.pdf'))
 
-    def Delta_card_dir():
+    def gamma_long_term():
         fig, a = plt.subplots(4, 2, figsize = [FIGSIZE_X, 2 * FIGSIZE_Y])
         data_dir = path.join(DATA_DIR)#, '20200610')#, '1-lp_data')
         bird_types = 'lf'
@@ -441,17 +441,18 @@ class Figures:
         
         a[0,0].set_title('Leaders')
         a[0,1].set_title('Followers')
-        for i in range(4):
+        for i, card_dir in enumerate(card_dirs):
+            a[i,0].set_ylabel(rf'$\Delta_\mathsf{{{card_dir}}}$')
             # a[i,1].set_yticklabels([])
             for j in range(2):
-                # a[i,j].set_ylim([0.425, 0.51])
+                a[i,j].set_ylim([0.29, 0.51])
                 if i != 3:
                     a[i,j].set_xticklabels([])
 
         fig.tight_layout()
         fig.savefig(
-            # path.join(path.expanduser('~'), 'public_html', 'Delta_card_dir_disc.pdf')
-            path.join(data_dir, 'Delta_card_dir_disc.pdf')
+            path.join(path.expanduser('~'), 'public_html', 'Delta_card_dir_disc.pdf')
+            # path.join(data_dir, 'Delta_card_dir_disc.pdf')
         )
 
     # def long_run():
