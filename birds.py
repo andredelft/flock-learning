@@ -70,6 +70,25 @@ def ternary(numbers):
     numbers = list(numbers)
     return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
 
+def argmax(array):
+    """ Returns the index of the maximum value of an array. If multiple maximum values 
+    exist, it returns one of them at random (unlike np.argmax).
+
+    Inspired by https://stackoverflow.com/questions/17568612 """
+    all_inds = [0]
+    max_value = array[0]
+    for i,value in enumerate(array[1:], start = 1):
+        if value > max_value:
+            all_inds = [i]
+            max_value = value
+        elif value == max_value:
+            all_inds.append(i)
+    
+    if len(all_inds) == 1:
+        return all_inds[0]
+    else:
+        return choice(all_inds)
+
 """
 get_maj_obs and check_rotational_symmetry have been used to check whether
 discrete_Vicsek works as expected. The first returns a list for each cardinal
@@ -184,7 +203,7 @@ class Birds(object):
                     Q_tables = np.load(Q_file)
                 for i in range(self.numbirds):
                     for s in range(self.policies.shape[1]):
-                        self.policies[i,s,np.argmax(Q_tables[i,s])] = 1
+                        self.policies[i,s,argmax(Q_tables[i,s])] = 1
             self.Q_tables = Q_tables
             self.Delta = self.calc_Delta()
         else:
@@ -293,7 +312,9 @@ class Birds(object):
             self.Qs[i].update(s, self.actions[i], s_prime, self.reward(i))
 
             # Update the epsilon-greedy policy
-            argmax_Q = np.argmax(self.Qs[i].table[s])
+            argmax_Q = argmax(self.Qs[i].table[s])
+            if self.Qs[i].table[s,0] == self.Qs[i].table[s,1]:
+                print('Equal!')
             self.policies[i,s] = (
                 np.array([
                     (1 - self.epsilon if j == argmax_Q else 0)

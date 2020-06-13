@@ -21,8 +21,8 @@ else:
 
 DATA_DIR = path.join(HERE, 'data')
 USER_ROOT = path.expanduser('~')
-IMG_DIR = path.join(HERE, 'thesis-figures')
-# IMG_DIR = path.join(USER_ROOT, 'public_html')
+# IMG_DIR = path.join(HERE, 'thesis-figures')
+IMG_DIR = path.join(USER_ROOT, 'public_html')
 
 FIGSIZE_X, FIGSIZE_Y = [5,4]
 
@@ -283,7 +283,7 @@ class Figures:
 
     def gamma_long_term():
         fig, a = plt.subplots(4, 2, figsize = [FIGSIZE_X, 1.9 * FIGSIZE_Y])
-        data_dir = path.join(DATA_DIR, '20200610', '2')
+        data_dir = path.join(DATA_DIR)#, '20200610', '2')
         bird_types = 'lf'
         card_dirs = 'NESW'
 
@@ -299,14 +299,16 @@ class Figures:
             for i, card_dir in enumerate(card_dirs):
                 for j, bird_type in enumerate(bird_types):
                     fname = f'{record_tag}-Delta_{bird_type}{card_dir}.npy'
-                    data = np.load(path.join(data_dir, fname))
-                    a[i,j].plot(*data, color = LP_CMAPS['gamma'](gamma))
+                    fpath = path.join(data_dir, fname)
+                    if path.isfile(fpath):
+                        data = np.load(path.join(data_dir, fname))
+                        a[i,j].plot(*data, color = LP_CMAPS['gamma'](gamma))
 
         a[0,0].set_title('Leaders')
         a[0,1].set_title('Followers')
         for i, card_dir in enumerate(card_dirs):
             a[i,0].set_ylabel(rf'$\Delta_\mathsf{{{card_dir}}}$')
-            a[i,0].set_ylim([0.251, 0.51])
+            # a[i,0].set_ylim([0.251, 0.51])
             # a[i,1].set_yticklabels([])
             for j, bird_type in enumerate(bird_types):
                 if i != 3:
@@ -315,10 +317,10 @@ class Figures:
                     a[i,j].set_xlabel('Timestep')
                     a[i,j].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
 
-        a[0,1].set_ylim([0.435, 0.5052])
-        a[1,1].set_ylim([0.251, 0.51])
-        a[2,1].set_ylim([0.435, 0.5052])
-        a[3,1].set_ylim([0.4955, 0.5052])
+        # a[0,1].set_ylim([0.435, 0.5052])
+        # a[1,1].set_ylim([0.251, 0.51])
+        # a[2,1].set_ylim([0.435, 0.5052])
+        # a[3,1].set_ylim([0.4955, 0.5052])
 
         fig.tight_layout()
         fig.savefig(path.join(IMG_DIR, 'gamma_long_term.pdf'))

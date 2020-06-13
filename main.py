@@ -148,7 +148,7 @@ if __name__ == '__main__':
     #for par in ['alpha', 'gamma', 'epsilon']:
     #for gamma in [0,0.99]:
     
-    values = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99]
+    values = [0, 0.5, 0.99, 0.3, 0.4, 0.1, 0.6, 0.7, 0.8, 0.9, 0.2]
     pars = [{'gamma': gamma, 'comment': f'vary_gamma'} for gamma in values]
     
     for par_dict in pars:
