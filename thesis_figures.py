@@ -20,7 +20,9 @@ else:
     HERE = path.abspath('.')
 
 DATA_DIR = path.join(HERE, 'data')
+USER_ROOT = path.expanduser('~')
 IMG_DIR = path.join(HERE, 'thesis-figures')
+# IMG_DIR = path.join(USER_ROOT, 'public_html')
 
 FIGSIZE_X, FIGSIZE_Y = [5,4]
 
@@ -278,6 +280,129 @@ class Figures:
             save_as = 'lead_frac_obs_rad_gradient.pdf'
         )
 
+
+    def gamma_long_term():
+        fig, a = plt.subplots(4, 2, figsize = [FIGSIZE_X, 1.9 * FIGSIZE_Y])
+        data_dir = path.join(DATA_DIR, '20200610', '2')
+        bird_types = 'lf'
+        card_dirs = 'NESW'
+
+        with open(path.join(data_dir, 'parameters.json')) as f:
+            params = json.load(f)
+
+        record_tags = [
+            rt for rt in params.keys() if params[rt]['comment'] == 'vary_gamma'
+        ]
+
+        for record_tag in record_tags:
+            gamma = params[record_tag]['Q_params']['gamma']
+            for i, card_dir in enumerate(card_dirs):
+                for j, bird_type in enumerate(bird_types):
+                    fname = f'{record_tag}-Delta_{bird_type}{card_dir}.npy'
+                    data = np.load(path.join(data_dir, fname))
+                    a[i,j].plot(*data, color = LP_CMAPS['gamma'](gamma))
+
+        a[0,0].set_title('Leaders')
+        a[0,1].set_title('Followers')
+        for i, card_dir in enumerate(card_dirs):
+            a[i,0].set_ylabel(rf'$\Delta_\mathsf{{{card_dir}}}$')
+            a[i,0].set_ylim([0.251, 0.51])
+            # a[i,1].set_yticklabels([])
+            for j, bird_type in enumerate(bird_types):
+                if i != 3:
+                    a[i,j].set_xticklabels([])
+                else:
+                    a[i,j].set_xlabel('Timestep')
+                    a[i,j].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
+
+        a[0,1].set_ylim([0.435, 0.5052])
+        a[1,1].set_ylim([0.251, 0.51])
+        a[2,1].set_ylim([0.435, 0.5052])
+        a[3,1].set_ylim([0.4955, 0.5052])
+
+        fig.tight_layout()
+        fig.savefig(path.join(IMG_DIR, 'gamma_long_term.pdf'))
+
+    # OLD FIGURES:
+
+    # def delta_lf():
+    #     figsize_x = 1.1 * FIGSIZE_X
+    #     figsize_y = 1.5 * FIGSIZE_Y
+    #     fig, a = plt.subplots(3, 2, figsize = [figsize_x, figsize_y])
+    #
+    #     pars = ['alpha', 'gamma', 'epsilon']
+    #     record_every = 100
+    #
+    #     delta_dir = path.join(DATA_DIR, '20200604', '1-lp_data')
+    #     avg_v_dir = path.join(DATA_DIR, '20200604', '2-avg_v')
+    #
+    #     with open(path.join(delta_dir, 'parameters.json')) as f:
+    #         params = json.load(f)
+    #
+    #     # All runs together is a bit much, thus only a few are allowed.
+    #     # This can be configured below:
+    #     allowed_inds = [
+    #         0,  # 1 (0.99 for gamma)
+    #         # 1,  # 0.9
+    #         2,  # 0.8
+    #         # 3,  # 0.7
+    #         4,  # 0.6
+    #         # 5,  # 0.5
+    #         6,  # 0.4
+    #         # 7,  # 0.3
+    #         8,  # 0.2
+    #         9,  # 0.1
+    #         10, # 0.0
+    #     ]
+    #
+    #     for i,par in enumerate(pars):
+    #         record_tags = [rt for rt in params if params[rt]['comment'] == f'vary_{par}']
+    #         # sort by increasing parameter value
+    #         record_tags.sort(key = lambda rt: params[rt]['Q_params'][par], reverse = True)
+    #
+    #         for rt_ind in allowed_inds:
+    #             record_tag = record_tags[rt_ind]
+    #             par_value = params[record_tag]['Q_params'][par]
+    #             plot_delta(
+    #                 a[i,0], f'{record_tag}-Delta.npy', data_dir = delta_dir,
+    #                 delta_t = record_every, color = LP_CMAPS[par](par_value)
+    #             )
+    #             fpath = path.join(avg_v_dir, f'{record_tag}-avg_v.npy')
+    #             if path.isfile(fpath):
+    #                 data = np.load(fpath)
+    #                 a[i, 1].scatter(*data, color = LP_CMAPS[par](par_value), marker = '.')
+    #
+    #     for fname in sorted(fnames_gamma):
+    #         record_tag = get_rt(fname)
+    #         gamma = params[record_tag]['Q_params']['gamma']
+    #         Q = np.load(fname)
+    #         Delta_l, Delta_f = (0,0)
+    #         for i in range(25):
+    #             Delta_l += np.sum(Q[i,:,1] - Q[i,:,0] < 0)
+    #         for i in range(25, 100):
+    #             Delta_f += np.sum(Q[i,:,0] - Q[i,:,1] < 0)
+    #         Delta_l /= 25 * Q.shape[1]
+    #         Delta_f /= 75 * Q.shape[1]
+    #         data.append([gamma, Delta_l, Delta_f])
+    #
+    #     for i in range(3):
+    #         a[i, 0].set_ylim(0.471, 0.503)
+    #         a[i, 0].set_ylabel(r'$\Delta$')
+    #         a[i, 1].set_ylabel(r'$\langle v \rangle$', rotation = 270, labelpad = 17)
+    #         a[i, 1].yaxis.set_label_position('right')
+    #         a[i, 1].yaxis.set_ticks_position('right')
+    #         if i != 2:
+    #             for j in range(2):
+    #                 a[i,j].set_xticklabels([])
+    #         else:
+    #             for j in range(2):
+    #                 a[i,j].set_xlabel('Timestep')
+    #                 a[i,j].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
+    #
+    #     fig.tight_layout()
+    #     fig.savefig(path.join(IMG_DIR,'delta_lf.pdf'))
+
+
     # def tweaking_the_learning_params():
     #     fig, a = plt.subplots(2,2)
     #
@@ -361,99 +486,6 @@ class Figures:
     #         params = json.load()
     #     for dname in sorted(glob(f'{data_dir}/*-Q/')):
     #         record_tag = get_rt(dir)
-
-    def delta_lf():
-        fig, a = plt.subplots(1, 2, figsize = [FIGSIZE_X, 0.55 * FIGSIZE_Y])
-        data_dir = path.join(DATA_DIR, '20200608', '1-lp_data')
-
-        with open(path.join(data_dir, 'parameters.json')) as f:
-            params = json.load(f)
-
-        # All runs together is a bit much, thus only a few are allowed.
-        # This can be configured below:
-        allowed_inds = [
-            0,  # 1 (0.99 for gamma)
-            # 1,  # 0.9
-            2,  # 0.8
-            # 3,  # 0.7
-            4,  # 0.6
-            # 5,  # 0.5
-            6,  # 0.4
-            # 7,  # 0.3
-            8,  # 0.2
-            9,  # 0.1
-            10, # 0.0
-        ]
-
-        par = 'gamma'
-        record_tags = [rt for rt in params if params[rt]['comment'] == f'vary_{par}']
-        # sort by increasing parameter value
-        record_tags.sort(key = lambda rt: params[rt]['Q_params'][par], reverse = True)
-
-        for rt_ind in allowed_inds:
-            data = []
-            record_tag = record_tags[rt_ind]
-            par_value = params[record_tag]['Q_params'][par]
-            Q_dir = path.join(data_dir, f'{record_tag}-Q')
-            for fpath in sorted(glob(path.join(Q_dir, f'*.npy'))):
-                Q = np.load(fpath)
-                timestep = int(regex.search(r'\d+', path.split(fpath)[1]).group())
-                Delta_l, Delta_f = (0,0)
-                for i in range(25):
-                    Delta_l += np.sum(Q[i,:,1] - Q[i,:,0] < 0)
-                for i in range(25, 100):
-                    Delta_f += np.sum(Q[i,:,0] - Q[i,:,1] < 0)
-                Delta_l /= 25 * Q.shape[1]
-                Delta_f /= 75 * Q.shape[1]
-                data.append([timestep, Delta_l, Delta_f])
-            timesteps, Delta_l, Delta_f = [],[],[]
-            for entry in data:
-                timesteps.append(entry[0])
-                Delta_l.append(entry[1])
-                Delta_f.append(entry[2])
-            np.save(path.join(data_dir, f'{record_tag}-Delta_l.npy'), [timesteps, Delta_l])
-            np.save(path.join(data_dir, f'{record_tag}-Delta_f.npy'), [timesteps, Delta_f])
-            a[0].plot(timesteps, Delta_l, color = LP_CMAP[par](par_value))
-            a[1].plot(timesteps, Delta_f, color = LP_CMAP[par](par_value))
-
-        fig.savefig(path.join(path.expanduser('~'), 'public_html', 'Delta_lf.pdf'))
-
-    def gamma_long_term():
-        fig, a = plt.subplots(4, 2, figsize = [FIGSIZE_X, 2 * FIGSIZE_Y])
-        data_dir = path.join(DATA_DIR)#, '20200610')#, '1-lp_data')
-        bird_types = 'lf'
-        card_dirs = 'NESW'
-        
-        with open(path.join(data_dir, 'parameters.json')) as f:
-            params = json.load(f)
-
-        record_tags = [
-            rt for rt in params.keys() if params[rt]['comment'] == 'vary_gamma'
-        ]
-        
-        for record_tag in record_tags:
-            gamma = params[record_tag]['Q_params']['gamma']
-            for i, card_dir in enumerate(card_dirs):
-                for j, bird_type in enumerate(bird_types):
-                    fname = f'{record_tag}-Delta_{bird_type}{card_dir}.npy'
-                    data = np.load(path.join(data_dir, fname))
-                    a[i,j].plot(*data, color = LP_CMAPS['gamma'](gamma))
-        
-        a[0,0].set_title('Leaders')
-        a[0,1].set_title('Followers')
-        for i, card_dir in enumerate(card_dirs):
-            a[i,0].set_ylabel(rf'$\Delta_\mathsf{{{card_dir}}}$')
-            # a[i,1].set_yticklabels([])
-            for j in range(2):
-                a[i,j].set_ylim([0.29, 0.51])
-                if i != 3:
-                    a[i,j].set_xticklabels([])
-
-        fig.tight_layout()
-        fig.savefig(
-            path.join(path.expanduser('~'), 'public_html', 'Delta_card_dir_disc.pdf')
-            # path.join(data_dir, 'Delta_card_dir_disc.pdf')
-        )
 
     # def long_run():
     #     record_tag = '20200503-180806'
