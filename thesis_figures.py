@@ -20,9 +20,9 @@ else:
     HERE = path.abspath('.')
 
 DATA_DIR = path.join(HERE, 'data')
-USER_ROOT = path.expanduser('~')
-# IMG_DIR = path.join(HERE, 'thesis-figures')
-IMG_DIR = path.join(USER_ROOT, 'public_html')
+# USER_ROOT = path.expanduser('~')
+# IMG_DIR = path.join(USER_ROOT, 'public_html')
+IMG_DIR = path.join(HERE, 'thesis-figures')
 
 FIGSIZE_X, FIGSIZE_Y = [5,4]
 
@@ -107,20 +107,6 @@ class Figures:
             a[0].plot(v_mag, c = color)
             a[1].plot(v_arg, c = color)
 
-        axins = inset_axes(a[0], width = '100%', height = '100%', bbox_to_anchor = (118, 53, 45, 6))
-
-        cbar = plt.colorbar(
-            mpl.cm.ScalarMappable(cmap = LF_CMAP),
-            cax = axins, orientation = 'horizontal', ticks = [0,1]
-        )
-        # axins.xaxis.xticks.horizontalalignment('left')
-        axins.set_xticklabels([0, 0.25])
-        axins.tick_params(labelsize = 8)
-        axins.xaxis.set_ticks_position('top')
-        axins.xaxis.set_label_position('top')
-        axins.set_xlabel(r'$l$', horizontalalignment = 'right', verticalalignment = 'center', fontsize = 9)
-        axins.xaxis.set_label_coords(-0.08, .5)
-
         a[0].set_ylabel(r'$|\boldsymbol{v}|$')
         a[1].set_ylabel(r'$\arg(\boldsymbol{v})$')
         a[1].set_yticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi])
@@ -132,6 +118,21 @@ class Figures:
             a[i].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
 
         fig.tight_layout()
+
+        axin = inset_axes(a[0], width = '100%', height = '100%', bbox_to_anchor = (118, 53, 45, 6))
+
+        cbar = plt.colorbar(
+            mpl.cm.ScalarMappable(cmap = LF_CMAP),
+            cax = axin, orientation = 'horizontal', ticks = [0,1]
+        )
+        # axins.xaxis.xticks.horizontalalignment('left')
+        axin.set_xticklabels([0, 0.25])
+        axin.tick_params(labelsize = 8)
+        axin.xaxis.set_ticks_position('top')
+        axin.xaxis.set_label_position('top')
+        axin.set_xlabel(r'$l$', horizontalalignment = 'right', verticalalignment = 'center', fontsize = 9)
+        axin.xaxis.set_label_coords(-0.08, .5)
+
         fig.savefig(path.join(IMG_DIR, 'optpol_leader_fractions.pdf'))
 
     def learning_params():
@@ -196,6 +197,20 @@ class Figures:
                     a[i,j].ticklabel_format(style = 'sci', axis = 'x', scilimits = (3,3))
 
         fig.tight_layout()
+
+        axins = dict()
+        for i, par in enumerate(['alpha', 'gamma', 'epsilon']):
+            axins[par] = inset_axes(a[i, 0], width='100%', height='100%', bbox_to_anchor = (65, 53 + 131 * (2 - i), 45, 6))
+            cbar = fig.colorbar(
+                mpl.cm.ScalarMappable(cmap = LP_CMAPS[par]), cax=axins[par],
+                orientation='horizontal', ticks=[0, 1]
+            )
+            cbar.ax.set_ylabel(fr'$\{par}$  ', rotation = 0, x = -0.5, y = -0.4)
+            axins[par].xaxis.set_ticks_position('top')
+            axins[par].xaxis.set_label_position('top')
+
+        axins['gamma'].set_xticklabels([0, 0.99])
+
         fig.savefig(path.join(IMG_DIR,'learning_params.pdf'))
 
     def lead_frac_obs_rad_discrete(
@@ -241,17 +256,6 @@ class Figures:
             label = r'$\langle v \rangle$' if obs_rad == 50 and lead_frac == 0.40 else None
             a[fig_nums].scatter(data[0], data[1], marker = '.', c = len(data[0]) * [color], label = label)
 
-        # axins = inset_axes(a[0,0], width = '100%', height = '100%', bbox_to_anchor = (143, 2 * 185, 35, 5))
-        axins = inset_axes(a[0,1], width='30%', height='5%', loc='upper center')
-        cbar = plt.colorbar(
-            mpl.cm.ScalarMappable(cmap = LF_CMAP),
-            cax = axins, orientation = 'horizontal', ticks = [0,1]
-        )
-        axins.set_xticklabels([0, 0.40])
-        axins.tick_params(labelsize = 8)
-        axins.set_xlabel(r'$l$', horizontalalignment = 'right', verticalalignment = 'center')
-        axins.xaxis.set_label_coords(-0.08, .5)
-
         for obs_rad, fig_row in or_dict.items():
             a[fig_row, 0].set_ylim(0.47, 0.51)
             a[fig_row, 0].set_title(f'$d/L = {obs_rad/800}$', loc = 'left')
@@ -270,6 +274,18 @@ class Figures:
                 a[i,j].set_xticklabels([])
 
         fig.tight_layout()
+
+        # axin = inset_axes(a[0,0], width = '100%', height = '100%', bbox_to_anchor = (143, 2 * 185, 35, 5))
+        axin = inset_axes(a[0,1], width='30%', height='5%', loc='upper center')
+        cbar = plt.colorbar(
+            mpl.cm.ScalarMappable(cmap = LF_CMAP),
+            cax = axin, orientation = 'horizontal', ticks = [0,1]
+        )
+        axin.set_xticklabels([0, 0.40])
+        axin.tick_params(labelsize = 8)
+        axin.set_xlabel(r'$l$', horizontalalignment = 'right', verticalalignment = 'center')
+        axin.xaxis.set_label_coords(-0.08, .5)
+
         fig.savefig(path.join(IMG_DIR, save_as))
 
     def lead_frac_obs_rad_gradient():
@@ -323,6 +339,18 @@ class Figures:
         # a[3,1].set_ylim([0.4955, 0.5052])
 
         fig.tight_layout()
+
+        axin = inset_axes(a[0, 0], width='100%', height='100%', bbox_to_anchor = (124, 515, 45, 6))
+        cbar = fig.colorbar(
+            mpl.cm.ScalarMappable(cmap = LP_CMAPS['gamma']), cax = axin,
+            orientation='horizontal', ticks=[0, 1]
+        )
+        cbar.ax.set_ylabel(fr'$\gamma$  ', rotation = 0, x = -0.5, y = -0.4)
+        # axin.xaxis.set_ticks_position('top')
+        # axin.xaxis.set_label_position('top')
+
+        axin.set_xticklabels([0, 0.99])
+
         fig.savefig(path.join(IMG_DIR, 'gamma_long_term.pdf'))
 
     # OLD FIGURES:
