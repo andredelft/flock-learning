@@ -48,43 +48,57 @@ def benchmark():
         comment = 'Tracking Delta, Q and t (record every 5000)'
     )
 
-def load_from_Q(fpath = None, record_tag = None, data_dir = 'data', plot = False,
+def load_from_Q(fpath = '', record_tag = '', data_dir = '', plot = False,
                 record_data = True, Q_tables = None, params = None, comment = '',
                 **kwargs):
 
-    if (not fpath) and (not record_tag) and (type(Q_tables) != np.ndarray):
-        raise ValueError(
+    if fpath:
+
+        # Default guesses for record_tag, data_dir & params
+        if not record_tag:
+            record_tag = get_rt(fpath)
+
+        if not data_dir:
+            data_dir = path.split(fpath)[0]
+
+        if not params:
+            with open(path.join(data_dir, 'parameters.json')) as f:
+                params = json.load(f)[record_tag]
+
+        Q_file = fpath
+        params['Q_file'] = Q_file
+
+    elif type(Q_tables) == np.ndarray and params:
+
+        params['Q_tables'] = Q_tables
+
+    else:
+        raise Exception(
             "Not enough information provided. Either the path to a Q-table " +
             "and the associated record tag should be given or a Q-table " +
-            "should be provided via 'Q_tables' (as a numpy array)"
+            "with parameters should be provided."
         )
-
-    if not params:
-        with open(path.join(data_dir, 'parameters.json')) as f:
-            params = json.load(f)[record_tag]
 
     params['comment'] = comment if comment else record_tag
     params.pop('learning_alg', '')
 
     no_birds = params.pop('no_birds')
 
+    # Add instincts if they are present in data_dir
     instinct_file = path.join(data_dir, f'{record_tag}-instincts.json')
     if path.isfile(instinct_file):
         with open(instinct_file) as f:
             instincts = json.load(f)
             params['instincts'] = instincts
 
-    if type(Q_tables) == np.ndarray:
-        params['Q_tables'] = Q_tables
-    else:
-        Q_file = fpath
-        params['Q_file'] = Q_file
 
     if 'Q_params' in params.keys():
         params.update(params.pop('Q_params'))
-    # pop some depracated or unused params
+
+    # Pop some depracated or unused params
     [params.pop(key, '') for key in ['no_dirs', 'observe_direction', 'record_every']]
 
+    # Start the simulation
     Field(
         no_birds, plot = plot, record_data = record_data,
         learning_alg = 'pol_from_Q', **params, **kwargs
@@ -137,6 +151,7 @@ def mp_wrapper(indexed_pars):
     )
 
 if __name__ == '__main__':
+    Field(100, record_mov = True, sim_length = 3000, record_quantities = ['v'], eps_decr = 2000, leader_frac = 0.4)
     #action_space = ['V', 'I']
     #for :
     #    Field(
@@ -144,18 +159,18 @@ if __name__ == '__main__':
     #        action_space = ['V', 'I'], plot = False, record_mov = False, learning_alg = 'Ried', record_data = True
     #    )
 
-    
+
     #for par in ['alpha', 'gamma', 'epsilon']:
     #for gamma in [0,0.99]:
-    
-    values = [0, 0.5, 0.99, 0.3, 0.4, 0.1, 0.6, 0.7, 0.8, 0.9, 0.2]
-    pars = [{'gamma': gamma, 'comment': f'vary_gamma'} for gamma in values]
-    
-    for par_dict in pars:
-        Field(
-            100, record_data = True, plot = False, sim_length = 500_000,
-            learning_alg = 'Q', Q_every = 10_000, record_every = 10_000, gradient_reward = False, **par_dict
-        )
+
+    # values = [0, 0.5, 0.99, 0.3, 0.4, 0.1, 0.6, 0.7, 0.8, 0.9, 0.2]
+    # pars = [{'gamma': gamma, 'comment': f'vary_gamma'} for gamma in values]
+    #
+    # for par_dict in pars:
+    #     Field(
+    #         100, record_data = True, plot = False, sim_length = 500_000,
+    #         learning_alg = 'Q', Q_every = 10_000, record_every = 10_000, gradient_reward = False, **par_dict
+    #     )
 
     # Different ways of running the model:
     #
@@ -190,7 +205,7 @@ if __name__ == '__main__':
     #        pars.append({'observation_radius': obs_rad, 'leader_frac': lead_frac})
     #pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
     #pars += [{par: value, 'gradient_reward': False, 'comment': f'vary_{par} (no gradient)'} for par, value in par_tweaks] # reference simulations
-    
+
 
     #with ProcessPoolExecutor() as executor:
     #    for _ in executor.map(mp_wrapper, enumerate(pars)):
