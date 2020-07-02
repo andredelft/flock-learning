@@ -240,7 +240,7 @@ class Field(object):
 
         tstep = 0
         while True:
-            self.birds.update()
+            self.birds.update(tstep)
 
             # Periodic boundaries
             if self.periodic:

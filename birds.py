@@ -71,7 +71,7 @@ def ternary(numbers):
     return sum(numbers[-1 * (i + 1)] * 3 ** i for i in range(len(numbers)))
 
 def argmax(array):
-    """ Returns the index of the maximum value of an array. If multiple maximum values 
+    """ Returns the index of the maximum value of an array. If multiple maximum values
     exist, it returns one of them at random (unlike np.argmax).
 
     Inspired by https://stackoverflow.com/questions/17568612 """
@@ -83,7 +83,7 @@ def argmax(array):
             max_value = value
         elif value == max_value:
             all_inds.append(i)
-    
+
     if len(all_inds) == 1:
         return all_inds[0]
     else:
@@ -164,7 +164,7 @@ class Birds(object):
                  leader_frac = 0.25, reward_signal = R, learning_alg = 'Q',
                  alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
                  Q_tables = None, gradient_reward = True, observation_radius = d,
-                 instincts = []):
+                 instincts = [], eps_decr = 0):
 
         # Initialize the birds and put them in the field
         self.numbirds = numbirds
@@ -215,9 +215,14 @@ class Birds(object):
             self.alpha = alpha
             self.gamma = gamma
             self.epsilon = epsilon
+            self.eps_decr = eps_decr
+            if self.eps_decr:
+                self.eps_step = epsilon / eps_decr
             self.Qs = [Qfunction(
                 alpha, gamma, self.observation_space, self.action_space
             ) for _ in range(self.numbirds)]
+        else:
+            self.eps_decr = 0 # Always switch it of for other learning_algs
 
     def request_params(self):
         params = {
@@ -313,8 +318,6 @@ class Birds(object):
 
             # Update the epsilon-greedy policy
             argmax_Q = argmax(self.Qs[i].table[s])
-            if self.Qs[i].table[s,0] == self.Qs[i].table[s,1]:
-                print('Equal!')
             self.policies[i,s] = (
                 np.array([
                     (1 - self.epsilon if j == argmax_Q else 0)
@@ -353,7 +356,7 @@ class Birds(object):
         print(f'Delta = {Delta}')
         return Delta
 
-    def update(self):
+    def update(self, tstep):
         """
         The main function that governs each update, to be called from outside.
 
@@ -382,6 +385,16 @@ class Birds(object):
         # print(f'Observing: {round(t_end - t_start, 3)}')
 
         # t_start = time.perf_counter()
+        if self.eps_decr:
+            if tstep < self.eps_decr and tstep > 0:
+                # Decrease epsilon gradually
+                self.epsilon -= self.eps_step
+            elif tstep == self.eps_decr:
+                # Switch off learning
+                self.epsilon = 0
+                self.alpha = 0
+                print('Learning parameters switched off')
+
         if self.learning_alg == 'Ried':
             self.Ried_learning()
         elif self.learning_alg == 'Q':

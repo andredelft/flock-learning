@@ -141,17 +141,33 @@ def run_Q_dirs(data_dir):
             timestep = int(regex.search('\d+', path.split(fpath)[1]).group())
             load_from_Q(fpath, record_tag, data_dir = data_dir, comment = f'{record_tag}-{timestep:>06}', sim_length = 1500)
 
-def mp_wrapper(indexed_pars):
+def _mp_wrapper(indexed_pars):
     i, pars = indexed_pars
     time.sleep(5 * i) # To make sure they don't start at exactly the same time,
                       # resulting in the same record tag
-    Field(
-        100, record_data = True, plot = False, sim_length = 500_000,
-        learning_alg = 'Q', Q_every = 10_000, record_every = 10_000, gradient_reward = False, **pars
-    )
+
+    for par in ['record_data', 'plot']:
+        pars.pop(par, '')
+
+    Field(100, record_data = True, plot = False, **pars)
+
+def run_parallel(pars, **kwargs):
+    pars.update(kwargs)
+    with ProcessPoolExecutor() as executor:
+        list(executor.map(_mp_wrapper, enumerate(pars)))
 
 if __name__ == '__main__':
-    Field(100, record_mov = True, sim_length = 3000, record_quantities = ['v'], eps_decr = 2000, leader_frac = 0.4)
+
+    pars = [
+        {'observation_radius': value}
+        for value in [10, 50, 100, 150]
+    ]
+    run_parallel(pars, sim_length = 10_000, comment = 'vary_obs_rad')
+        # for indexed_pars in enumerate(pars):
+        #     result = executor.submit(mp_wrapper, indexed_pars)
+        #     print(result)
+
+    # Field(100, record_mov = True, sim_length = 3000, record_quantities = ['v'], eps_decr = 2000, leader_frac = 0.4)
     #action_space = ['V', 'I']
     #for :
     #    Field(

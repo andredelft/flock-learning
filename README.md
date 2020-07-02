@@ -35,8 +35,9 @@
 4. Start multiple simulations at the same time using multiprocessing, with the option of adjusting parameters in different runs:
 
     ```pycon
-    >>> pars = [{'obs_rad': value} for obs_rad in [10, 50, 100, 150]]
-    >>> with ProcessPoolExecutor() as executor:
-    ...    for _ in executor.map(mp_wrapper, enumerate(pars)):
-    ...        pass
+    >>> pars = [
+    ...     {'observation_radius': value}
+    ...     for value in [10, 50, 100, 150]
+    ... ]
+    >>> run_parallel(pars, sim_length = 10_000, comment = 'vary_obs_rad')
     ```
