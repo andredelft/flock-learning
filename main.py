@@ -158,11 +158,14 @@ def run_parallel(pars, **kwargs):
 
 if __name__ == '__main__':
 
-    pars = [
-        {'observation_radius': value}
-        for value in [10, 50, 100, 150]
-    ]
-    run_parallel(pars, sim_length = 10_000, comment = 'vary_obs_rad')
+    for lf in [0, 1]:
+        Field(100, record_mov = True, sim_length = 5000, leader_frac = lf)
+
+    # pars = [
+    #     {'observation_radius': value}
+    #     for value in [10, 50, 100, 150]
+    # ]
+    # run_parallel(pars, sim_length = 10_000, comment = 'vary_obs_rad')
         # for indexed_pars in enumerate(pars):
         #     result = executor.submit(mp_wrapper, indexed_pars)
         #     print(result)
