@@ -2,6 +2,8 @@
 
 This repository contains the model that has been written for the research project for my MSc in theoretical physics. The model aims to describe collective motion using Q-learning with orientation-based rewards.
 
+![](20200614-102301.gif)
+
 In this documentation, I will explain the technical details of the model. The conceptual framework is written down in my thesis, which can be requested by [contacting me](mailto:andrevandelft@outlook.com).
 
 ## Getting started
