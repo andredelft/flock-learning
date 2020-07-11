@@ -160,11 +160,9 @@ def check_rotational_symmetry():
 
 class Birds(object):
 
-    def __init__(self, numbirds, field_dims, action_space = A, observation_space = O,
-                 leader_frac = 0.25, reward_signal = R, learning_alg = 'Q',
-                 alpha = alpha, gamma = gamma, epsilon = epsilon, Q_file = '',
-                 Q_tables = None, gradient_reward = True, observation_radius = d,
-                 instincts = [], eps_decr = 0):
+    def __init__(self, numbirds, field_dims, action_space = A,
+                 observation_space = O, leader_frac = 0.25, reward_signal = R, gradient_reward = True, learning_alg = 'Q', alpha = alpha,
+                 gamma = gamma, epsilon = epsilon, Q_file = '', Q_tables = None, observation_radius = d, instincts = [], eps_decr = 0):
 
         # Initialize the birds and put them in the field
         self.numbirds = numbirds

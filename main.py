@@ -157,116 +157,70 @@ def run_parallel(pars, **kwargs):
         list(executor.map(_mp_wrapper, enumerate(pars)))
 
 if __name__ == '__main__':
+    pass
 
-    for lf in [0, 1]:
-        Field(100, record_mov = True, sim_length = 5000, leader_frac = lf)
+    # 1. Start a regular simulation directly by creating an instance of the
+    # `Field` class. An integer should be passed that specifies the number of
+    # birds.
+
+    # from field import Field
+    # Field(100)
+
+    # Two other ways in which a `Field` instance can run is by recording a movie:
+
+    # Field(100, record_mov = True, sim_length = 5000)
+
+    # or just recording the data:
+
+    # Field(100, record_data = True, plot = False, sim_length = 5000)
+
+    # The quantities that are recorded can be further specified using the `record_quantities` keyword.
+
+
+    # 2. Start a simulation with fixed Q-tables from a given file (the output of
+    # a Q-learning training phase with `record_data = True`)
+
+    # from main import load_from_Q
+    # load_from_Q(fpath = 'data/20200531/2-VI/20200531-100329-Q.npy')
+
+
+    # 3. Start a simulation with fixed Q-values from a specific value of Delta
+
+    # from main import load_from_Delta
+    # load_from_Delta(0.2)
+
+
+    # 4. Start multiple simulations at the same time using multiprocessing,
+    # with the option of adjusting parameters in different runs:
 
     # pars = [
     #     {'observation_radius': value}
     #     for value in [10, 50, 100, 150]
     # ]
     # run_parallel(pars, sim_length = 10_000, comment = 'vary_obs_rad')
-        # for indexed_pars in enumerate(pars):
-        #     result = executor.submit(mp_wrapper, indexed_pars)
-        #     print(result)
 
-    # Field(100, record_mov = True, sim_length = 3000, record_quantities = ['v'], eps_decr = 2000, leader_frac = 0.4)
-    #action_space = ['V', 'I']
-    #for :
-    #    Field(
-    #        100, sim_length = 5000, gradient_reward = False, reward_signal = r,
-    #        action_space = ['V', 'I'], plot = False, record_mov = False, learning_alg = 'Ried', record_data = True
-    #    )
+    # NB: There is a complication regarding multiprocessing and the python
+    # random module, which sometimes results in very similar initializations.
+    # This problem has not been solved yet. Cf.:
+    # https://www.sicara.ai/blog/2019-01-28-how-computer-generate-random-numbers.
 
 
-    #for par in ['alpha', 'gamma', 'epsilon']:
-    #for gamma in [0,0.99]:
+    # 5. If the Q-tables of a given simulation are saved regularly (using the
+    # option `Q_every`), these are saved in some directory, different (short)
+    # simulations can be performed for every saved Q-table. The graphs on the
+    # right hand side of [this](thesis-figures/learning_params.pdf) and
+    # [this](thesis-figures/lead_frac_obs_rad_discrete.pdf) figure have been
+    # generated using this option.
 
-    # values = [0, 0.5, 0.99, 0.3, 0.4, 0.1, 0.6, 0.7, 0.8, 0.9, 0.2]
-    # pars = [{'gamma': gamma, 'comment': f'vary_gamma'} for gamma in values]
-    #
-    # for par_dict in pars:
-    #     Field(
-    #         100, record_data = True, plot = False, sim_length = 500_000,
-    #         learning_alg = 'Q', Q_every = 10_000, record_every = 10_000, gradient_reward = False, **par_dict
-    #     )
-
-    # Different ways of running the model:
-    #
-    # 1. Start a regular simulation by creating a Field instance. Things like
-    #    recording data and parameter specifications are all handled as keyword
-    #    arguments.
-
-    # Field(
-    #     100, sim_length = 10_000_000, plot = False, learning_alg = 'Q',
-    #     record_quantities = ['Delta', 'Q', 'instincts'], record_every = 5000,
-    #     Q_every = 50_000
-    # )
-
-    # 2. Start a simulation with fixed Q-tables from a given file (the output of
-    #    a learning run)
-
-    # load_from_Q(
-    #     fname = 'data/20200501-164233-Q/1130000.npy', data_dir = 'data',
-    #     record_tag = '20200501-164233', record_data = False,
-    #     record_mov = False, sim_length = 15_000, plot = True
-    # )
-
-    # 3. Start a simulation with fixed Q-values from a specific value of Delta
-
-    # load_from_Delta(0.2)
-
-    # 4. Start multiple simulations at the same time using multiprocessing, with
-    #    the option of adjusting parameters in different runs (as exemplified
-    #    below with some learning pars)
-
-    #    for obs_rad in [10, 50, 100, 150]:
-    #        pars.append({'observation_radius': obs_rad, 'leader_frac': lead_frac})
-    #pars = [{par: value, 'comment': f'vary_{par}'} for par, value in par_tweaks]
-    #pars += [{par: value, 'gradient_reward': False, 'comment': f'vary_{par} (no gradient)'} for par, value in par_tweaks] # reference simulations
+    # data_dir = 'path/to/some/dir'
+    # run_Q_dirs(data_dir)
 
 
-    #with ProcessPoolExecutor() as executor:
-    #    for _ in executor.map(mp_wrapper, enumerate(pars)):
-    #        pass
+    # 6. Run a benchmark test and create a figure with the results
 
-
-    # 5. Run a benchmark test and create a figure with the results
-
+    # from main import benchmark
     # benchmark()
     # p.plot_all(
     #     quantity = 't', save_as = 'benchmark.png',
     #     title = 'Benchmark test', legend = 8
     # )
-
-    # For tonight:
-    # Q_dirs = sorted(glob('data/20200525/2020052[56]-*-Q'))
-    # for Q_dir in Q_dirs:
-    #     for fname in sorted(glob(f'{Q_dir}/*.npy')):
-    #         record_tag = get_rt(Q_dir)
-    #         timestep = int(regex.search('\d+', path.split(fname)[1]).group())
-    #         m.load_from_Q(fname, record_tag, data_dir = 'data/20200525', comment = f'{record_tag}-{timestep:>06}', sim_length = 1500)
-
-    # def avg_v():
-    #     plt.figure()
-    #     fnames = sorted(glob('data/*-v.npy'))
-    #     avg_v = []
-    #     timesteps = []
-    #     with open('data/parameters.json') as f:
-    #         params = json.load(f)
-    #     for fname in sorted(fnames):
-    #         record_tag = get_rt(fname)
-    #         timestep = int(params[record_tag]['comment'].split('-')[-1])
-    #         print(timestep)
-    #         data = np.load(fname)
-    #         v = [x ** 2 + y ** 2 for x,y in data[500:]]
-    #         if len(v) > 0:
-    #             avg_v.append(sum(v)/len(v))
-    #             timesteps.append(timestep)
-    #     plt.scatter(timesteps, avg_v, marker = '.')
-    #     plt.savefig(path.join(path.expanduser('~'), 'public_html', 'avg_v.png'), dpi = 300)
-
-    # 6.
-
-    # data_dir = 'data/20200528/1-lf_or'
-    # run_Q_dirs(data_dir)

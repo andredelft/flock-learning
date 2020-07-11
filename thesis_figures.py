@@ -13,6 +13,9 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import plot as p
 from utils import get_rt, shiftedColorMap
 
+""" This file contains the scripts that were used to generate the figures used
+in my thesis (located in the folder /thesis-figures/) """
+
 # When working from another directory
 if __name__ == "__main__":
     HERE = path.split(path.abspath(__file__))[0]
