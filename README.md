@@ -73,7 +73,7 @@ Simulations can then be performed in a couple of different ways:
 
 ## All options for the `Field` and `Bird` classes
 
-### field.Field(*numbirds, sim_length = 12500, record_mov = False, record_data = False, record_time = False, record_quantities = [], field_dims = FIELD_DIMS, periodic = True, plotscale = PLOTSCALE, plot = True, comment = '', Q_every = 0, repos_every = 0, record_every = 500, **kwargs*)
+### field.Field(*numbirds, sim_length = 12500, record_mov = False, record_data = False, record_time = False, record_quantities = [], field_dims = FIELD_DIMS, periodic = True, plotscale = PLOTSCALE, plot = True, comment = '', Q_every = 0, repos_every = 0, record_every = 500, \*\*kwargs*)
 
 * `numbirds`: Number of birds in the field (only required parameter).
 * `sim_length`: Number of timesteps the simulation will be running (only works when `plot = False`)
