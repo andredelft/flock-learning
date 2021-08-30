@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: "van Delft"
+- family-names: "Van Delft"
   given-names: "André"
   orcid: "https://orcid.org/0000-0003-4190-0091"
 title: "flock-learning"
